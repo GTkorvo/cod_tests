@@ -1,0 +1,73 @@
+*** /Users/eisen/prog/gcc-3.3.1-3/gcc/testsuite/gcc.c-torture/execute/int-compare.c	Thu Oct 16 05:59:24 2003
+--- int-compare.c	Tue Jan 27 18:52:41 2015
+***************
+*** 1,34 ****
+  #include <limits.h>
+  
+! gt (a, b)
+  {
+    return a > b;
+  }
+  
+! ge (a, b)
+  {
+    return a >= b;
+  }
+  
+! lt (a, b)
+  {
+    return a < b;
+  }
+  
+! le (a, b)
+  {
+    return a <= b;
+  }
+  
+  void
+! true (c)
+  {
+    if (!c)
+      abort();
+  }
+  
+  void
+! false (c)
+  {
+    if (c)
+      abort();
+--- 1,34 ----
+  #include <limits.h>
+  
+! int gt (int a, int b)
+  {
+    return a > b;
+  }
+  
+! int ge (int a, int b)
+  {
+    return a >= b;
+  }
+  
+! int lt (int a, int b)
+  {
+    return a < b;
+  }
+  
+! int le (int a, int b)
+  {
+    return a <= b;
+  }
+  
+  void
+! true (int c)
+  {
+    if (!c)
+      abort();
+  }
+  
+  void
+! false (int c)
+  {
+    if (c)
+      abort();
