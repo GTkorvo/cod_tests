@@ -1,0 +1,33 @@
+*** /Users/eisen/prog/gcc-3.3.1-3/gcc/testsuite/gcc.c-torture/execute/20011126-2.c	Thu Oct 16 05:58:34 2003
+--- 20011126-2.c	Tue Jan 27 21:21:35 2015
+***************
+*** 1,24 ****
+! /* Problem originally visible on ia64.
+! 
+!    There is a partial redundancy of "in + 1" that makes GCSE want to
+!    transform the final while loop to 
+! 
+!      p = in + 1;
+!      tmp = p;
+!      ...
+!      goto start;
+!    top:
+!      tmp = tmp + 1;
+!    start:
+!      in = tmp;
+!      if (in < p) goto top;
+! 
+!    We miscalculate the number of loop iterations as (p - tmp) = 0
+!    instead of (p - in) = 1, which results in overflow in the doloop
+!    optimization.  */
+! 
+! static const char *
+! test (const char *in, char *out)
+  {
+    while (1)
+      {
+--- 1,4 ----
+! static const char * test (const char *in, char *out)
+  {
+    while (1)
+      {

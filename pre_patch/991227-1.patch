@@ -1,0 +1,17 @@
+*** /Users/eisen/prog/gcc-3.3.1-3/gcc/testsuite/gcc.c-torture/execute/991227-1.c	Thu Oct 16 05:59:13 2003
+--- 991227-1.c	Wed Jan 28 21:13:07 2015
+***************
+*** 1,6 ****
+  char* doit(int flag)
+  {
+!   return 1 + (flag ? "\0wrong\n" : "\0right\n");
+  }
+  int main()
+  {
+--- 1,6 ----
+  char* doit(int flag)
+  {
+!   return 1 + (flag ? "fwrong\n" : "fright\n");
+  }
+  int main()
+  {
