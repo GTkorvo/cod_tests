@@ -117,9 +117,7 @@ main(int argc, char**argv)
 	""};
 
     char *global_decls[] = {
-	"/* This bug exists in gcc-2.95, egcs-1.1.2, gcc-2.7.2 and probably",
-	"\n\
-typedef struct int3 { int a, b, c; } int3;",
+	"typedef struct int3 { int a, b, c; } int3;",
 ""};
 
     int i;
@@ -131,7 +129,7 @@ typedef struct int3 { int a, b, c; } int3;",
         }
         cod_parse_context context = new_cod_parse_context();
         cod_assoc_externs(context, externs);
-        for (j=0; j < 2; j++) {
+        for (j=0; j < 1; j++) {
             cod_parse_for_globals(global_decls[j], context);
         }
         cod_parse_for_context(extern_string, context);

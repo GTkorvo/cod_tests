@@ -125,11 +125,7 @@ main(int argc, char**argv)
 	""};
 
     char *global_decls[] = {
-	"/* Two of these types will, on current gcc targets, have the same\n\
-   mode but have different alias sets.  DOIT tries to get gcse to\n\
-\n\
-\n\
-typedef int T0;\n\
+	"typedef int T0;\n\
 typedef long T1;\n\
 typedef long long T2;",
 ""};

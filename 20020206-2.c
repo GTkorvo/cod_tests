@@ -93,11 +93,7 @@ main(int argc, char**argv)
 	""};
 
     char *global_decls[] = {
-	"/* Origin: PR c/5420 from David Mosberger <davidm@hpl.hp.com>.\n\
-   This testcase was miscompiled when tail call optimizing, because a\n\
-   compound literal initialization was emitted only in the tail call insn",
-	"\n\
-typedef struct { unsigned short a; } A;\n\
+	"typedef struct { unsigned short a; } A;\n\
 \n\
 extern void abort (void);\n\
 extern void exit (int);",
@@ -112,7 +108,7 @@ extern void exit (int);",
         }
         cod_parse_context context = new_cod_parse_context();
         cod_assoc_externs(context, externs);
-        for (j=0; j < 2; j++) {
+        for (j=0; j < 1; j++) {
             cod_parse_for_globals(global_decls[j], context);
         }
         cod_parse_for_context(extern_string, context);

@@ -66,7 +66,7 @@ main(int argc, char**argv)
     };
 
     char extern_string[] = "\n\
-	 int rl_show_char (int c);\n\
+	int rl_show_char (int c);\n\
 	int rl_character_len (int c, int pos);\n\
 	int main();\n\
     	void exit(int value);\n\
@@ -94,13 +94,12 @@ main(int argc, char**argv)
 ""};
 
     char *func_decls[] = {
-	" int rl_show_char (int c);",
+	"int rl_show_char (int c);",
 	"int rl_character_len (int c, int pos);",
 	"int main();",
 	""};
 
     char *global_decls[] = {
-	"/* This code was miscompiled at -O3 on x86.",
 ""};
 
     int i;
@@ -112,7 +111,7 @@ main(int argc, char**argv)
         }
         cod_parse_context context = new_cod_parse_context();
         cod_assoc_externs(context, externs);
-        for (j=0; j < 1; j++) {
+        for (j=0; j < 0; j++) {
             cod_parse_for_globals(global_decls[j], context);
         }
         cod_parse_for_context(extern_string, context);

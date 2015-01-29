@@ -83,22 +83,8 @@ main(int argc, char**argv)
 	""};
 
     char *global_decls[] = {
-	"/*\n\
-From: niles@fan745.gsfc.nasa.gov\n\
-To: fortran@gnu.org\n\
-Subject: Re: Scary problems in g77 for RedHat 6.0. (glibc-2.1) \n\
-Date: Sun, 06 Jun 1999 23:37:23 -0400\n\
-X-UIDL: 9c1e40c572e3b306464f703461764cd5\n\
-\n\
-\n\
-#include <stdio.h>\n\
+	"#include <stdio.h>\n\
 #include <math.h>",
-	"/*\n\
-It will result in 36028797018963968.000000 on Alpha RedHat Linux 6.0\n\
-using glibc-2.1 at least on my 21064.  This may result in g77 bug\n\
-reports concerning the INT() function, just so you know.",
-	"	Thanks,	\n\
-	Rick Niles.",
 ""};
 
     int i;
@@ -110,7 +96,7 @@ reports concerning the INT() function, just so you know.",
         }
         cod_parse_context context = new_cod_parse_context();
         cod_assoc_externs(context, externs);
-        for (j=0; j < 3; j++) {
+        for (j=0; j < 1; j++) {
             cod_parse_for_globals(global_decls[j], context);
         }
         cod_parse_for_context(extern_string, context);

@@ -67,8 +67,7 @@ main(int argc, char**argv)
     };
 
     char extern_string[] = "\n\
-	 unsigned short
-test1 (unsigned short w);\n\
+	unsigned short test1 (unsigned short w);\n\
 	unsigned long test2 (unsigned long w);\n\
 	int test3 (unsigned short a);\n\
 	int main ();\n\
@@ -123,15 +122,13 @@ test1 (unsigned short w);\n\
 ""};
 
     char *func_decls[] = {
-	" unsigned short
-test1 (unsigned short w);",
+	"unsigned short test1 (unsigned short w);",
 	"unsigned long test2 (unsigned long w);",
 	"int test3 (unsigned short a);",
 	"int main ();",
 	""};
 
     char *global_decls[] = {
-	"/* On H8/300 port, NOTICE_UPDATE_CC had a bug that causes the final",
 ""};
 
     int i;
@@ -143,7 +140,7 @@ test1 (unsigned short w);",
         }
         cod_parse_context context = new_cod_parse_context();
         cod_assoc_externs(context, externs);
-        for (j=0; j < 1; j++) {
+        for (j=0; j < 0; j++) {
             cod_parse_for_globals(global_decls[j], context);
         }
         cod_parse_for_context(extern_string, context);

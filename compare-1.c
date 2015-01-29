@@ -204,13 +204,7 @@ main(int argc, char**argv)
 	""};
 
     char *global_decls[] = {
-	"/* Copyright (C) 2002 Free Software Foundation.\n\
-\n\
-   Test for correctness of composite comparisons.\n\
-\n\
-\n\
-\n\
-extern void abort (void);",
+	"extern void abort (void);",
 ""};
 
     int i;

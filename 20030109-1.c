@@ -84,10 +84,12 @@ main(int argc, char**argv)
 	""};
 
     char *global_decls[] = {
-	"/* Verify that an empty initializer inside a partial",
-	"\n\
-struct X",
-	";",
+	"struct X\n\
+{\n\
+  int a;\n\
+  int b;\n\
+  int z[];\n\
+};",
 	"struct X x =",
 	";",
 ""};
@@ -101,7 +103,7 @@ struct X",
         }
         cod_parse_context context = new_cod_parse_context();
         cod_assoc_externs(context, externs);
-        for (j=0; j < 5; j++) {
+        for (j=0; j < 3; j++) {
             cod_parse_for_globals(global_decls[j], context);
         }
         cod_parse_for_context(extern_string, context);

@@ -100,10 +100,7 @@ main(int argc, char**argv)
 	""};
 
     char *global_decls[] = {
-	"/* This testcase failed because - 1 - buf was simplified into ~buf and when\n\
-\n\
-\n\
-extern void abort (void);\n\
+	"extern void abort (void);\n\
 extern void exit (int);",
 	"char buf[10];",
 ""};

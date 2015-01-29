@@ -65,8 +65,7 @@ main(int argc, char**argv)
     };
 
     char extern_string[] = "\n\
-	 static const char *
-test (const char *in, char *out);\n\
+	static const char * test (const char *in, char *out);\n\
 	int main ();\n\
     	void exit(int value);\n\
         void abort();\n\
@@ -99,29 +98,11 @@ test (const char *in, char *out);\n\
 ""};
 
     char *func_decls[] = {
-	" static const char *
-test (const char *in, char *out);",
+	"static const char * test (const char *in, char *out);",
 	"int main ();",
 	""};
 
     char *global_decls[] = {
-	"/* Problem originally visible on ia64.\n\
-\n\
-   There is a partial redundancy of \"in + 1\" that makes GCSE want to\n\
-   transform the final while loop to \n\
-\n\
-     p = in + 1;\n\
-     tmp = p;\n\
-     ...\n\
-     goto start;\n\
-   top:\n\
-     tmp = tmp + 1;\n\
-   start:\n\
-     in = tmp;\n\
-     if (in < p) goto top;\n\
-\n\
-   We miscalculate the number of loop iterations as (p - tmp) = 0\n\
-   instead of (p - in) = 1, which results in overflow in the doloop",
 ""};
 
     int i;
@@ -133,7 +114,7 @@ test (const char *in, char *out);",
         }
         cod_parse_context context = new_cod_parse_context();
         cod_assoc_externs(context, externs);
-        for (j=0; j < 1; j++) {
+        for (j=0; j < 0; j++) {
             cod_parse_for_globals(global_decls[j], context);
         }
         cod_parse_for_context(extern_string, context);
@@ -154,7 +135,7 @@ test (const char *in, char *out);",
     if (test_output) {
         /* there was output, test expected */
         fclose(test_output);
-        int ret = system("cmp 20011126-2.c.output /Users/eisen/prog/gcc-3.3.1-3/gcc/testsuite/gcc.expect-torture/execute/20011126-2.expect");
+        int ret = system("cmp 20011126-2.c.output ./pre_patch/20011126-2.expect");
         ret = ret >> 8;
         if (ret == 1) {
             printf("Test ./generated/20011126-2.c failed, output differs\n");

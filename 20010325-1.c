@@ -83,12 +83,7 @@ main(int argc, char**argv)
 	""};
 
     char *global_decls[] = {
-	"/* Origin: Joseph Myers <jsm28@cam.ac.uk>.\n\
-\n\
-   This tests for inconsistency in whether wide STRING_CSTs use the host\n\
-\n\
-\n\
-extern void exit (int);\n\
+	"extern void exit (int);\n\
 extern void abort (void);",
 ""};
 

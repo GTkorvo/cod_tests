@@ -90,10 +90,7 @@ main(int argc, char**argv)
 	""};
 
     char *global_decls[] = {
-	"/* Make sure that we don't free any temp stack slots associated with\n\
-\n\
-\n\
-extern void abort();",
+	"extern void abort();",
 	"typedef struct { short v16; } __attribute__((packed)) jint16_t;",
 	"struct node {\n\
   jint16_t magic;\n\

@@ -95,11 +95,7 @@ main(int argc, char**argv)
 	""};
 
     char *global_decls[] = {
-	"/* PR c/3444\n\
-   This used to fail because bitwise xor was improperly computed in char type\n\
-\n\
-\n\
-extern void abort ();\n\
+	"extern void abort ();\n\
 extern void exit (int);\n\
 \n\
 signed char c = (signed char) 0xffffffff;",

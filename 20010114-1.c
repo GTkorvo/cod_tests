@@ -85,10 +85,7 @@ main(int argc, char**argv)
 	""};
 
     char *global_decls[] = {
-	"/* Origin: PR c/1540 from Mattias Lampe <lampe@tu-harburg.de>,\n\
-   adapted to a testcase by Joseph Myers <jsm28@cam.ac.uk>.\n\
-\n\
-extern void abort (void);\n\
+	"extern void abort (void);\n\
 extern void exit (int);",
 ""};
 

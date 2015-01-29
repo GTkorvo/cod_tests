@@ -93,10 +93,7 @@ main(int argc, char**argv)
 	""};
 
     char *global_decls[] = {
-	"/* This testcase was miscompiled on IA-32, because fold-const\n\
-\n\
-\n\
-extern void abort (void);\n\
+	"extern void abort (void);\n\
 extern void exit (int);",
 	"unsigned int n = 1;",
 ""};

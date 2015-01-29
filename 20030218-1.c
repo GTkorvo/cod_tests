@@ -94,11 +94,7 @@ main(int argc, char**argv)
 	""};
 
     char *global_decls[] = {
-	"/*  On H8, the predicate general_operand_src(op,mode) used to ignore\n\
-    mode when op is a (mem (post_inc ...)).  As a result, the pattern\n\
-\n\
-\n\
-extern void abort ();\n\
+	"extern void abort ();\n\
 extern void exit (int);\n\
 \n\
 short *q;",

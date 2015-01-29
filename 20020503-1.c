@@ -65,8 +65,7 @@ main(int argc, char**argv)
     };
 
     char extern_string[] = "\n\
-	 void abort ();
-static char *
+	void abort (); static char *
 inttostr (long i, char buf[128]);\n\
 	int main ();\n\
     	void exit(int value);\n\
@@ -101,14 +100,12 @@ inttostr (long i, char buf[128]);\n\
 ""};
 
     char *func_decls[] = {
-	" void abort ();
-static char *
+	"void abort (); static char *
 inttostr (long i, char buf[128]);",
 	"int main ();",
 	""};
 
     char *global_decls[] = {
-	"/* GCSE unified the two i<0 tests, but if-conversion to ui=abs(i)",
 ""};
 
     int i;
@@ -120,7 +117,7 @@ inttostr (long i, char buf[128]);",
         }
         cod_parse_context context = new_cod_parse_context();
         cod_assoc_externs(context, externs);
-        for (j=0; j < 1; j++) {
+        for (j=0; j < 0; j++) {
             cod_parse_for_globals(global_decls[j], context);
         }
         cod_parse_for_context(extern_string, context);

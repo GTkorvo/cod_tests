@@ -103,12 +103,7 @@ main(int argc, char**argv)
 	""};
 
     char *global_decls[] = {
-	"/* PR c/5681\n\
-   This testcase failed on IA-32 at -O0, because safe_from_p\n\
-   incorrectly assumed it is safe to first write into a.a2 b-1\n\
-\n\
-\n\
-int bar (float);",
+	"int bar (float);",
 	"struct A {\n\
   float a1;\n\
   int a2;\n\

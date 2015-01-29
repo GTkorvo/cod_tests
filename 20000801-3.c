@@ -84,10 +84,7 @@ main(int argc, char**argv)
 	""};
 
     char *global_decls[] = {
-	"/* Origin: PR c/92 from Simon Marlow <t-simonm@microsoft.com>, adapted\n\
-   to a testcase by Joseph Myers <jsm28@cam.ac.uk>.",
-	"\n\
-typedef struct { } empty;",
+	"typedef struct { } empty;",
 	"typedef struct {\n\
   int i;\n\
   empty e;\n\
@@ -108,7 +105,7 @@ extern void abort (void);",
         }
         cod_parse_context context = new_cod_parse_context();
         cod_assoc_externs(context, externs);
-        for (j=0; j < 5; j++) {
+        for (j=0; j < 4; j++) {
             cod_parse_for_globals(global_decls[j], context);
         }
         cod_parse_for_context(extern_string, context);

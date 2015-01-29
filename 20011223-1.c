@@ -87,12 +87,7 @@ main(int argc, char**argv)
 	""};
 
     char *global_decls[] = {
-	"/* Case labels in a switch statement are converted to the promoted\n\
-   type of the controlling expression, not an unpromoted version.\n\
-   Reported as PR c/2454 by\n\
-\n\
-\n\
-extern void exit (int);\n\
+	"extern void exit (int);\n\
 extern void abort (void);\n\
 \n\
 static int i;",

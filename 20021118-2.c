@@ -69,8 +69,7 @@ main(int argc, char**argv)
     };
 
     char extern_string[] = "\n\
-	 int t1 (float *f, int i,
-	void (*f1) (double),
+	int t1 (float *f, int i, 	void (*f1) (double),
 	void (*f2) (float, float));\n\
 	int t2 (float *f, int i, 	void (*f1) (double),
 	void (*f2) (float, float),
@@ -129,8 +128,7 @@ main(int argc, char**argv)
 ""};
 
     char *func_decls[] = {
-	" int t1 (float *f, int i,
-	void (*f1) (double),
+	"int t1 (float *f, int i, 	void (*f1) (double),
 	void (*f2) (float, float));",
 	"int t2 (float *f, int i, 	void (*f1) (double),
 	void (*f2) (float, float),
@@ -142,7 +140,6 @@ main(int argc, char**argv)
 	""};
 
     char *global_decls[] = {
-	"/* Originally added to test SH constant pool layout.  t1() failed for",
 ""};
 
     int i;
@@ -154,7 +151,7 @@ main(int argc, char**argv)
         }
         cod_parse_context context = new_cod_parse_context();
         cod_assoc_externs(context, externs);
-        for (j=0; j < 1; j++) {
+        for (j=0; j < 0; j++) {
             cod_parse_for_globals(global_decls[j], context);
         }
         cod_parse_for_context(extern_string, context);

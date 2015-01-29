@@ -116,7 +116,6 @@ main(int argc, char**argv)
 	""};
 
     char *global_decls[] = {
-	"/* Bombed with a segfault on powerpc-linux.  doloop.c generated wrong",
 ""};
 
     int i;
@@ -128,7 +127,7 @@ main(int argc, char**argv)
         }
         cod_parse_context context = new_cod_parse_context();
         cod_assoc_externs(context, externs);
-        for (j=0; j < 1; j++) {
+        for (j=0; j < 0; j++) {
             cod_parse_for_globals(global_decls[j], context);
         }
         cod_parse_for_context(extern_string, context);

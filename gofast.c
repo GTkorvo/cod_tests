@@ -311,11 +311,7 @@ main(int argc, char**argv)
 	""};
 
     char *global_decls[] = {
-	"/* The main guiding themes are to make it trivial to add test cases over time\n\
-   and to make it easy for a program to parse the output to see if the right\n\
-\n\
-\n\
-#include <stdio.h>",
+	"#include <stdio.h>",
 	"int fail_count = 0;",
 ""};
 

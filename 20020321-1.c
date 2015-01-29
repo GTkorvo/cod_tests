@@ -66,7 +66,7 @@ main(int argc, char**argv)
     };
 
     char extern_string[] = "\n\
-	 float g (void *a, void *b, int e, int c, float d);\n\
+	float g (void *a, void *b, int e, int c, float d);\n\
 	float f (void *a, void *b, int c, float d);\n\
 	int main ();\n\
     	void exit(int value);\n\
@@ -92,14 +92,12 @@ main(int argc, char**argv)
 ""};
 
     char *func_decls[] = {
-	" float g (void *a, void *b, int e, int c, float d);",
+	"float g (void *a, void *b, int e, int c, float d);",
 	"float f (void *a, void *b, int c, float d);",
 	"int main ();",
 	""};
 
     char *global_decls[] = {
-	"/* Produced a SIGILL on ia64 with sibcall from F to G.  We hadn't\n\
-   widened the register window to allow for the fourth outgoing",
 ""};
 
     int i;
@@ -111,7 +109,7 @@ main(int argc, char**argv)
         }
         cod_parse_context context = new_cod_parse_context();
         cod_assoc_externs(context, externs);
-        for (j=0; j < 1; j++) {
+        for (j=0; j < 0; j++) {
             cod_parse_for_globals(global_decls[j], context);
         }
         cod_parse_for_context(extern_string, context);

@@ -157,14 +157,7 @@ main(int argc, char**argv)
 	""};
 
     char *global_decls[] = {
-	"/* Copyright (C) 2002  Free Software Foundation.\n\
-\n\
-   Test that optimizing ((c>=1) && (c<=127)) into (signed char)c < 0\n\
-   doesn't cause any problems for the compiler and behaves correctly.\n\
-\n\
-\n\
-\n\
-#include <limits.h>\n\
+	"#include <limits.h>\n\
 \n\
 extern void abort (void);",
 ""};

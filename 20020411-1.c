@@ -98,11 +98,7 @@ main(int argc, char**argv)
 	""};
 
     char *global_decls[] = {
-	"/* PR optimization/6177\n\
-   This testcase ICEd because expr.c did not expect to see a CONCAT\n\
-\n\
-\n\
-extern void abort (void);\n\
+	"extern void abort (void);\n\
 extern void exit (int);",
 ""};
 

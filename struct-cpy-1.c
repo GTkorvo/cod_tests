@@ -101,11 +101,14 @@ main(int argc, char**argv)
 	""};
 
     char *global_decls[] = {
-	"/* powerpc64-linux gcc miscompiled this due to rs6000.c:expand_block_move\n\
-   not setting mem aliasing info correctly for the code implementing the",
-	"\n\
-struct termios",
-	";",
+	"struct termios\n\
+{\n\
+  unsigned int a;\n\
+  unsigned int b;\n\
+  unsigned int c;\n\
+  unsigned int d;\n\
+  unsigned char pad[28];\n\
+};",
 	"struct tty_driver\n\
 {\n\
   unsigned char pad1[38];\n\
@@ -125,7 +128,7 @@ static struct tty_driver pty;",
         }
         cod_parse_context context = new_cod_parse_context();
         cod_assoc_externs(context, externs);
-        for (j=0; j < 4; j++) {
+        for (j=0; j < 2; j++) {
             cod_parse_for_globals(global_decls[j], context);
         }
         cod_parse_for_context(extern_string, context);

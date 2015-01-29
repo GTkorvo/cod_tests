@@ -65,7 +65,7 @@ main(int argc, char**argv)
     };
 
     char extern_string[] = "\n\
-	 int f(int i);\n\
+	int f(int i);\n\
 	int main();\n\
     	void exit(int value);\n\
         void abort();\n\
@@ -104,12 +104,11 @@ main(int argc, char**argv)
 ""};
 
     char *func_decls[] = {
-	" int f(int i);",
+	"int f(int i);",
 	"int main();",
 	""};
 
     char *global_decls[] = {
-	"/* Copyright 2001 Free Software Foundation",
 ""};
 
     int i;
@@ -121,7 +120,7 @@ main(int argc, char**argv)
         }
         cod_parse_context context = new_cod_parse_context();
         cod_assoc_externs(context, externs);
-        for (j=0; j < 1; j++) {
+        for (j=0; j < 0; j++) {
             cod_parse_for_globals(global_decls[j], context);
         }
         cod_parse_for_context(extern_string, context);

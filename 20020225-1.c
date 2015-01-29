@@ -91,10 +91,7 @@ main(int argc, char**argv)
 	""};
 
     char *global_decls[] = {
-	"/* This testcase failed at -O2 on powerpc64 due to andsi3 writing\n\
-\n\
-\n\
-extern void abort (void);\n\
+	"extern void abort (void);\n\
 extern void exit (int);",
 ""};
 

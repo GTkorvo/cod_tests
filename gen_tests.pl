@@ -207,7 +207,7 @@ sub parse_c_test($) {
 	
 	next if (substr($non_bracket_item, 0, 2) eq "//");
 	if (substr($non_bracket_item, 0, 2) eq "/*") {
-	  $non_bracket_item =~ s/.*\*\///g;
+	  $non_bracket_item =~ s/.*\*\///gs;
 	  $non_bracket_item =~ s/^\s+//;
 	  next if ($non_bracket_item eq "");
 	}

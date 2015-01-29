@@ -88,9 +88,7 @@ main(int argc, char**argv)
 	""};
 
     char *global_decls[] = {
-	"/* Test whether bit field boundaries aren't advanced if bit field type\n\
-\n\
-extern void abort (void);\n\
+	"extern void abort (void);\n\
 extern void exit (int);",
 	"struct A {\n\
   unsigned short a : 5;\n\

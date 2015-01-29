@@ -121,10 +121,7 @@ main(int argc, char**argv)
 	""};
 
     char *global_decls[] = {
-	"/* This testcase failed on IA-32 at -O and above, because combine attached\n\
-\n\
-\n\
-extern void abort (void);\n\
+	"extern void abort (void);\n\
 extern void exit (int);",
 	"enum X { A, B, C, D, E, F, G, H, I, J, K, L, M, N, O, P, Q };",
 ""};

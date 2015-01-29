@@ -116,17 +116,10 @@ main(int argc, char**argv)
 	""};
 
     char *global_decls[] = {
-	"/* This testcase failed at -O2 on IA-64, because scheduling did not take\n\
-   into account conditional execution when using cselib for alias",
-	"\n\
-struct D",
-	";\n\
-struct C",
-	";\n\
-struct A",
-	";\n\
-struct B",
-	";\n\
+	"struct D { int d1; struct D *d2; };",
+	"struct C { struct D c1; long c2, c3, c4, c5, c6; };",
+	"struct A { struct A *a1; struct C *a2; };",
+	"struct B { struct C b1; struct A *b2; };\n\
 \n\
 extern void abort (void);\n\
 extern void exit (int);",
@@ -142,7 +135,7 @@ extern void exit (int);",
         }
         cod_parse_context context = new_cod_parse_context();
         cod_assoc_externs(context, externs);
-        for (j=0; j < 7; j++) {
+        for (j=0; j < 5; j++) {
             cod_parse_for_globals(global_decls[j], context);
         }
         cod_parse_for_context(extern_string, context);

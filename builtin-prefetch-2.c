@@ -205,12 +205,7 @@ main(int argc, char**argv)
 	""};
 
     char *global_decls[] = {
-	"/* Test that __builtin_prefetch does no harm.\n\
-\n\
-   Prefetch data using a variety of storage classes and address\n\
-\n\
-\n\
-int glob_int_arr[100];\n\
+	"int glob_int_arr[100];\n\
 int *glob_ptr_int = glob_int_arr;\n\
 int glob_int = 4;\n\
 \n\

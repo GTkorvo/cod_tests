@@ -127,14 +127,11 @@ main(int argc, char**argv)
 	""};
 
     char *global_decls[] = {
-	"/* Test that __builtin_prefetch does no harm.\n\
-\n\
-   Use addresses that are unlikely to be word-aligned.  Some targets\n\
-   have alignment requirements for prefetch addresses, so make sure the\n\
-   compiler takes care of that.  This fails if it aborts, anything else",
-	"\n\
-struct S",
-	"s;\n\
+	"struct S {\n\
+  short a;\n\
+  short b;\n\
+  char c[8];\n\
+} s;\n\
 \n\
 char arr[100];\n\
 char *ptr = arr;\n\
@@ -150,7 +147,7 @@ int idx = 3;",
         }
         cod_parse_context context = new_cod_parse_context();
         cod_assoc_externs(context, externs);
-        for (j=0; j < 3; j++) {
+        for (j=0; j < 1; j++) {
             cod_parse_for_globals(global_decls[j], context);
         }
         cod_parse_for_context(extern_string, context);

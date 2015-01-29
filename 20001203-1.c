@@ -95,12 +95,7 @@ main(int argc, char**argv)
 	""};
 
     char *global_decls[] = {
-	"/* Origin: PR c/410 from Jan Echternach\n\
-   <jan.echternach@informatik.uni-rostock.de>,\n\
-   adapted to a testcase by Joseph Myers <jsm28@cam.ac.uk>.\n\
-\n\
-\n\
-extern void exit (int);",
+	"extern void exit (int);",
 ""};
 
     int i;

@@ -111,7 +111,6 @@ main(int argc, char**argv)
 	""};
 
     char *global_decls[] = {
-	"/* Verify that flexible arrays can be initialized from STRING_CST",
 	"struct {\n\
   char a1c;\n\
   char *a1p;\n\
@@ -145,7 +144,7 @@ struct",
         }
         cod_parse_context context = new_cod_parse_context();
         cod_assoc_externs(context, externs);
-        for (j=0; j < 13; j++) {
+        for (j=0; j < 12; j++) {
             cod_parse_for_globals(global_decls[j], context);
         }
         cod_parse_for_context(extern_string, context);

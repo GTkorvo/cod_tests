@@ -65,7 +65,7 @@ main(int argc, char**argv)
     };
 
     char extern_string[] = "\n\
-	 int foo(int a);\n\
+	int foo(int a);\n\
 	int main();\n\
     	void exit(int value);\n\
         void abort();\n\
@@ -90,12 +90,11 @@ main(int argc, char**argv)
 ""};
 
     char *func_decls[] = {
-	" int foo(int a);",
+	"int foo(int a);",
 	"int main();",
 	""};
 
     char *global_decls[] = {
-	"/* Distilled from try_pre_increment in flow.c.  If-conversion inserted",
 ""};
 
     int i;
@@ -107,7 +106,7 @@ main(int argc, char**argv)
         }
         cod_parse_context context = new_cod_parse_context();
         cod_assoc_externs(context, externs);
-        for (j=0; j < 1; j++) {
+        for (j=0; j < 0; j++) {
             cod_parse_for_globals(global_decls[j], context);
         }
         cod_parse_for_context(extern_string, context);

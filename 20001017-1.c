@@ -65,8 +65,7 @@ main(int argc, char**argv)
     };
 
     char extern_string[] = "\n\
-	void bug (double *Cref, char transb, int m, int n, int k, 	  double a, double *A, int fdA, double *B, int fdB,
-	  double b, double *C, int fdC);\n\
+	void bug (double *Cref, char transb, int m, int n, int k, double a, double *A, int fdA, double *B, int fdB,  double b, double *C, int fdC);\n\
 	int main ();\n\
     	void exit(int value);\n\
         void abort();\n\
@@ -89,8 +88,7 @@ main(int argc, char**argv)
 ""};
 
     char *func_decls[] = {
-	"void bug (double *Cref, char transb, int m, int n, int k, 	  double a, double *A, int fdA, double *B, int fdB,
-	  double b, double *C, int fdC);",
+	"void bug (double *Cref, char transb, int m, int n, int k, double a, double *A, int fdA, double *B, int fdB,  double b, double *C, int fdC);",
 	"int main ();",
 	""};
 
@@ -127,7 +125,7 @@ main(int argc, char**argv)
     if (test_output) {
         /* there was output, test expected */
         fclose(test_output);
-        int ret = system("cmp 20001017-1.c.output /Users/eisen/prog/gcc-3.3.1-3/gcc/testsuite/gcc.expect-torture/execute/20001017-1.expect");
+        int ret = system("cmp 20001017-1.c.output ./pre_patch/20001017-1.expect");
         ret = ret >> 8;
         if (ret == 1) {
             printf("Test ./generated/20001017-1.c failed, output differs\n");

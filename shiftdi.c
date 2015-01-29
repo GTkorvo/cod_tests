@@ -92,10 +92,7 @@ main(int argc, char**argv)
 	""};
 
     char *global_decls[] = {
-	"/* Failed on sparc with -mv8plus because sparc.c:set_extends() thought\n\
-\n\
-\n\
-typedef unsigned long long uint64;",
+	"typedef unsigned long long uint64;",
 ""};
 
     int i;

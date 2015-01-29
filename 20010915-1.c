@@ -149,10 +149,7 @@ main(int argc, char**argv)
 	""};
 
     char *global_decls[] = {
-	"/* Bug in reorg.c, deleting the \"++\" in the last loop in main.\n\
-\n\
-\n\
-extern void f (void);\n\
+	"extern void f (void);\n\
 extern int x (int, char **);\n\
 extern int r (const char *);\n\
 extern char *s (char *, char **);\n\

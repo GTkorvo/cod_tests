@@ -89,10 +89,7 @@ main(int argc, char**argv)
 	""};
 
     char *global_decls[] = {
-	"/* Tests that the may_alias attribute works as expected.\n\
-\n\
- \n\
-extern void abort(void);\n\
+	"extern void abort(void);\n\
 extern void exit(int);\n\
 \n\
 typedef short __attribute__((__may_alias__)) short_a;",

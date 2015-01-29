@@ -103,10 +103,7 @@ main(int argc, char**argv)
 	""};
 
     char *global_decls[] = {
-	"/* PR target/6997.  Missing (set_attr \"cc\" \"none\") in sleu pattern in\n\
-\n\
-\n\
-int p;\n\
+	"int p;\n\
 int k;\n\
 unsigned int n;",
 	"unsigned int n = 30;",

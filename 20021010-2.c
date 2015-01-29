@@ -94,9 +94,7 @@ main(int argc, char**argv)
 	""};
 
     char *global_decls[] = {
-	"/* cse.c failure on x86 target.\n\
-\n\
-#include <stdlib.h>\n\
+	"#include <stdlib.h>\n\
 \n\
 typedef signed short SInt16;",
 	"typedef struct {\n\

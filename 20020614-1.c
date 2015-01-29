@@ -109,10 +109,7 @@ main(int argc, char**argv)
 	""};
 
     char *global_decls[] = {
-	"/* Verify that GCC doesn't perform illegal simplifications\n\
-\n\
-\n\
-#include <limits.h>\n\
+	"#include <limits.h>\n\
 \n\
 extern void abort (void);\n\
 extern void exit (int);",

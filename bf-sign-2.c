@@ -115,22 +115,16 @@ main(int argc, char**argv)
 	""};
 
     char *global_decls[] = {
-	"/* \n\
- This test checks promotion of bitfields.  Bitfields should be promoted\n\
- very much like chars and shorts: \n\
-\n\
- Bitfields (signed or unsigned) should be promoted to signed int if their\n\
- value will fit in a signed int, otherwise to an unsigned int if their \n\
- value will fit in an unsigned int, otherwise we don't promote them (ANSI/ISO\n\
- does not specify the behavior of bitfields larger than an unsigned int).\n\
-\n\
- We test the behavior by subtracting two from the promoted value: this will\n\
- result in a negitive value for signed types, a positive value for unsigned\n\
- types.  This test (of course) assumes that the compiler is correctly \n\
- implementing signed and unsigned arithmetic.",
-	"\n\
-struct X",
-	";\n\
+	"struct X {\n\
+  unsigned int	     u3:3;\n\
+    signed long int  s31:31;\n\
+    signed long int  s32:32;\n\
+  unsigned long int  u31:31;\n\
+  unsigned long int  u32:32;\n\
+  unsigned long long ull3 :3;\n\
+  unsigned long long ull35:35;\n\
+  unsigned u15:15;\n\
+};\n\
 \n\
 struct X x;",
 ""};
@@ -144,7 +138,7 @@ struct X x;",
         }
         cod_parse_context context = new_cod_parse_context();
         cod_assoc_externs(context, externs);
-        for (j=0; j < 3; j++) {
+        for (j=0; j < 1; j++) {
             cod_parse_for_globals(global_decls[j], context);
         }
         cod_parse_for_context(extern_string, context);

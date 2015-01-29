@@ -99,10 +99,7 @@ main(int argc, char**argv)
 	""};
 
     char *global_decls[] = {
-	"/* ifcvt accidently deletes a referenced label while generating",
-	"\n\
-struct foo",
-	";",
+	"struct foo { int a; };",
 ""};
 
     int i;
@@ -114,7 +111,7 @@ struct foo",
         }
         cod_parse_context context = new_cod_parse_context();
         cod_assoc_externs(context, externs);
-        for (j=0; j < 3; j++) {
+        for (j=0; j < 1; j++) {
             cod_parse_for_globals(global_decls[j], context);
         }
         cod_parse_for_context(extern_string, context);

@@ -112,23 +112,7 @@ main(int argc, char**argv)
 	""};
 
     char *global_decls[] = {
-	"/* Copyright 2002 Free Software Foundation, Inc.\n\
-\n\
-   Tests correct signedness of operations on bitfields; in particular\n\
-   that integer promotions are done correctly, including the case when\n\
-   casts are present.\n\
-\n\
-   The C front end was eliding the cast of an unsigned bitfield to\n\
-   unsigned as a no-op, when in fact it forces a conversion to a\n\
-   full-width unsigned int. (At the time of writing, the C++ front end\n\
-   has a different bug; it erroneously promotes the uncast unsigned\n\
-   bitfield to an unsigned int).\n\
-\n\
-   Source: Neil Booth, 25 Jan 2002, based on PR 3325 (and 3326, which\n\
-   is a different manifestation of the same bug).\n\
-\n\
-\n\
-extern void abort ();",
+	"extern void abort ();",
 ""};
 
     int i;

@@ -103,10 +103,7 @@ main(int argc, char**argv)
 	""};
 
     char *global_decls[] = {
-	"/* Verify that the multiplicative folding code is not fooled\n\
-\n\
-\n\
-extern void abort (void);\n\
+	"extern void abort (void);\n\
 extern void exit (int);",
 ""};
 

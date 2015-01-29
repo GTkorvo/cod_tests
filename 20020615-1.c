@@ -126,12 +126,7 @@ main(int argc, char**argv)
 	""};
 
     char *global_decls[] = {
-	"/* PR target/7042.  When reorg.c changed branches into return insns, it\n\
-   completely forgot about any current_function_epilogue_delay_list and\n\
-   dropped those insns.  Uncovered on cris-axis-elf, where an insn in an\n\
-   epilogue delay-slot set the return-value register with the test-case",
-	"\n\
-typedef struct font_hints_s {\n\
+	"typedef struct font_hints_s {\n\
   int axes_swapped;\n\
   int x_inverted, y_inverted;\n\
 } font_hints;",
@@ -149,7 +144,7 @@ typedef struct font_hints_s {\n\
         }
         cod_parse_context context = new_cod_parse_context();
         cod_assoc_externs(context, externs);
-        for (j=0; j < 3; j++) {
+        for (j=0; j < 2; j++) {
             cod_parse_for_globals(global_decls[j], context);
         }
         cod_parse_for_context(extern_string, context);

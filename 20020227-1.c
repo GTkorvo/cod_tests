@@ -108,10 +108,7 @@ main ();",
 	""};
 
     char *global_decls[] = {
-	"/* This testcase failed on mmix-knuth-mmixware.  Problem was with storing\n\
-   to an unaligned mem:SC, gcc tried doing it by parts from a (concat:SC",
-	"\n\
-typedef __complex__ float cf;\n\
+	"typedef __complex__ float cf;\n\
 struct x",
 ""};
 
@@ -124,7 +121,7 @@ struct x",
         }
         cod_parse_context context = new_cod_parse_context();
         cod_assoc_externs(context, externs);
-        for (j=0; j < 2; j++) {
+        for (j=0; j < 1; j++) {
             cod_parse_for_globals(global_decls[j], context);
         }
         cod_parse_for_context(extern_string, context);

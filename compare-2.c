@@ -92,14 +92,7 @@ main(int argc, char**argv)
 	""};
 
     char *global_decls[] = {
-	"/* Copyright (C) 2002 Free Software Foundation.\n\
-\n\
-   Ensure that the composite comparison optimization doesn't misfire\n\
-   and attempt to combine a signed comparison with an unsigned one.\n\
-\n\
-\n\
-\n\
-extern void abort (void);",
+	"extern void abort (void);",
 ""};
 
     int i;

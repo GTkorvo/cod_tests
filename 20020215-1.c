@@ -93,20 +93,12 @@ main(int argc, char**argv)
 	""};
 
     char *global_decls[] = {
-	"/* Test failed on an architecture that:\n\
-\n\
-   - had 16-bit registers,\n\
-   - passed 64-bit structures in registers,\n\
-   - only allowed SImode values in even numbered registers.\n\
-\n\
-   Before reload, s.i2 in foo() was represented as:\n\
-\n\
-	(subreg:SI (reg:DI 0) 2)\n\
-\n\
-   find_dummy_reload would return (reg:SI 1) for the subreg reload,",
-	"\n\
-struct s",
-	";",
+	"struct s\n\
+{\n\
+  short i1;\n\
+  long i2;\n\
+  short i3;\n\
+};",
 ""};
 
     int i;
@@ -118,7 +110,7 @@ struct s",
         }
         cod_parse_context context = new_cod_parse_context();
         cod_assoc_externs(context, externs);
-        for (j=0; j < 3; j++) {
+        for (j=0; j < 1; j++) {
             cod_parse_for_globals(global_decls[j], context);
         }
         cod_parse_for_context(extern_string, context);

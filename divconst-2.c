@@ -115,7 +115,6 @@ main(int argc, char**argv)
 	""};
 
     char *global_decls[] = {
-	"/* Since we have a negative divisor, this equation must hold for the",
 	"long nums[] =",
 	";",
 ""};
@@ -129,7 +128,7 @@ main(int argc, char**argv)
         }
         cod_parse_context context = new_cod_parse_context();
         cod_assoc_externs(context, externs);
-        for (j=0; j < 3; j++) {
+        for (j=0; j < 2; j++) {
             cod_parse_for_globals(global_decls[j], context);
         }
         cod_parse_for_context(extern_string, context);

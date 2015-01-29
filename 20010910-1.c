@@ -114,17 +114,7 @@ main(int argc, char**argv)
 	""};
 
     char *global_decls[] = {
-	"/* Test case contributed by Ingo Rohloff <rohloff@in.tum.de>.\n\
-\n\
-\n\
-/* Compile this program with a gcc-2.95.2 using\n\
-   \"gcc -O2\" and run it. The result will be that\n\
-   rx_ring[1].next == 0   (it should be == 14)\n\
-   and\n\
-   ep.skbuff[4] == 5      (it should be 0)\n\
-\n\
-\n\
-extern void abort(void);",
+	"extern void abort(void);",
 	"struct epic_rx_desc",
 	";",
 	"struct epic_private",

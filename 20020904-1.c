@@ -92,10 +92,7 @@ main(int argc, char**argv)
 	""};
 
     char *global_decls[] = {
-	"/* Verify that GCC zero-extends integer constants\n\
-\n\
-\n\
-typedef unsigned char u8;",
+	"typedef unsigned char u8;",
 ""};
 
     int i;

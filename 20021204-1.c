@@ -94,13 +94,7 @@ main(int argc, char**argv)
 	""};
 
     char *global_decls[] = {
-	"/* This test was miscompiled when using sibling call optimization,\n\
-   because X ? Y : Y - 1 optimization changed X into !X in place\n\
-   and haven't reverted it if do_store_flag was successful, so\n\
-   when expanding the expression the second time it was\n\
-\n\
-\n\
-extern void abort (void);\n\
+	"extern void abort (void);\n\
 extern void exit (int);",
 	"int z;",
 ""};

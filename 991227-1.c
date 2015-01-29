@@ -74,7 +74,7 @@ main(int argc, char**argv)
 
 /* body for doit */
 "{\n\
-  return 1 + (flag ? \"\\0wrong\\n\" : \"\\0right\\n\");\n\
+  return 1 + (flag ? \"fwrong\\n\" : \"fright\\n\");\n\
 }",
 
 /* body for main */
@@ -124,7 +124,7 @@ main(int argc, char**argv)
     if (test_output) {
         /* there was output, test expected */
         fclose(test_output);
-        int ret = system("cmp 991227-1.c.output /Users/eisen/prog/gcc-3.3.1-3/gcc/testsuite/gcc.expect-torture/execute/991227-1.expect");
+        int ret = system("cmp 991227-1.c.output ./pre_patch/991227-1.expect");
         ret = ret >> 8;
         if (ret == 1) {
             printf("Test ./generated/991227-1.c failed, output differs\n");

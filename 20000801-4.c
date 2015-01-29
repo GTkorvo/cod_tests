@@ -97,14 +97,7 @@ main(int argc, char**argv)
 	""};
 
     char *global_decls[] = {
-	"/* Origin: PR c/128 from Martin Sebor <sebor@roguewave.com>, adapted\n\
-   as a testcase by Joseph Myers <jsm28@cam.ac.uk>.\n\
-\n\
-/* Character arrays initialized by a string literal must have\n\
-   uninitialized elements zeroed.  This isn't clear in the 1990\n\
-   standard, but was fixed in TC2 and C99; see DRs #060, #092.\n\
-\n\
-extern void abort (void);",
+	"extern void abort (void);",
 	"char *t;",
 ""};
 

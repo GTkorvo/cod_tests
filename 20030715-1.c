@@ -109,10 +109,7 @@ main(int argc, char**argv)
 	""};
 
     char *global_decls[] = {
-	"/* Verify that the scheduler correctly computes the dependencies\n\
-\n\
-\n\
-int strcmp (const char *, const char *);\n\
+	"int strcmp (const char *, const char *);\n\
 int ap_standalone;",
 ""};
 

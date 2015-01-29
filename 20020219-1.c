@@ -94,11 +94,7 @@ main(int argc, char**argv)
 	""};
 
     char *global_decls[] = {
-	"/* PR c/4308\n\
-   This testcase failed because 0x8000000000000000 >> 0\n\
-\n\
-\n\
-extern void abort (void);\n\
+	"extern void abort (void);\n\
 extern void exit (int);",
 ""};
 

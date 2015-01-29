@@ -163,14 +163,7 @@ main(int argc, char**argv)
 	""};
 
     char *global_decls[] = {
-	"/* Copyright (C) 2000  Free Software Foundation.\n\
-\n\
-   Ensure builtin strlen, strcmp, strchr, strrchr and strncpy\n\
-   perform correctly.\n\
-\n\
-\n\
-\n\
-extern void abort (void);\n\
+	"extern void abort (void);\n\
 extern __SIZE_TYPE__ strlen (const char *);\n\
 extern int strcmp (const char *, const char *);\n\
 extern char *strchr (const char *, int);\n\

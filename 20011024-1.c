@@ -92,10 +92,7 @@ main(int argc, char**argv)
 	""};
 
     char *global_decls[] = {
-	"/* Test whether store motion recognizes pure functions as potentially reading\n\
-\n\
-\n\
-typedef __SIZE_TYPE__ size_t;\n\
+	"typedef __SIZE_TYPE__ size_t;\n\
 extern void *memcpy (void *dest, const void *src, size_t n);\n\
 extern size_t strlen (const char *s);\n\
 extern int strcmp (const char *s1, const char *s2) __attribute__((pure));\n\
