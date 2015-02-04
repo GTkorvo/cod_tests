@@ -1,0 +1,17 @@
+*** /Users/eisen/prog/gcc-3.3.1-3/gcc/testsuite/gcc.c-torture/execute/loop-2.c	Thu Oct 16 05:59:25 2003
+--- loop-2.c	Sun Feb  1 09:13:04 2015
+***************
+*** 1,6 ****
+  int a[2];
+  
+! f (b)
+  {
+    unsigned int i;
+    for (i = 0; i < b; i++)
+--- 1,6 ----
+  int a[2];
+  
+! void f (int b)
+  {
+    unsigned int i;
+    for (i = 0; i < b; i++)

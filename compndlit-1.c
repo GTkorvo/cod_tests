@@ -95,17 +95,27 @@ main(int argc, char**argv)
 
     int i;
     cod_code gen_code[1];
+    cod_parse_context context;
     for (i=0; i < 1; i++) {
         int j;
         if (verbose) {
              printf("Working on subroutine %s\n", externs[i].extern_name);
         }
-        cod_parse_context context = new_cod_parse_context();
-        cod_assoc_externs(context, externs);
-        for (j=0; j < 3; j++) {
-            cod_parse_for_globals(global_decls[j], context);
-        }
-        cod_parse_for_context(extern_string, context);
+        if (i==0) {
+            context = new_cod_parse_context();
+            cod_assoc_externs(context, externs);
+            for (j=0; j < 3; j++) {
+                cod_parse_for_globals(global_decls[j], context);
+            }
+            cod_parse_for_context(extern_string, context);
+        } else {
+	    cod_extern_entry single_extern[2];
+	    single_extern[0] = externs[i-1];
+	    single_extern[1].extern_name = NULL;
+	    single_extern[1].extern_value = NULL;
+	    cod_assoc_externs(context, single_extern);
+	    cod_parse_for_context(func_decls[i-1], context);
+	}
         cod_subroutine_declaration(func_decls[i], context);
         gen_code[i] = cod_code_gen(func_bodies[i], context);
         externs[i].extern_value = (void*) gen_code[i]->func;
@@ -118,6 +128,8 @@ main(int argc, char**argv)
                 printf("Test ./generated/compndlit-1.c failed\n");
                 exit(exit_value);
             }
+        } else {
+            context = cod_copy_globals(context);
         }
     }
     if (test_output) {
