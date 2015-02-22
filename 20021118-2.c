@@ -69,11 +69,8 @@ main(int argc, char**argv)
     };
 
     char extern_string[] = "\n\
-	int t1 (float *f, int i, 	void (*f1) (double),
-	void (*f2) (float, float));\n\
-	int t2 (float *f, int i, 	void (*f1) (double),
-	void (*f2) (float, float),
-	void (*f3) (float));\n\
+	int t1 (float *f, int i, 	void (*f1) (double), 	void (*f2) (float, float));\n\
+	int t2 (float *f, int i, 	void (*f1) (double), 	void (*f2) (float, float), 	void (*f3) (float));\n\
 	void f1 (double d);\n\
 	void f2 (float f1, float f2);\n\
 	void f3 (float f);\n\
@@ -128,11 +125,8 @@ main(int argc, char**argv)
 ""};
 
     char *func_decls[] = {
-	"int t1 (float *f, int i, 	void (*f1) (double),
-	void (*f2) (float, float));",
-	"int t2 (float *f, int i, 	void (*f1) (double),
-	void (*f2) (float, float),
-	void (*f3) (float));",
+	"int t1 (float *f, int i, 	void (*f1) (double), 	void (*f2) (float, float));",
+	"int t2 (float *f, int i, 	void (*f1) (double), 	void (*f2) (float, float), 	void (*f3) (float));",
 	"void f1 (double d);",
 	"void f2 (float f1, float f2);",
 	"void f3 (float f);",
@@ -153,7 +147,7 @@ main(int argc, char**argv)
         if (i==0) {
             context = new_cod_parse_context();
             cod_assoc_externs(context, externs);
-            for (j=0; j < 0; j++) {
+            for (j=0; j < sizeof(global_decls)/sizeof(global_decls[0])-1; j++) {
                 cod_parse_for_globals(global_decls[j], context);
             }
             cod_parse_for_context(extern_string, context);

@@ -64,11 +64,7 @@ main(int argc, char**argv)
     };
 
     char extern_string[] = "\n\
-	long double C = 2; long double U = 1;
-long double Y2 = 3;
-long double Y1 = 1;
-long double X, Y, Z, T, R, S;
-main ();\n\
+	long double C = 2; long double U = 1; long double Y2 = 3; long double Y1 = 1; long double X, Y, Z, T, R, S; main ();\n\
     	void exit(int value);\n\
         void abort();\n\
         int test_printf(const char *format, ...);";
@@ -97,11 +93,7 @@ main ();\n\
 ""};
 
     char *func_decls[] = {
-	"long double C = 2; long double U = 1;
-long double Y2 = 3;
-long double Y1 = 1;
-long double X, Y, Z, T, R, S;
-main ();",
+	"long double C = 2; long double U = 1; long double Y2 = 3; long double Y1 = 1; long double X, Y, Z, T, R, S; main ();",
 	""};
 
     char *global_decls[] = {
@@ -118,7 +110,7 @@ main ();",
         if (i==0) {
             context = new_cod_parse_context();
             cod_assoc_externs(context, externs);
-            for (j=0; j < 0; j++) {
+            for (j=0; j < sizeof(global_decls)/sizeof(global_decls[0])-1; j++) {
                 cod_parse_for_globals(global_decls[j], context);
             }
             cod_parse_for_context(extern_string, context);

@@ -65,10 +65,7 @@ main(int argc, char**argv)
     };
 
     char extern_string[] = "\n\
-	typedef unsigned long long ULL; ULL back;
-ULL hpart, lpart;
-ULL
-build(long h, long l);\n\
+	typedef unsigned long long ULL; ULL back; ULL hpart, lpart; ULL build(long h, long l);\n\
 	void main();\n\
     	void exit(int value);\n\
         void abort();\n\
@@ -116,10 +113,7 @@ build(long h, long l);\n\
 ""};
 
     char *func_decls[] = {
-	"typedef unsigned long long ULL; ULL back;
-ULL hpart, lpart;
-ULL
-build(long h, long l);",
+	"typedef unsigned long long ULL; ULL back; ULL hpart, lpart; ULL build(long h, long l);",
 	"void main();",
 	""};
 
@@ -137,7 +131,7 @@ build(long h, long l);",
         if (i==0) {
             context = new_cod_parse_context();
             cod_assoc_externs(context, externs);
-            for (j=0; j < 0; j++) {
+            for (j=0; j < sizeof(global_decls)/sizeof(global_decls[0])-1; j++) {
                 cod_parse_for_globals(global_decls[j], context);
             }
             cod_parse_for_context(extern_string, context);

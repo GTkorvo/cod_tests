@@ -97,7 +97,6 @@ main(int argc, char**argv)
 	""};
 
     char *global_decls[] = {
-	"extern void abort (void);",
 	"char *t;",
 ""};
 
@@ -112,7 +111,7 @@ main(int argc, char**argv)
         if (i==0) {
             context = new_cod_parse_context();
             cod_assoc_externs(context, externs);
-            for (j=0; j < 2; j++) {
+            for (j=0; j < sizeof(global_decls)/sizeof(global_decls[0])-1; j++) {
                 cod_parse_for_globals(global_decls[j], context);
             }
             cod_parse_for_context(extern_string, context);

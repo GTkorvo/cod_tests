@@ -114,7 +114,7 @@ main(int argc, char**argv)
 	""};
 
     char *global_decls[] = {
-	"extern void abort (void);\n\
+	"\n\
 \n\
 typedef signed short int16_t;\n\
 typedef unsigned short uint16_t;\n\
@@ -140,7 +140,7 @@ int16_t bndpsd[6] =",
         if (i==0) {
             context = new_cod_parse_context();
             cod_assoc_externs(context, externs);
-            for (j=0; j < 5; j++) {
+            for (j=0; j < sizeof(global_decls)/sizeof(global_decls[0])-1; j++) {
                 cod_parse_for_globals(global_decls[j], context);
             }
             cod_parse_for_context(extern_string, context);

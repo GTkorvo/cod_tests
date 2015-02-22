@@ -66,10 +66,7 @@ main(int argc, char**argv)
     };
 
     char extern_string[] = "\n\
-	__attribute__ ((__packed__)); extern void f2 (struct x*);
-extern void f1 ();
-int
-main ();\n\
+	__attribute__ ((__packed__)); extern void f2 (struct x*); extern void f1 (); int main ();\n\
 	void f1 ();\n\
 	void f2 (struct x *y);\n\
     	void exit(int value);\n\
@@ -99,10 +96,7 @@ main ();\n\
 ""};
 
     char *func_decls[] = {
-	"__attribute__ ((__packed__)); extern void f2 (struct x*);
-extern void f1 ();
-int
-main ();",
+	"__attribute__ ((__packed__)); extern void f2 (struct x*); extern void f1 (); int main ();",
 	"void f1 ();",
 	"void f2 (struct x *y);",
 	""};
@@ -123,7 +117,7 @@ struct x",
         if (i==0) {
             context = new_cod_parse_context();
             cod_assoc_externs(context, externs);
-            for (j=0; j < 1; j++) {
+            for (j=0; j < sizeof(global_decls)/sizeof(global_decls[0])-1; j++) {
                 cod_parse_for_globals(global_decls[j], context);
             }
             cod_parse_for_context(extern_string, context);

@@ -57,8 +57,8 @@ main(int argc, char**argv)
     cod_extern_entry externs[] = 
     {
 	{"attr_rtx", (void*)(long)-1},
-	{"attr_eq", (void*)(long)-1},
 	{"attr_string", (void*)(long)-1},
+	{"attr_eq", (void*)(long)-1},
 	{"main", (void*)(long)-1},
 	{"abort", (void*)my_abort},
 	{"exit", (void*)test_exit},
@@ -68,8 +68,8 @@ main(int argc, char**argv)
 
     char extern_string[] = "\n\
 	static void  attr_rtx (char *varg0, char *varg1);\n\
-	static void  attr_eq (char *name, *value);\n\
 	static char * attr_string (char *str);\n\
+	static void  attr_eq (char *value, char *name);\n\
 	int main();\n\
     	void exit(int value);\n\
         void abort();\n\
@@ -87,15 +87,15 @@ main(int argc, char**argv)
   return;\n\
 }",
 
+/* body for attr_string */
+"{\n\
+  return str;\n\
+}",
+
 /* body for attr_eq */
 "{\n\
   return attr_rtx (attr_string (name),\n\
 		   attr_string (value));\n\
-}",
-
-/* body for attr_string */
-"{\n\
-  return str;\n\
 }",
 
 /* body for main */
@@ -107,20 +107,16 @@ main(int argc, char**argv)
 
     char *func_decls[] = {
 	"static void  attr_rtx (char *varg0, char *varg1);",
-	"static void  attr_eq (char *name, *value);",
 	"static char * attr_string (char *str);",
+	"static void  attr_eq (char *value, char *name);",
 	"int main();",
 	""};
 
     char *global_decls[] = {
-	"extern void abort (void);\n\
+	"\n\
 \n\
 static char arg0[] = \"arg0\";\n\
-static char arg1[] = \"arg1\";\n\
-\n\
-static void attr_rtx		(char *, char *);\n\
-static char *attr_string        (char *);\n\
-static void attr_eq		(char *, char *);",
+static char arg1[] = \"arg1\";",
 ""};
 
     int i;
@@ -134,7 +130,7 @@ static void attr_eq		(char *, char *);",
         if (i==0) {
             context = new_cod_parse_context();
             cod_assoc_externs(context, externs);
-            for (j=0; j < 1; j++) {
+            for (j=0; j < sizeof(global_decls)/sizeof(global_decls[0])-1; j++) {
                 cod_parse_for_globals(global_decls[j], context);
             }
             cod_parse_for_context(extern_string, context);
@@ -165,7 +161,7 @@ static void attr_eq		(char *, char *);",
     if (test_output) {
         /* there was output, test expected */
         fclose(test_output);
-        int ret = system("cmp 20000314-3.c.output /Users/eisen/prog/gcc-3.3.1-3/gcc/testsuite/gcc.expect-torture/execute/20000314-3.expect");
+        int ret = system("cmp 20000314-3.c.output ./pre_patch/20000314-3.expect");
         ret = ret >> 8;
         if (ret == 1) {
             printf("Test ./generated/20000314-3.c failed, output differs\n");

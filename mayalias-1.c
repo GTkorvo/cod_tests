@@ -89,8 +89,8 @@ main(int argc, char**argv)
 	""};
 
     char *global_decls[] = {
-	"extern void abort(void);\n\
-extern void exit(int);\n\
+	"\n\
+\n\
 \n\
 typedef short __attribute__((__may_alias__)) short_a;",
 ""};
@@ -106,7 +106,7 @@ typedef short __attribute__((__may_alias__)) short_a;",
         if (i==0) {
             context = new_cod_parse_context();
             cod_assoc_externs(context, externs);
-            for (j=0; j < 1; j++) {
+            for (j=0; j < sizeof(global_decls)/sizeof(global_decls[0])-1; j++) {
                 cod_parse_for_globals(global_decls[j], context);
             }
             cod_parse_for_context(extern_string, context);

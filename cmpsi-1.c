@@ -56,9 +56,9 @@ main(int argc, char**argv)
     }
     cod_extern_entry externs[] = 
     {
+	{"dummy", (void*)(long)-1},
 	{"f1", (void*)(long)-1},
 	{"f2", (void*)(long)-1},
-	{"dummy", (void*)(long)-1},
 	{"main", (void*)(long)-1},
 	{"abort", (void*)my_abort},
 	{"exit", (void*)test_exit},
@@ -67,14 +67,18 @@ main(int argc, char**argv)
     };
 
     char extern_string[] = "\n\
-	f1 (unsigned int x, unsigned int y);\n\
-	f2 (unsigned long int x, unsigned long int y);\n\
 	void dummy ();\n\
+	int f1 (unsigned int x, unsigned int y);\n\
+	int f2 (unsigned long int x, unsigned long int y);\n\
 	void main ();\n\
     	void exit(int value);\n\
         void abort();\n\
         int test_printf(const char *format, ...);";
     char *func_bodies[] = {
+
+/* body for dummy */
+"{\n\
+}",
 
 /* body for f1 */
 "{\n\
@@ -98,9 +102,6 @@ main(int argc, char**argv)
   return x;\n\
 }",
 
-/* body for dummy */
-"{}",
-
 /* body for main */
 "{\n\
   /*      0x7ffffff3			0x80000001 */\n\
@@ -111,9 +112,9 @@ main(int argc, char**argv)
 ""};
 
     char *func_decls[] = {
-	"f1 (unsigned int x, unsigned int y);",
-	"f2 (unsigned long int x, unsigned long int y);",
 	"void dummy ();",
+	"int f1 (unsigned int x, unsigned int y);",
+	"int f2 (unsigned long int x, unsigned long int y);",
 	"void main ();",
 	""};
 
@@ -131,7 +132,7 @@ main(int argc, char**argv)
         if (i==0) {
             context = new_cod_parse_context();
             cod_assoc_externs(context, externs);
-            for (j=0; j < 0; j++) {
+            for (j=0; j < sizeof(global_decls)/sizeof(global_decls[0])-1; j++) {
                 cod_parse_for_globals(global_decls[j], context);
             }
             cod_parse_for_context(extern_string, context);
@@ -162,7 +163,7 @@ main(int argc, char**argv)
     if (test_output) {
         /* there was output, test expected */
         fclose(test_output);
-        int ret = system("cmp cmpsi-1.c.output /Users/eisen/prog/gcc-3.3.1-3/gcc/testsuite/gcc.expect-torture/execute/cmpsi-1.expect");
+        int ret = system("cmp cmpsi-1.c.output ./pre_patch/cmpsi-1.expect");
         ret = ret >> 8;
         if (ret == 1) {
             printf("Test ./generated/cmpsi-1.c failed, output differs\n");
