@@ -96,7 +96,7 @@ EOF
     foreach my $sub (@$subroutines) {
         my ($name, $decl, $body) = @$sub;
 	chomp($decl);
-	$decl =~ s/\n/ /s;
+	$decl =~ s/\n/ /gs;
 	$externs_table .= "	{\"$name\", (void*)(long)-1},\n";
 	$externs_string .= "	$decl;\\n\\\n";
 	$body =~ s/\\/\\\\/g;
@@ -115,6 +115,10 @@ EOF
     $function_decls =~ s/\(void\)/\(\)/g;
     foreach my $decl (@$decls) {
 	chomp($decl);
+	$_ = $decl;
+	$decl =~ s/extern.*abort[^;]*;//g;
+	$decl =~ s/extern.*exit[^;]*;//g;
+	next if ($decl=~/^\s*$/s);
 	$decl =~ s/\\/\\\\/g;
 	$decl =~ s/\n/\\n\\\n/g;
 	$decl =~ s/\n/ /g;
@@ -139,7 +143,7 @@ EOF
     print INT "        if (i==0) {\n";
     print INT "            context = new_cod_parse_context();\n";
     print INT "            cod_assoc_externs(context, externs);\n";
-    print INT "            for (j=0; j < " . scalar @$decls . "; j++) {\n";
+    print INT "            for (j=0; j < sizeof(global_decls)/sizeof(global_decls[0])-1; j++) {\n";
     print INT "                cod_parse_for_globals(global_decls[j], context);\n";
     print INT "            }\n";
     print INT "            cod_parse_for_context(extern_string, context);\n";
