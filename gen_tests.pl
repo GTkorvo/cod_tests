@@ -314,19 +314,21 @@ sub parse_c_test($) {
 	    $subroutine_name = $1;
 	}
 	$subroutine_prefix =~ s/\n/ /g;
-	my $subroutine_header = $subroutine_prefix . "(";
+	my $subroutine_header;
 	@lines = split (/\n/, $last_segment);
+	my $first = 1;
 	while ($count) {
 	    my $param = pop @lines;
 	    $param =~ s/;\s*$//;
 	    $param =~ s/^\s*//;
-	    $subroutine_header .= "$param";
-	    if ($count != 1) {
-		$subroutine_header .= ", ";
+	    if ($first != 1) {
+	      $subroutine_header = ", " . $subroutine_header;
 	    }
+	    $first= 0;
+	    $subroutine_header = "$param" . $subroutine_header;
 	    $count--;
 	}
-	$subroutine_header .= ")";
+	$subroutine_header = $subroutine_prefix . "(". $subroutine_header . ")";
 	print "Ha, must be a subroutine 2, name $subroutine_name, profile $subroutine_header\n" if ($options{v});
 	push @subroutines, [($subroutine_name, $subroutine_header, shift(@array))];
 	next;
