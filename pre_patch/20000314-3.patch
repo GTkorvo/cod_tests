@@ -1,5 +1,5 @@
 *** /Users/eisen/prog/gcc-3.3.1-3/gcc/testsuite/gcc.c-torture/execute/20000314-3.c	Thu Oct 16 05:58:21 2003
---- ../pre_patch/20000314-3.c	Sun Feb 22 07:57:00 2015
+--- ../pre_patch/20000314-3.c	Fri Feb 27 20:44:47 2015
 ***************
 *** 3,12 ****
   static char arg0[] = "arg0";
@@ -32,7 +32,7 @@
 --- 15,20 ----
 ***************
 *** 34,39 ****
---- 22,36 ----
+--- 22,37 ----
     return str;
   }
   
@@ -41,8 +41,9 @@
 +     char *name;
 +     char *value;
 + {
-+   return attr_rtx (attr_string (name),
-+ 		   attr_string (value));
++     attr_rtx (attr_string (name),
++ 	      attr_string (value));
++     return;
 + }
 + 
   int main()
