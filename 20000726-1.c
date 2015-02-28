@@ -66,7 +66,7 @@ main(int argc, char**argv)
 
     char extern_string[] = "\n\
 	void main ();\n\
-	void adjust_xy (short  *y, short  *x);\n\
+	void adjust_xy (short  *x, short  *y);\n\
     	void exit(int value);\n\
         void abort();\n\
         int test_printf(const char *format, ...);";
@@ -92,7 +92,7 @@ main(int argc, char**argv)
 
     char *func_decls[] = {
 	"void main ();",
-	"void adjust_xy (short  *y, short  *x);",
+	"void adjust_xy (short  *x, short  *y);",
 	""};
 
     char *global_decls[] = {

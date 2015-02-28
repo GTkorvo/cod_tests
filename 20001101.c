@@ -69,7 +69,7 @@ main(int argc, char**argv)
     char extern_string[] = "\n\
 	extern void abort();\n\
 	rtx dummy ( int *a, rtx *b);\n\
-	void bogus (rtx delay_list, rtx thread, rtx insn);\n\
+	void bogus (rtx insn, rtx thread, rtx delay_list);\n\
 	int main();\n\
     	void exit(int value);\n\
         void abort();\n\
@@ -116,7 +116,7 @@ main(int argc, char**argv)
     char *func_decls[] = {
 	"extern void abort();",
 	"rtx dummy ( int *a, rtx *b);",
-	"void bogus (rtx delay_list, rtx thread, rtx insn);",
+	"void bogus (rtx insn, rtx thread, rtx delay_list);",
 	"int main();",
 	""};
 

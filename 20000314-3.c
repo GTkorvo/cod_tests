@@ -69,7 +69,7 @@ main(int argc, char**argv)
     char extern_string[] = "\n\
 	static void  attr_rtx (char *varg0, char *varg1);\n\
 	static char * attr_string (char *str);\n\
-	static void  attr_eq (char *value, char *name);\n\
+	static void  attr_eq (char *name, char *value);\n\
 	int main();\n\
     	void exit(int value);\n\
         void abort();\n\
@@ -94,8 +94,9 @@ main(int argc, char**argv)
 
 /* body for attr_eq */
 "{\n\
-  return attr_rtx (attr_string (name),\n\
-		   attr_string (value));\n\
+    attr_rtx (attr_string (name),\n\
+	      attr_string (value));\n\
+    return;\n\
 }",
 
 /* body for main */
@@ -108,7 +109,7 @@ main(int argc, char**argv)
     char *func_decls[] = {
 	"static void  attr_rtx (char *varg0, char *varg1);",
 	"static char * attr_string (char *str);",
-	"static void  attr_eq (char *value, char *name);",
+	"static void  attr_eq (char *name, char *value);",
 	"int main();",
 	""};
 

@@ -65,8 +65,8 @@ main(int argc, char**argv)
     };
 
     char extern_string[] = "\n\
-	void dummy (int y, int *x);\n\
-	int main (char **argv, int argc);\n\
+	void dummy (int *x, int y);\n\
+	int main (int argc, char **argv);\n\
     	void exit(int value);\n\
         void abort();\n\
         int test_printf(const char *format, ...);";
@@ -102,8 +102,8 @@ main(int argc, char**argv)
 ""};
 
     char *func_decls[] = {
-	"void dummy (int y, int *x);",
-	"int main (char **argv, int argc);",
+	"void dummy (int *x, int y);",
+	"int main (int argc, char **argv);",
 	""};
 
     char *global_decls[] = {

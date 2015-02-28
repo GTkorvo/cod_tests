@@ -65,7 +65,7 @@ main(int argc, char**argv)
     };
 
     char extern_string[] = "\n\
-	long double f (int i, long double d);\n\
+	long double f (long double d, int i);\n\
 	void main ();\n\
     	void exit(int value);\n\
         void abort();\n\
@@ -97,7 +97,7 @@ main(int argc, char**argv)
 ""};
 
     char *func_decls[] = {
-	"long double f (int i, long double d);",
+	"long double f (long double d, int i);",
 	"void main ();",
 	""};
 

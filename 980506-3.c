@@ -66,7 +66,7 @@ main(int argc, char**argv)
 
     char extern_string[] = "\n\
 	static int  build_lookup (unsigned char *pattern);\n\
-	int main(char **argv, int argc);\n\
+	int main(int argc, char **argv);\n\
     	void exit(int value);\n\
         void abort();\n\
         int test_printf(const char *format, ...);";
@@ -93,7 +93,7 @@ main(int argc, char**argv)
 
     char *func_decls[] = {
 	"static int  build_lookup (unsigned char *pattern);",
-	"int main(char **argv, int argc);",
+	"int main(int argc, char **argv);",
 	""};
 
     char *global_decls[] = {

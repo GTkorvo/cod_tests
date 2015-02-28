@@ -65,7 +65,7 @@ main(int argc, char**argv)
     };
 
     char extern_string[] = "\n\
-	int compare(unsigned int y, unsigned int x);\n\
+	int compare(unsigned int x, unsigned int y);\n\
 	void main();\n\
     	void exit(int value);\n\
         void abort();\n\
@@ -93,7 +93,7 @@ main(int argc, char**argv)
 ""};
 
     char *func_decls[] = {
-	"int compare(unsigned int y, unsigned int x);",
+	"int compare(unsigned int x, unsigned int y);",
 	"void main();",
 	""};
 

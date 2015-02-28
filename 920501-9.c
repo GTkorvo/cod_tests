@@ -75,7 +75,7 @@ main(int argc, char**argv)
 	long long proc3();\n\
 	long long proc4();\n\
 	long long proc5();\n\
-	void print_longlong(char *buf, long long x);\n\
+	void print_longlong(long long x, char *buf);\n\
 	void main();\n\
     	void exit(int value);\n\
         void abort();\n\
@@ -123,7 +123,7 @@ exit(0);}",
 	"long long proc3();",
 	"long long proc4();",
 	"long long proc5();",
-	"void print_longlong(char *buf, long long x);",
+	"void print_longlong(long long x, char *buf);",
 	"void main();",
 	""};
 

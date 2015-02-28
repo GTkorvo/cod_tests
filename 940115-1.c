@@ -65,7 +65,7 @@ main(int argc, char**argv)
     };
 
     char extern_string[] = "\n\
-	void f (char *end, char *cp);\n\
+	void f (char *cp, char *end);\n\
 	void main ();\n\
     	void exit(int value);\n\
         void abort();\n\
@@ -86,7 +86,7 @@ main(int argc, char**argv)
 ""};
 
     char *func_decls[] = {
-	"void f (char *end, char *cp);",
+	"void f (char *cp, char *end);",
 	"void main ();",
 	""};
 

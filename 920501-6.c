@@ -69,8 +69,8 @@ main(int argc, char**argv)
     char extern_string[] = "\n\
 	long long unsigned str2llu (char *str);\n\
 	long unsigned sqrtllu (long long unsigned t);\n\
-	int plist (long long unsigned *tab, long long unsigned p0, p1);\n\
-	void main (char *argv[], int argc);\n\
+	int plist (long long unsigned p0, p1, long long unsigned *tab);\n\
+	void main (int argc, char *argv[]);\n\
     	void exit(int value);\n\
         void abort();\n\
         int test_printf(const char *format, ...);";
@@ -157,8 +157,8 @@ main(int argc, char**argv)
     char *func_decls[] = {
 	"long long unsigned str2llu (char *str);",
 	"long unsigned sqrtllu (long long unsigned t);",
-	"int plist (long long unsigned *tab, long long unsigned p0, p1);",
-	"void main (char *argv[], int argc);",
+	"int plist (long long unsigned p0, p1, long long unsigned *tab);",
+	"void main (int argc, char *argv[]);",
 	""};
 
     char *global_decls[] = {

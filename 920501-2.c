@@ -69,7 +69,7 @@ main(int argc, char**argv)
     char extern_string[] = "\n\
 	unsigned long gcd_ll (unsigned long long x, unsigned long long y);\n\
 	unsigned long long powmod_ll (unsigned long long b, unsigned e, unsigned long long m);\n\
-	void facts (unsigned p, int x0, int a_int, unsigned long long t);\n\
+	void facts (unsigned long long t, int a_int, int x0, unsigned p);\n\
 	void main ();\n\
     	void exit(int value);\n\
         void abort();\n\
@@ -186,7 +186,7 @@ main(int argc, char**argv)
     char *func_decls[] = {
 	"unsigned long gcd_ll (unsigned long long x, unsigned long long y);",
 	"unsigned long long powmod_ll (unsigned long long b, unsigned e, unsigned long long m);",
-	"void facts (unsigned p, int x0, int a_int, unsigned long long t);",
+	"void facts (unsigned long long t, int a_int, int x0, unsigned p);",
 	"void main ();",
 	""};
 
