@@ -1,0 +1,33 @@
+*** /Users/eisen/prog/gcc-3.3.1-3/gcc/testsuite/gcc.c-torture/execute/20000412-6.c	Thu Oct 16 05:58:22 2003
+--- ../pre_patch/20000412-6.c	Wed Mar  4 14:20:19 2015
+***************
+*** 1,14 ****
+- unsigned bug (unsigned short value, unsigned short *buffer,
+-               unsigned short *bufend);
+- 
+  unsigned short buf[] = {1, 4, 16, 64, 256};
+- int main()
+- {
+-   if (bug (512, buf, buf + 3) != 491)
+-     abort ();
+- 
+-   exit (0);
+- }
+  
+  unsigned
+  bug (unsigned short value, unsigned short *buffer, unsigned short *bufend)
+--- 1,4 ----
+***************
+*** 20,22 ****
+--- 10,20 ----
+  
+    return value;
+  }
++ int main()
++ {
++   if (bug (512, buf, buf + 3) != 491)
++     abort ();
++ 
++   exit (0);
++ }
++ 

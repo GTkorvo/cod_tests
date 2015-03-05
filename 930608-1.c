@@ -57,28 +57,25 @@ main(int argc, char**argv)
     cod_extern_entry externs[] = 
     {
 	{"f", (void*)(long)-1},
-	{"double", (void*)(long)-1},
 	{"main", (void*)(long)-1},
 	{"abort", (void*)my_abort},
 	{"exit", (void*)test_exit},
 	{"test_printf", (void*)test_printf},
+	{"printf", (void*)printf},
 	{(void*)0, (void*)0}
     };
 
     char extern_string[] = "\n\
 	double f (double a);\n\
-	void double ();\n\
 	void main ();\n\
     	void exit(int value);\n\
         void abort();\n\
-        int test_printf(const char *format, ...);";
+        int test_printf(const char *format, ...);\n\
+        int printf(const char *format, ...);";
     char *func_bodies[] = {
 
 /* body for f */
 "{}",
-
-/* body for double */
-"{&f}",
 
 /* body for main */
 "{\n\
@@ -92,18 +89,17 @@ main(int argc, char**argv)
 
     char *func_decls[] = {
 	"double f (double a);",
-	"void double ();",
 	"void main ();",
 	""};
 
     char *global_decls[] = {
-	";",
+	"double (* const a[]) (double) ={&f};",
 ""};
 
     int i;
-    cod_code gen_code[3];
+    cod_code gen_code[2];
     cod_parse_context context;
-    for (i=0; i < 3; i++) {
+    for (i=0; i < 2; i++) {
         int j;
         if (verbose) {
              printf("Working on subroutine %s\n", externs[i].extern_name);
@@ -126,7 +122,7 @@ main(int argc, char**argv)
         cod_subroutine_declaration(func_decls[i], context);
         gen_code[i] = cod_code_gen(func_bodies[i], context);
         externs[i].extern_value = (void*) gen_code[i]->func;
-        if (i == 2) {
+        if (i == 1) {
             int (*func)() = (int(*)()) externs[i].extern_value;
             if (setjmp(env) == 0) {
                 func();

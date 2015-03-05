@@ -56,29 +56,23 @@ main(int argc, char**argv)
     }
     cod_extern_entry externs[] = 
     {
-	{"main", (void*)(long)-1},
 	{"bug", (void*)(long)-1},
+	{"main", (void*)(long)-1},
 	{"abort", (void*)my_abort},
 	{"exit", (void*)test_exit},
 	{"test_printf", (void*)test_printf},
+	{"printf", (void*)printf},
 	{(void*)0, (void*)0}
     };
 
     char extern_string[] = "\n\
-	; int main();\n\
 	unsigned bug (unsigned short value, unsigned short *buffer, unsigned short *bufend);\n\
+	int main();\n\
     	void exit(int value);\n\
         void abort();\n\
-        int test_printf(const char *format, ...);";
+        int test_printf(const char *format, ...);\n\
+        int printf(const char *format, ...);";
     char *func_bodies[] = {
-
-/* body for main */
-"{\n\
-  if (bug (512, buf, buf + 3) != 491)\n\
-    abort ();\n\
-\n\
-  exit (0);\n\
-}",
 
 /* body for bug */
 "{\n\
@@ -89,17 +83,23 @@ main(int argc, char**argv)
 \n\
   return value;\n\
 }",
+
+/* body for main */
+"{\n\
+  if (bug (512, buf, buf + 3) != 491)\n\
+    abort ();\n\
+\n\
+  exit (0);\n\
+}",
 ""};
 
     char *func_decls[] = {
-	"; int main();",
 	"unsigned bug (unsigned short value, unsigned short *buffer, unsigned short *bufend);",
+	"int main();",
 	""};
 
     char *global_decls[] = {
-	"unsigned bug (unsigned short value, unsigned short *buffer,\n\
-              unsigned short *bufend);",
-	"unsigned short buf[] =",
+	"unsigned short buf[] ={1, 4, 16, 64, 256};",
 ""};
 
     int i;
@@ -144,7 +144,7 @@ main(int argc, char**argv)
     if (test_output) {
         /* there was output, test expected */
         fclose(test_output);
-        int ret = system("cmp 20000412-6.c.output /Users/eisen/prog/gcc-3.3.1-3/gcc/testsuite/gcc.expect-torture/execute/20000412-6.expect");
+        int ret = system("cmp 20000412-6.c.output ./pre_patch/20000412-6.expect");
         ret = ret >> 8;
         if (ret == 1) {
             printf("Test ./generated/20000412-6.c failed, output differs\n");

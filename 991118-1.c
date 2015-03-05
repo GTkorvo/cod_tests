@@ -64,6 +64,7 @@ main(int argc, char**argv)
 	{"abort", (void*)my_abort},
 	{"exit", (void*)test_exit},
 	{"test_printf", (void*)test_printf},
+	{"printf", (void*)printf},
 	{(void*)0, (void*)0}
     };
 
@@ -75,7 +76,8 @@ main(int argc, char**argv)
 	void main();\n\
     	void exit(int value);\n\
         void abort();\n\
-        int test_printf(const char *format, ...);";
+        int test_printf(const char *format, ...);\n\
+        int printf(const char *format, ...);";
     char *func_bodies[] = {
 
 /* body for sub */
@@ -155,14 +157,10 @@ main(int argc, char**argv)
   long long int field : 53;\n\
   long long int pad : 11;\n\
 };",
-	"struct tmp tmp =",
-	";\n\
-struct tmp2 tmp2 =",
-	";\n\
-struct tmp3 tmp3 =",
-	";\n\
-struct tmp4 tmp4 =",
-	";",
+	"struct tmp tmp ={0x123, 0x123456789ABCDLL};",
+	"struct tmp2 tmp2 ={0x123456789ABCDLL, 0x123};",
+	"struct tmp3 tmp3 ={0x123, 0x1FFFF00000000LL};",
+	"struct tmp4 tmp4 ={0x1FFFF00000000LL, 0x123};",
 ""};
 
     int i;

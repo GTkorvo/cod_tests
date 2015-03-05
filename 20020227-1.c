@@ -56,25 +56,27 @@ main(int argc, char**argv)
     }
     cod_extern_entry externs[] = 
     {
-	{"__attribute__", (void*)(long)-1},
+	{"f2", (void*)(long)-1},
 	{"f1", (void*)(long)-1},
 	{"f2", (void*)(long)-1},
 	{"abort", (void*)my_abort},
 	{"exit", (void*)test_exit},
 	{"test_printf", (void*)test_printf},
+	{"printf", (void*)printf},
 	{(void*)0, (void*)0}
     };
 
     char extern_string[] = "\n\
-	__attribute__ ((__packed__)); extern void f2 (struct x*); extern void f1 (); int main ();\n\
+	 extern void f2 (struct x*); extern void f1 (); int main ();\n\
 	void f1 ();\n\
 	void f2 (struct x *y);\n\
     	void exit(int value);\n\
         void abort();\n\
-        int test_printf(const char *format, ...);";
+        int test_printf(const char *format, ...);\n\
+        int printf(const char *format, ...);";
     char *func_bodies[] = {
 
-/* body for __attribute__ */
+/* body for f2 */
 "{\n\
   f1 ();\n\
   exit (0);\n\
@@ -96,7 +98,7 @@ main(int argc, char**argv)
 ""};
 
     char *func_decls[] = {
-	"__attribute__ ((__packed__)); extern void f2 (struct x*); extern void f1 (); int main ();",
+	" extern void f2 (struct x*); extern void f1 (); int main ();",
 	"void f1 ();",
 	"void f2 (struct x *y);",
 	""};

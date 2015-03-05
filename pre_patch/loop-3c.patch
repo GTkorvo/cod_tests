@@ -1,0 +1,19 @@
+*** /Users/eisen/prog/gcc-3.3.1-3/gcc/testsuite/gcc.c-torture/execute/loop-3c.c	2015-03-03 15:48:05.000000000 -0500
+--- ../pre_patch/loop-3c.c	2015-03-03 15:48:16.000000000 -0500
+***************
+*** 2,8 ****
+  
+  void * a[255];
+  
+! f (m)
+  {
+    int i;
+    int sh = 0x100;
+--- 2,8 ----
+  
+  void * a[255];
+  
+! void f (int m)
+  {
+    int i;
+    int sh = 0x100;

@@ -62,16 +62,18 @@ main(int argc, char**argv)
 	{"abort", (void*)my_abort},
 	{"exit", (void*)test_exit},
 	{"test_printf", (void*)test_printf},
+	{"printf", (void*)printf},
 	{(void*)0, (void*)0}
     };
 
     char extern_string[] = "\n\
-	g (i);\n\
-	f (m);\n\
+	void g (int i);\n\
+	void f (int m);\n\
 	void main ();\n\
     	void exit(int value);\n\
         void abort();\n\
-        int test_printf(const char *format, ...);";
+        int test_printf(const char *format, ...);\n\
+        int printf(const char *format, ...);";
     char *func_bodies[] = {
 
 /* body for g */
@@ -101,8 +103,8 @@ main(int argc, char**argv)
 ""};
 
     char *func_decls[] = {
-	"g (i);",
-	"f (m);",
+	"void g (int i);",
+	"void f (int m);",
 	"void main ();",
 	""};
 
@@ -154,7 +156,7 @@ int n = 0;",
     if (test_output) {
         /* there was output, test expected */
         fclose(test_output);
-        int ret = system("cmp loop-3b.c.output /Users/eisen/prog/gcc-3.3.1-3/gcc/testsuite/gcc.expect-torture/execute/loop-3b.expect");
+        int ret = system("cmp loop-3b.c.output ./pre_patch/loop-3b.expect");
         ret = ret >> 8;
         if (ret == 1) {
             printf("Test ./generated/loop-3b.c failed, output differs\n");

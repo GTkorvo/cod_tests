@@ -61,6 +61,7 @@ main(int argc, char**argv)
 	{"abort", (void*)my_abort},
 	{"exit", (void*)test_exit},
 	{"test_printf", (void*)test_printf},
+	{"printf", (void*)printf},
 	{(void*)0, (void*)0}
     };
 
@@ -69,7 +70,8 @@ main(int argc, char**argv)
 	void main ();\n\
     	void exit(int value);\n\
         void abort();\n\
-        int test_printf(const char *format, ...);";
+        int test_printf(const char *format, ...);\n\
+        int printf(const char *format, ...);";
     char *func_bodies[] = {
 
 /* body for f */
@@ -127,16 +129,11 @@ double d6 = 0.6;\n\
 double d7 = 0.7;\n\
 double d8 = 0.8;\n\
 double d9 = 0.9;",
-	"B B1 =",
-	";\n\
-B B2 =",
-	";\n\
-X X1 =",
-	";\n\
-X X2 =",
-	";\n\
-X X3 =",
-	";",
+	"B B1 ={0.1,{1,2,3}};",
+	"B B2 ={0.2,{5,4,3}};",
+	"X X1 ={\"abcdefghijklmnopqrstuvwxyzABCDEF\", 'G'};",
+	"X X2 ={\"123\",'9'};",
+	"X X3 ={\"return-return-return\",'R'};",
 	"X (*fp) (B, char, double, B) = &f;",
 ""};
 

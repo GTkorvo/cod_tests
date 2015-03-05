@@ -61,15 +61,17 @@ main(int argc, char**argv)
 	{"abort", (void*)my_abort},
 	{"exit", (void*)test_exit},
 	{"test_printf", (void*)test_printf},
+	{"printf", (void*)printf},
 	{(void*)0, (void*)0}
     };
 
     char extern_string[] = "\n\
-	static int f(int) __attribute__((const)); int main();\n\
+	static int f(int)  int main();\n\
 	static int f(int x);\n\
     	void exit(int value);\n\
         void abort();\n\
-        int test_printf(const char *format, ...);";
+        int test_printf(const char *format, ...);\n\
+        int printf(const char *format, ...);";
     char *func_bodies[] = {
 
 /* body for f */
@@ -87,7 +89,7 @@ main(int argc, char**argv)
 ""};
 
     char *func_decls[] = {
-	"static int f(int) __attribute__((const)); int main();",
+	"static int f(int)  int main();",
 	"static int f(int x);",
 	""};
 

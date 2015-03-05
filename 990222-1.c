@@ -60,6 +60,7 @@ main(int argc, char**argv)
 	{"abort", (void*)my_abort},
 	{"exit", (void*)test_exit},
 	{"test_printf", (void*)test_printf},
+	{"printf", (void*)printf},
 	{(void*)0, (void*)0}
     };
 
@@ -67,7 +68,8 @@ main(int argc, char**argv)
 	int main();\n\
     	void exit(int value);\n\
         void abort();\n\
-        int test_printf(const char *format, ...);";
+        int test_printf(const char *format, ...);\n\
+        int printf(const char *format, ...);";
     char *func_bodies[] = {
 
 /* body for main */
@@ -86,8 +88,7 @@ main(int argc, char**argv)
 	""};
 
     char *global_decls[] = {
-	"char line[4] =",
-	";",
+	"char line[4] ={ '1', '9', '9', '\\0' };",
 ""};
 
     int i;

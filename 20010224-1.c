@@ -62,6 +62,7 @@ main(int argc, char**argv)
 	{"abort", (void*)my_abort},
 	{"exit", (void*)test_exit},
 	{"test_printf", (void*)test_printf},
+	{"printf", (void*)printf},
 	{(void*)0, (void*)0}
     };
 
@@ -71,7 +72,8 @@ main(int argc, char**argv)
 	int main ();\n\
     	void exit(int value);\n\
         void abort();\n\
-        int test_printf(const char *format, ...);";
+        int test_printf(const char *format, ...);\n\
+        int printf(const char *format, ...);";
     char *func_bodies[] = {
 
 /* body for ba_compute_psd */
@@ -121,12 +123,9 @@ typedef unsigned short uint16_t;\n\
 \n\
 int16_t logadd (int16_t *a, int16_t *b);\n\
 void ba_compute_psd (int16_t start);",
-	"int16_t masktab[6] =",
-	";\n\
-int16_t psd[6] =",
-	";\n\
-int16_t bndpsd[6] =",
-	";",
+	"int16_t masktab[6] ={ 1, 2, 3, 4, 5};",
+	"int16_t psd[6] ={ 50, 40, 30, 20, 10};",
+	"int16_t bndpsd[6] ={ 1, 2, 3, 4, 5};",
 ""};
 
     int i;

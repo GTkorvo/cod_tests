@@ -57,42 +57,39 @@ main(int argc, char**argv)
     cod_extern_entry externs[] = 
     {
 	{"abort", (void*)(long)-1},
-	{"main", (void*)(long)-1},
 	{"abort", (void*)my_abort},
 	{"exit", (void*)test_exit},
 	{"test_printf", (void*)test_printf},
+	{"printf", (void*)printf},
 	{(void*)0, (void*)0}
     };
 
     char extern_string[] = "\n\
-	extern int abort();\n\
-	void ; main();\n\
+	extern int abort(typedef int (*frob)(), frob f[] =);\n\
     	void exit(int value);\n\
         void abort();\n\
-        int test_printf(const char *format, ...);";
+        int test_printf(const char *format, ...);\n\
+        int printf(const char *format, ...);";
     char *func_bodies[] = {
 
 /* body for abort */
-"{abort}",
-
-/* body for main */
-"{\n\
-  exit(0);\n\
-}",
+"\n\
+main()\n\
+",
 ""};
 
     char *func_decls[] = {
-	"extern int abort();",
-	"void ; main();",
+	"extern int abort(typedef int (*frob)(), frob f[] =);",
 	""};
 
     char *global_decls[] = {
+	"frob f[] ={abort};",
 ""};
 
     int i;
-    cod_code gen_code[2];
+    cod_code gen_code[1];
     cod_parse_context context;
-    for (i=0; i < 2; i++) {
+    for (i=0; i < 1; i++) {
         int j;
         if (verbose) {
              printf("Working on subroutine %s\n", externs[i].extern_name);
@@ -115,7 +112,7 @@ main(int argc, char**argv)
         cod_subroutine_declaration(func_decls[i], context);
         gen_code[i] = cod_code_gen(func_bodies[i], context);
         externs[i].extern_value = (void*) gen_code[i]->func;
-        if (i == 1) {
+        if (i == 0) {
             int (*func)() = (int(*)()) externs[i].extern_value;
             if (setjmp(env) == 0) {
                 func();

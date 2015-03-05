@@ -107,8 +107,8 @@ EOF
 	$function_bodies .= "\n/* body for $name */\n\"$body\",\n";
 	$function_decls .= "\t\"$decl;\",\n";
     }
-    $externs_table .= "	{\"abort\", (void*)my_abort},\n	{\"exit\", (void*)test_exit},\n	{\"test_printf\", (void*)test_printf},\n	{(void*)0, (void*)0}\n    };\n";
-    $externs_string .= "    	void exit(int value);\\n\\\n        void abort();\\n\\\n        int test_printf(const char *format, ...);\";";
+    $externs_table .= "	{\"abort\", (void*)my_abort},\n	{\"exit\", (void*)test_exit},\n	{\"test_printf\", (void*)test_printf},\n	{\"printf\", (void*)printf},\n	{(void*)0, (void*)0}\n    };\n";
+    $externs_string .= "    	void exit(int value);\\n\\\n        void abort();\\n\\\n        int test_printf(const char *format, ...);\\n\\\n        int printf(const char *format, ...);\";";
     $externs_string =~ s/\(void\)/\(\)/g;
     $function_bodies .= "\"\"};\n";
     $function_decls .= "\t\"\"};\n";
@@ -266,6 +266,7 @@ sub parse_c_test($) {
 	    next;
 	}
 	$last_segment =~ s/\s+$//;
+	$last_segment =~ s/__attribute__.*((.*))//;
 	if (substr($last_segment, -1) eq ")") {
 	    my $subroutine_name;
 	    if ($last_segment =~ /^\W*\w+\W*$/)   {
@@ -289,6 +290,12 @@ sub parse_c_test($) {
 		$count++;
 		next;
 	    }
+	    if (substr($last_line, -1) eq "=") {
+	        push @decls, "$last_line" . shift(@array). ";";
+		$array[0] = substr($array[0], 1);  # kill semi
+		$last_line = "";
+		next;
+	    }
 	    if (substr($last_line, -1) ne ")") {
 		print "Didn't get it, last line $last_line\n";
 	    }
@@ -298,8 +305,10 @@ sub parse_c_test($) {
 	}
 	my ($subroutine_prefix, $params) = split /\(/, $last_line;
 	if (!defined $params) {
-	  print "This is a declaration set [\n $subroutine_prefix\n]\n\n\n" if ($options{v});
-	  push @decls, $subroutine_prefix;
+	  if (defined $subroutine_prefix) {
+	    print "This is a declaration set [\n $subroutine_prefix\n]\n\n\n" if ($options{v});
+	    push @decls, $subroutine_prefix if ($subroutine_prefix !~ /^\s*$/);
+	  }
 	  next;
 	}
 	my @params = split(/,/, $params);

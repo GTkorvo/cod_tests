@@ -60,6 +60,7 @@ main(int argc, char**argv)
 	{"abort", (void*)my_abort},
 	{"exit", (void*)test_exit},
 	{"test_printf", (void*)test_printf},
+	{"printf", (void*)printf},
 	{(void*)0, (void*)0}
     };
 
@@ -67,7 +68,8 @@ main(int argc, char**argv)
 	void main();\n\
     	void exit(int value);\n\
         void abort();\n\
-        int test_printf(const char *format, ...);";
+        int test_printf(const char *format, ...);\n\
+        int printf(const char *format, ...);";
     char *func_bodies[] = {
 
 /* body for main */
@@ -115,24 +117,34 @@ main(int argc, char**argv)
   char a1c;\n\
   char *a1p;\n\
 }",
-	"a1 =",
-	";",
+	"a1 ={\n\
+  '4',\n\
+  \"62\"\n\
+};",
 	"struct {\n\
   char a2c;\n\
   char a2p[2];\n\
 }",
-	"a2 =",
-	";",
-	"/* The tests.  */\n\
-struct",
-	"a3 =",
-	";",
+	"a2 ={\n\
+  'v',\n\
+  \"cq\"\n\
+};",
+	"struct {\n\
+  char a3c;\n\
+  char a3p[];\n\
+}",
+	"a3 ={\n\
+  'o',\n\
+  \"wx\"\n\
+};",
 	"struct {\n\
   char a4c;\n\
   char a4p[];\n\
 }",
-	"a4 =",
-	";",
+	"a4 ={\n\
+  '9',\n\
+  { 'e', 'b' }\n\
+};",
 ""};
 
     int i;

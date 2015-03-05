@@ -62,16 +62,18 @@ main(int argc, char**argv)
 	{"abort", (void*)my_abort},
 	{"exit", (void*)test_exit},
 	{"test_printf", (void*)test_printf},
+	{"printf", (void*)printf},
 	{(void*)0, (void*)0}
     };
 
     char extern_string[] = "\n\
-	__inline__ f (b, o);\n\
-	g(int b);\n\
+	void f (int b, int o);\n\
+	void g(int b);\n\
 	void main ();\n\
     	void exit(int value);\n\
         void abort();\n\
-        int test_printf(const char *format, ...);";
+        int test_printf(const char *format, ...);\n\
+        int printf(const char *format, ...);";
     char *func_bodies[] = {
 
 /* body for f */
@@ -98,8 +100,8 @@ main(int argc, char**argv)
 ""};
 
     char *func_decls[] = {
-	"__inline__ f (b, o);",
-	"g(int b);",
+	"void f (int b, int o);",
+	"void g(int b);",
 	"void main ();",
 	""};
 
@@ -149,7 +151,7 @@ main(int argc, char**argv)
     if (test_output) {
         /* there was output, test expected */
         fclose(test_output);
-        int ret = system("cmp loop-2c.c.output /Users/eisen/prog/gcc-3.3.1-3/gcc/testsuite/gcc.expect-torture/execute/loop-2c.expect");
+        int ret = system("cmp loop-2c.c.output ./pre_patch/loop-2c.expect");
         ret = ret >> 8;
         if (ret == 1) {
             printf("Test ./generated/loop-2c.c failed, output differs\n");

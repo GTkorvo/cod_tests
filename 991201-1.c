@@ -62,6 +62,7 @@ main(int argc, char**argv)
 	{"abort", (void*)my_abort},
 	{"exit", (void*)test_exit},
 	{"test_printf", (void*)test_printf},
+	{"printf", (void*)printf},
 	{(void*)0, (void*)0}
     };
 
@@ -71,7 +72,8 @@ main(int argc, char**argv)
 	int main();\n\
     	void exit(int value);\n\
         void abort();\n\
-        int test_printf(const char *format, ...);";
+        int test_printf(const char *format, ...);\n\
+        int printf(const char *format, ...);";
     char *func_bodies[] = {
 
 /* body for reset_palette */
@@ -114,9 +116,8 @@ main(int argc, char**argv)
 };\n\
 \n\
 struct vc_data a_con;",
-	"struct vc vc_cons[63] =",
-	";\n\
-int default_red[16];\n\
+	"struct vc vc_cons[63] ={ &a_con };",
+	"int default_red[16];\n\
 int default_grn[16];\n\
 int default_blu[16];\n\
 \n\

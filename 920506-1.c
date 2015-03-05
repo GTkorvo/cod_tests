@@ -60,14 +60,16 @@ main(int argc, char**argv)
 	{"abort", (void*)my_abort},
 	{"exit", (void*)test_exit},
 	{"test_printf", (void*)test_printf},
+	{"printf", (void*)printf},
 	{(void*)0, (void*)0}
     };
 
     char extern_string[] = "\n\
-	void ; main();\n\
+	void main();\n\
     	void exit(int value);\n\
         void abort();\n\
-        int test_printf(const char *format, ...);";
+        int test_printf(const char *format, ...);\n\
+        int printf(const char *format, ...);";
     char *func_bodies[] = {
 
 /* body for main */
@@ -75,11 +77,11 @@ main(int argc, char**argv)
 ""};
 
     char *func_decls[] = {
-	"void ; main();",
+	"void main();",
 	""};
 
     char *global_decls[] = {
-	"int l[]=",
+	"int l[]={0,1};",
 ""};
 
     int i;

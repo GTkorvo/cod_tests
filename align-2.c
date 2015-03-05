@@ -60,6 +60,7 @@ main(int argc, char**argv)
 	{"abort", (void*)my_abort},
 	{"exit", (void*)test_exit},
 	{"test_printf", (void*)test_printf},
+	{"printf", (void*)printf},
 	{(void*)0, (void*)0}
     };
 
@@ -67,7 +68,8 @@ main(int argc, char**argv)
 	int main ();\n\
     	void exit(int value);\n\
         void abort();\n\
-        int test_printf(const char *format, ...);";
+        int test_printf(const char *format, ...);\n\
+        int printf(const char *format, ...);";
     char *func_bodies[] = {
 
 /* body for main */
@@ -110,47 +112,33 @@ main(int argc, char**argv)
 
     char *global_decls[] = {
 	"struct a_short { char c; short s; }",
-	"s_c_s =",
-	";\n\
-struct a_int",
-	"s_c_i =",
-	";\n\
-struct b_int",
-	"s_s_i  =",
-	";\n\
-struct a_float",
-	"s_c_f =",
-	";\n\
-struct b_float",
-	"s_s_f =",
-	";\n\
-struct a_double",
-	"s_c_d =",
-	";\n\
-struct b_double",
-	"s_s_d =",
-	";\n\
-struct c_double",
-	"s_i_d =",
-	";\n\
-struct d_double",
-	"s_f_d =",
-	";\n\
-struct a_ldouble",
-	"s_c_ld =",
-	";\n\
-struct b_ldouble",
-	"s_s_ld =",
-	";\n\
-struct c_ldouble",
-	"s_i_ld =",
-	";\n\
-struct d_ldouble",
-	"s_f_ld =",
-	";\n\
-struct e_ldouble",
-	"s_d_ld =",
-	";",
+	"s_c_s ={ 'a', 13 };",
+	"struct a_int { char c ; int i; }",
+	"s_c_i ={ 'b', 14 };",
+	"struct b_int { short s; int i; }",
+	"s_s_i  ={ 15, 16 };",
+	"struct a_float { char c; float f; }",
+	"s_c_f ={ 'c', 17.0 };",
+	"struct b_float { short s; float f; }",
+	"s_s_f ={ 18, 19.0 };",
+	"struct a_double { char c; double d; }",
+	"s_c_d ={ 'd', 20.0 };",
+	"struct b_double { short s; double d; }",
+	"s_s_d ={ 21, 22.0 };",
+	"struct c_double { int i; double d; }",
+	"s_i_d ={ 23, 24.0 };",
+	"struct d_double { float f; double d; }",
+	"s_f_d ={ 25.0, 26.0 };",
+	"struct a_ldouble { char c; long double ld; }",
+	"s_c_ld ={ 'e', 27.0 };",
+	"struct b_ldouble { short s; long double ld; }",
+	"s_s_ld ={ 28, 29.0 };",
+	"struct c_ldouble { int i; long double ld; }",
+	"s_i_ld ={ 30, 31.0 };",
+	"struct d_ldouble { float f; long double ld; }",
+	"s_f_ld ={ 32.0, 33.0 };",
+	"struct e_ldouble { double d; long double ld; }",
+	"s_d_ld ={ 34.0, 35.0 };",
 ""};
 
     int i;

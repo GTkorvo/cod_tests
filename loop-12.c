@@ -56,25 +56,27 @@ main(int argc, char**argv)
     }
     cod_extern_entry externs[] = 
     {
-	{"__attribute__", (void*)(long)-1},
+	{"is_end_of_statement", (void*)(long)-1},
 	{"foo", (void*)(long)-1},
 	{"main", (void*)(long)-1},
 	{"abort", (void*)my_abort},
 	{"exit", (void*)test_exit},
 	{"test_printf", (void*)test_printf},
+	{"printf", (void*)printf},
 	{(void*)0, (void*)0}
     };
 
     char extern_string[] = "\n\
-	static int __attribute__ ((pure)) is_end_of_statement ();\n\
+	static int  is_end_of_statement ();\n\
 	void foo ();\n\
 	int main ();\n\
     	void exit(int value);\n\
         void abort();\n\
-        int test_printf(const char *format, ...);";
+        int test_printf(const char *format, ...);\n\
+        int printf(const char *format, ...);";
     char *func_bodies[] = {
 
-/* body for __attribute__ */
+/* body for is_end_of_statement */
 "{\n\
   return *p == '\\n' || *p == ';' || *p == '!';\n\
 }",
@@ -96,7 +98,7 @@ main(int argc, char**argv)
 ""};
 
     char *func_decls[] = {
-	"static int __attribute__ ((pure)) is_end_of_statement ();",
+	"static int  is_end_of_statement ();",
 	"void foo ();",
 	"int main ();",
 	""};
