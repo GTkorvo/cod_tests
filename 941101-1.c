@@ -7,6 +7,25 @@
 #include <stdarg.h>
 #include <setjmp.h>
 
+/*
+ *  Original test was:
+ */
+// f ()
+// {
+//   int var = 7;
+// 
+//   if ((var/7) == 1)
+//     return var/7;
+//   return 0;
+// }
+// 
+// main ()
+// {
+//   if (f () != 1)
+//     abort ();
+//   exit (0);
+// }
+
 int exit_value = 0; /* success */
 jmp_buf env;
 

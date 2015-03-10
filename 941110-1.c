@@ -7,6 +7,26 @@
 #include <stdarg.h>
 #include <setjmp.h>
 
+/*
+ *  Original test was:
+ */
+// f (const int x)
+// {
+//   int y = 0;
+//   y = x ? y : -y;
+//   {
+//     const int *p = &x;
+//   }
+//   return y;
+// }
+// 
+// main ()
+// {
+//   if (f (0))
+//     abort ();
+//   exit (0);
+// }
+
 int exit_value = 0; /* success */
 jmp_buf env;
 

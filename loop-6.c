@@ -7,6 +7,25 @@
 #include <stdarg.h>
 #include <setjmp.h>
 
+/*
+ *  Original test was:
+ */
+// main()
+// {
+//   char c;
+//   char d;
+//   int nbits;
+//   c = -1;
+//   for (nbits = 1 ; nbits < 100; nbits++) {
+//     d = (1 << nbits) - 1;
+//     if (d == c)
+//       break;
+//   }
+//   if (nbits == 100)
+//     abort();
+//   exit(0);
+// }
+
 int exit_value = 0; /* success */
 jmp_buf env;
 

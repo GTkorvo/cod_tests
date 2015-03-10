@@ -7,6 +7,21 @@
 #include <stdarg.h>
 #include <setjmp.h>
 
+/*
+ *  Original test was:
+ */
+// static void
+// compare (long long foo)
+// {
+//   if (foo < 4294967297LL)
+//     abort();
+// }
+// int main(void)
+// {
+//   compare (8589934591LL);
+//   exit (0);
+// }
+
 int exit_value = 0; /* success */
 jmp_buf env;
 

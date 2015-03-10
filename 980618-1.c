@@ -7,6 +7,26 @@
 #include <stdarg.h>
 #include <setjmp.h>
 
+/*
+ *  Original test was:
+ */
+// void func(int, int);
+// 
+// int main()
+// {
+//         int x = 7;
+//         func(!x, !7);
+// 	exit (0);
+// }
+// 
+// void func(int x, int y)
+// {
+//         if (x == y)
+//                 return;
+//         else
+//                 abort ();
+// }
+
 int exit_value = 0; /* success */
 jmp_buf env;
 

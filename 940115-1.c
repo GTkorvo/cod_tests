@@ -7,6 +7,23 @@
 #include <stdarg.h>
 #include <setjmp.h>
 
+/*
+ *  Original test was:
+ */
+// f (cp, end)
+//      char *cp;
+//      char *end;
+// {
+//   return (cp < end);
+// }
+// 
+// main ()
+// {
+//   if (! f ((char *) 0, (char *) 1))
+//     abort();
+//   exit (0);
+// }
+
 int exit_value = 0; /* success */
 jmp_buf env;
 

@@ -7,6 +7,17 @@
 #include <stdarg.h>
 #include <setjmp.h>
 
+/*
+ *  Original test was:
+ */
+// int main ()
+// {
+//   unsigned long long a;
+//   if (! (a = 0xfedcba9876543210ULL))
+//     abort ();
+//   exit (0);
+// }
+
 int exit_value = 0; /* success */
 jmp_buf env;
 

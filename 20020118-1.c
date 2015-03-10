@@ -7,6 +7,43 @@
 #include <stdarg.h>
 #include <setjmp.h>
 
+/*
+ *  Original test was:
+ */
+// /* This tests an insn length of sign extention on h8300 port.  */
+// 
+// extern void exit (int);
+// 
+// volatile signed char *q;
+// volatile signed int n;
+// 
+// void
+// foo (void)
+// {
+//   signed char *p;
+// 
+//   for (;;)
+//     {
+//       p = (signed char *) q; n = p[2];
+//       p = (signed char *) q; n = p[2];
+//       p = (signed char *) q; n = p[2];
+//       p = (signed char *) q; n = p[2];
+//       p = (signed char *) q; n = p[2];
+//       p = (signed char *) q; n = p[2];
+//       p = (signed char *) q; n = p[2];
+//       p = (signed char *) q; n = p[2];
+//       p = (signed char *) q; n = p[2];
+//       p = (signed char *) q; n = p[2];
+//       p = (signed char *) q; n = p[2];
+//     }
+// }
+// 
+// int
+// main ()
+// {
+//   exit (0);
+// }
+
 int exit_value = 0; /* success */
 jmp_buf env;
 

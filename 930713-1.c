@@ -7,6 +7,33 @@
 #include <stdarg.h>
 #include <setjmp.h>
 
+/*
+ *  Original test was:
+ */
+// typedef struct
+// {
+//   char x;
+// } T;
+// 
+// T
+// f (s1)
+//      T s1;
+// {
+//   T s1a;
+//   s1a.x = 17;
+//   return s1a;
+// }
+// 
+// main ()
+// {
+//   T s1a, s1b;
+//   s1a.x = 13;
+//   s1b = f (s1a);
+//   if (s1a.x != 13 || s1b.x != 17)
+//     abort ();
+//   exit (0);
+// }
+
 int exit_value = 0; /* success */
 jmp_buf env;
 

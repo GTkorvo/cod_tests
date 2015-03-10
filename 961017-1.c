@@ -7,6 +7,18 @@
 #include <stdarg.h>
 #include <setjmp.h>
 
+/*
+ *  Original test was:
+ */
+// main ()
+// {
+//   unsigned char z = 0;
+// 
+//   do ;
+//   while (--z > 0);
+//   exit (0);
+// }
+
 int exit_value = 0; /* success */
 jmp_buf env;
 

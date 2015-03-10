@@ -7,6 +7,24 @@
 #include <stdarg.h>
 #include <setjmp.h>
 
+/*
+ *  Original test was:
+ */
+// enum {
+//     FOO,
+//     BAR
+// };
+// 
+// int main(void)
+// {
+//     enum {
+//         FOO = 2,
+//         BAR
+//     };
+// 
+//     return BAR - FOO;
+// }
+
 int exit_value = 0; /* success */
 jmp_buf env;
 

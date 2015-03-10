@@ -7,6 +7,32 @@
 #include <stdarg.h>
 #include <setjmp.h>
 
+/*
+ *  Original test was:
+ */
+// int
+// f (unsigned bitcount, int mant)
+// {
+//   int mask = -1 << bitcount;
+//   {
+//     if (! (mant & -mask))
+//       goto ab;
+//     if (mant & ~mask)
+//       goto auf;
+//   }
+// ab:
+//   return 0;
+// auf:
+//   return 1;
+// }
+// 
+// main ()
+// {
+//   if (f (0, -1))
+//     abort ();
+//   exit (0);
+// }
+
 int exit_value = 0; /* success */
 jmp_buf env;
 

@@ -7,6 +7,23 @@
 #include <stdarg.h>
 #include <setjmp.h>
 
+/*
+ *  Original test was:
+ */
+// unsigned long
+// sub (int a)
+// {
+//   return ((0 > a - 2) ? 0 : a - 2) * sizeof (long);
+// }
+// 
+// main ()
+// {
+//   if (sub (0) != 0)
+//     abort ();
+// 
+//   exit (0);
+// }
+
 int exit_value = 0; /* success */
 jmp_buf env;
 

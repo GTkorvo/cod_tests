@@ -7,6 +7,30 @@
 #include <stdarg.h>
 #include <setjmp.h>
 
+/*
+ *  Original test was:
+ */
+// static inline
+// p (int *p)
+// {
+//   return !((long) p & 1);
+// }
+// 
+// int
+// f (int *q)
+// {
+//   if (p (q) && *q)
+//     return 1;
+//   return 0;
+// }
+// 
+// main ()
+// {
+//   if (f ((int*) 0xffffffff) != 0)
+//     abort ();
+//   exit (0);
+// }
+
 int exit_value = 0; /* success */
 jmp_buf env;
 

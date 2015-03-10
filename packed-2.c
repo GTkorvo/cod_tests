@@ -7,6 +7,22 @@
 #include <stdarg.h>
 #include <setjmp.h>
 
+/*
+ *  Original test was:
+ */
+// typedef struct s {
+// 	unsigned short a;
+// 	unsigned long b __attribute__ ((packed));
+// } s;
+// 
+// s t;
+// 
+// int main()
+// {
+//         t.b = 0;
+// 	return 0;
+// }
+
 int exit_value = 0; /* success */
 jmp_buf env;
 

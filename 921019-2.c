@@ -7,6 +7,18 @@
 #include <stdarg.h>
 #include <setjmp.h>
 
+/*
+ *  Original test was:
+ */
+// main()
+// {
+//   double x,y=0.5;
+//   x=y/0.2;
+//   if(x!=x)
+//     abort();
+//   exit(0);
+// }
+
 int exit_value = 0; /* success */
 jmp_buf env;
 

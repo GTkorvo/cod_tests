@@ -7,6 +7,22 @@
 #include <stdarg.h>
 #include <setjmp.h>
 
+/*
+ *  Original test was:
+ */
+// long x = -1L;
+// 
+// int main()
+// {
+//   long b = (x != -1L);
+// 
+//   if (b)
+//     abort();
+// 
+//   exit(0);
+// }
+// 
+
 int exit_value = 0; /* success */
 jmp_buf env;
 

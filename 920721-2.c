@@ -7,6 +7,12 @@
 #include <stdarg.h>
 #include <setjmp.h>
 
+/*
+ *  Original test was:
+ */
+// f(){}
+// main(){int n=2;double x[n];f();exit(0);}
+
 int exit_value = 0; /* success */
 jmp_buf env;
 

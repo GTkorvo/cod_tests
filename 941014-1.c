@@ -7,6 +7,25 @@
 #include <stdarg.h>
 #include <setjmp.h>
 
+/*
+ *  Original test was:
+ */
+// int f (int a, int b) { }
+// 
+// main ()
+// {
+//   unsigned long addr1;
+//   unsigned long addr2;
+// 
+//   addr1 = (unsigned long) &f;
+//   addr1 += 5;
+//   addr2 = 5 + (unsigned long) &f;
+// 
+//   if (addr1 != addr2)
+//     abort ();
+//   exit (0);
+// }
+
 int exit_value = 0; /* success */
 jmp_buf env;
 

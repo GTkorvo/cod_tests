@@ -7,6 +7,20 @@
 #include <stdarg.h>
 #include <setjmp.h>
 
+/*
+ *  Original test was:
+ */
+// sub (int i, int array[i++])
+// {
+//   return i;
+// }
+// 
+// main()
+// {
+//   int array[10];
+//   exit (sub (10, array) != 11);
+// }
+
 int exit_value = 0; /* success */
 jmp_buf env;
 

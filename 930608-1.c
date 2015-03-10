@@ -7,6 +7,21 @@
 #include <stdarg.h>
 #include <setjmp.h>
 
+/*
+ *  Original test was:
+ */
+// double f (double a) {}
+// double (* const a[]) (double) = {&f};
+// 
+// main ()
+// {
+//   double (*p) ();
+//   p = &f;
+//   if (p != a[0])
+//     abort ();
+//   exit (0);
+// }
+
 int exit_value = 0; /* success */
 jmp_buf env;
 

@@ -7,6 +7,28 @@
 #include <stdarg.h>
 #include <setjmp.h>
 
+/*
+ *  Original test was:
+ */
+// extern void abort (void);
+// extern void exit (int);
+// 
+// int
+// foo (int x)
+// {
+//   if (x == -2 || -x - 100 >= 0)
+//     abort ();
+//   return 0;
+// }
+//            
+// int
+// main ()
+// {
+//   foo (-3);
+//   foo (-99);
+//   exit (0);
+// }
+
 int exit_value = 0; /* success */
 jmp_buf env;
 

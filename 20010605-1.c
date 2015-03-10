@@ -7,6 +7,21 @@
 #include <stdarg.h>
 #include <setjmp.h>
 
+/*
+ *  Original test was:
+ */
+// int main ()
+// {
+//   int v = 42;
+// 
+//   static inline int fff (int x)
+//     {
+//       return x*10;
+//     }
+// 
+//   return (fff (v) != 420);
+// }
+
 int exit_value = 0; /* success */
 jmp_buf env;
 

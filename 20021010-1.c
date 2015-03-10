@@ -7,6 +7,31 @@
 #include <stdarg.h>
 #include <setjmp.h>
 
+/*
+ *  Original test was:
+ */
+// #include <limits.h>
+// 
+// int
+// sub ()
+// {
+//   int dummy = 0, a = 16;
+// 
+//   if (a / INT_MAX / 16 == 0)
+//     return 0;
+//   else
+//     return a / INT_MAX / 16;
+// }
+// 
+// int
+// main ()
+// {
+//   if (sub () != 0)
+//     abort ();
+// 
+//   exit (0);
+// }
+
 int exit_value = 0; /* success */
 jmp_buf env;
 

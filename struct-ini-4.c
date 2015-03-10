@@ -7,6 +7,25 @@
 #include <stdarg.h>
 #include <setjmp.h>
 
+/*
+ *  Original test was:
+ */
+// struct s {
+//   int a[3];
+//   int c[3];
+// };
+// 
+// struct s s = {
+//   c: {1, 2, 3}
+// };
+// 
+// main()
+// {
+//   if (s.c[0] != 1)
+//     abort ();
+//   exit (0);
+// }
+
 int exit_value = 0; /* success */
 jmp_buf env;
 

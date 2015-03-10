@@ -7,6 +7,19 @@
 #include <stdarg.h>
 #include <setjmp.h>
 
+/*
+ *  Original test was:
+ */
+// main ()
+// {
+//   struct { long status; } h;
+// 
+//   h.status = 0;
+//   if (((h.status & 128) == 1) && ((h.status & 32) == 0))
+//     abort ();
+//   exit (0);
+// }
+
 int exit_value = 0; /* success */
 jmp_buf env;
 

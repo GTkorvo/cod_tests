@@ -7,6 +7,24 @@
 #include <stdarg.h>
 #include <setjmp.h>
 
+/*
+ *  Original test was:
+ */
+// long long a = -1;
+// long long llabs (long long);
+// void abort (void);
+// int
+// main()
+// {
+//   if (llabs (a) != 1)
+//     abort ();
+//   return 0;
+// }
+// long long llabs (long long b)
+// {
+// 	abort ();
+// }
+
 int exit_value = 0; /* success */
 jmp_buf env;
 

@@ -7,6 +7,27 @@
 #include <stdarg.h>
 #include <setjmp.h>
 
+/*
+ *  Original test was:
+ */
+// /* PR 8639.  */
+// 
+// extern void abort(void);
+// 
+// int foo (int i)
+// {
+//   int r;
+//   r = (80 - 4 * i) / 20;
+//   return r;
+// }
+//     
+// int main ()
+// {
+//   if (foo (1) != 3)
+//     abort ();
+//   return 0;
+// }
+
 int exit_value = 0; /* success */
 jmp_buf env;
 

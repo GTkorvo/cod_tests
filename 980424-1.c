@@ -7,6 +7,32 @@
 #include <stdarg.h>
 #include <setjmp.h>
 
+/*
+ *  Original test was:
+ */
+// int i, a[99];
+// 
+// void f (int one)
+// {
+//   if (one != 1)
+//     abort ();
+// }
+// 
+// void
+// g ()
+// {
+//   f (a[i & 0x3f]);
+// }
+// 
+// int
+// main ()
+// {
+//   a[0] = 1;
+//   i = 0x40;
+//   g ();
+//   exit (0);
+// }
+
 int exit_value = 0; /* success */
 jmp_buf env;
 

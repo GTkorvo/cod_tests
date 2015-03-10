@@ -7,6 +7,26 @@
 #include <stdarg.h>
 #include <setjmp.h>
 
+/*
+ *  Original test was:
+ */
+// int x, y;
+// 
+// int
+// main()
+// {
+//   x = 2;
+//   y = x;
+//   do
+//     {
+//       x = y;
+//       y = 2 * y;
+//     }
+//   while ( ! ((y - x) >= 20));
+//   exit (0);
+// }
+// 
+
 int exit_value = 0; /* success */
 jmp_buf env;
 

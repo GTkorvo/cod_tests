@@ -7,6 +7,29 @@
 #include <stdarg.h>
 #include <setjmp.h>
 
+/*
+ *  Original test was:
+ */
+// short x1 = 17;
+// 
+// struct
+// {
+//   short i __attribute__ ((packed));
+// } t;
+// 
+// f ()
+// {
+//   t.i = x1;
+//   if (t.i != 17)
+//     abort ();
+// }
+// 
+// main ()
+// {
+//   f ();
+//   exit (0);
+// }
+
 int exit_value = 0; /* success */
 jmp_buf env;
 

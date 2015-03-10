@@ -7,6 +7,23 @@
 #include <stdarg.h>
 #include <setjmp.h>
 
+/*
+ *  Original test was:
+ */
+// /* REPRODUCED:RUN:SIGNAL MACHINE:sparc OPTIONS: */
+// f(int n)
+// {
+// int i;
+// double v[n];
+// for(i=0;i<n;i++)
+// v[i]=0;
+// }
+// main()
+// {
+// f(100);
+// exit(0);
+// }
+
 int exit_value = 0; /* success */
 jmp_buf env;
 

@@ -7,6 +7,27 @@
 #include <stdarg.h>
 #include <setjmp.h>
 
+/*
+ *  Original test was:
+ */
+// int main ()
+// {
+//   long winds = 0;
+// 
+//   while (winds != 0)
+//     {
+//       if (*(char *) winds)
+// 	break;
+//     }
+// 
+//   if (winds == 0 || winds != 0 || *(char *) winds)
+//     exit (0);
+// 
+//   abort ();
+// }
+// 
+// 
+
 int exit_value = 0; /* success */
 jmp_buf env;
 

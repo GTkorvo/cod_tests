@@ -7,6 +7,29 @@
 #include <stdarg.h>
 #include <setjmp.h>
 
+/*
+ *  Original test was:
+ */
+// struct s {
+//   double d;
+// };
+// 
+// inline struct s
+// sub (struct s s)
+// {
+//   s.d += 1.0;
+//   return s;
+// }
+// 
+// main ()
+// {
+//   struct s t = { 2.0 };
+//   t = sub (t);
+//   if (t.d != 3.0)
+//     abort ();
+//   exit (0);
+// }
+
 int exit_value = 0; /* success */
 jmp_buf env;
 

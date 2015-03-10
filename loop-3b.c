@@ -7,6 +7,38 @@
 #include <stdarg.h>
 #include <setjmp.h>
 
+/*
+ *  Original test was:
+ */
+// #include <limits.h>
+// 
+// int n = 0;
+// 
+// void g (int i)
+// {
+//   n++;
+// }
+// 
+// void f (int m)
+// {
+//   int i;
+//   i = m;
+//   do
+//     {
+//       g (i * 4);
+//       i -= INT_MAX / 8;
+//     }
+//   while (i > 0);
+// }
+// 
+// main ()
+// {
+//   f (INT_MAX/8*4);
+//   if (n != 4)
+//     abort ();
+//   exit (0);
+// }
+
 int exit_value = 0; /* success */
 jmp_buf env;
 

@@ -7,6 +7,12 @@
 #include <stdarg.h>
 #include <setjmp.h>
 
+/*
+ *  Original test was:
+ */
+// f(x){int i;for(i=0;i<8&&(x&1)==0;x>>=1,i++);return i;}
+// main(){if(f(4)!=2)abort();exit(0);}
+
 int exit_value = 0; /* success */
 jmp_buf env;
 

@@ -7,6 +7,30 @@
 #include <stdarg.h>
 #include <setjmp.h>
 
+/*
+ *  Original test was:
+ */
+// int a3[3];
+// 
+// void f(int *a)
+// {
+//   int i;
+// 
+//   for (i=3; --i;)
+//     a[i] = 42 / i;
+// }
+// 
+// int
+// main ()
+// {
+//   f(a3);
+// 
+//   if (a3[1] != 42 || a3[2] != 21)
+//     abort ();
+// 
+//   exit (0);
+// }
+
 int exit_value = 0; /* success */
 jmp_buf env;
 

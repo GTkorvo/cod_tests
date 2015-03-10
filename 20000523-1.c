@@ -7,6 +7,32 @@
 #include <stdarg.h>
 #include <setjmp.h>
 
+/*
+ *  Original test was:
+ */
+// int
+// main (void)
+// {
+//   long long   x;
+//   int         n;
+// 
+//   if (sizeof (long long) < 64)
+//     exit (0);
+//   
+//   n = 9;
+//   x = (((long long) n) << 55) / 0xff; 
+// 
+//   if (x == 0)
+//     abort ();
+// 
+//   x = (((long long) 9) << 55) / 0xff;
+// 
+//   if (x == 0)
+//     abort ();
+// 
+//   exit (0);
+// }
+
 int exit_value = 0; /* success */
 jmp_buf env;
 

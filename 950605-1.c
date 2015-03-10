@@ -7,6 +7,22 @@
 #include <stdarg.h>
 #include <setjmp.h>
 
+/*
+ *  Original test was:
+ */
+// f (c)
+//     unsigned char c;
+// {
+//   if (c != 0xFF)
+//     abort ();
+// }
+// 
+// main ()
+// {
+//   f (-1);
+//   exit (0);
+// }
+
 int exit_value = 0; /* success */
 jmp_buf env;
 

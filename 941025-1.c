@@ -7,6 +7,22 @@
 #include <stdarg.h>
 #include <setjmp.h>
 
+/*
+ *  Original test was:
+ */
+// long f (x, y)
+//      long x,y;
+// {
+//   return (x > 1) ? y : (y & 1);
+// }
+// 
+// main ()
+// {
+//   if (f (2L, 0xdecadeL) != 0xdecadeL)
+//     abort ();
+//   exit (0);
+// }
+
 int exit_value = 0; /* success */
 jmp_buf env;
 

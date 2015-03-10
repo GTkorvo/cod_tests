@@ -7,6 +7,29 @@
 #include <stdarg.h>
 #include <setjmp.h>
 
+/*
+ *  Original test was:
+ */
+// int b;
+// void f ()
+// {
+//   int i = 0;
+//   if (b == 0)
+//     do {
+//       b = i;
+//       i++;
+//     } while (i < 10);
+// }
+// 
+// int main ()
+// {
+//   f ();
+//   if (b != 9)
+//     abort ();
+//   return 0;
+// }
+// 
+
 int exit_value = 0; /* success */
 jmp_buf env;
 

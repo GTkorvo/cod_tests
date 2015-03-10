@@ -7,6 +7,12 @@
 #include <stdarg.h>
 #include <setjmp.h>
 
+/*
+ *  Original test was:
+ */
+// long f(short a,short b){return (long)a/b;}
+// main(){if(f(-32768,-1)!=32768L)abort();else exit(0);}
+
 int exit_value = 0; /* success */
 jmp_buf env;
 

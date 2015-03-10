@@ -7,6 +7,26 @@
 #include <stdarg.h>
 #include <setjmp.h>
 
+/*
+ *  Original test was:
+ */
+// g (int i)
+// {
+// }
+// 
+// f (int i)
+// {
+//   g (0);
+//   while ( ({ i--; }) )
+//     g (0);
+// }
+// 
+// main ()
+// {
+//   f (10);
+//   exit (0);
+// }
+
 int exit_value = 0; /* success */
 jmp_buf env;
 

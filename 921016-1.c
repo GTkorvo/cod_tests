@@ -7,6 +7,20 @@
 #include <stdarg.h>
 #include <setjmp.h>
 
+/*
+ *  Original test was:
+ */
+// main()
+// {
+// int j=1081;
+// struct
+// {
+// signed int m:11;
+// }l;
+// if((l.m=j)==j)abort();
+// exit(0);
+// }
+
 int exit_value = 0; /* success */
 jmp_buf env;
 

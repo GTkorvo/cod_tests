@@ -7,6 +7,18 @@
 #include <stdarg.h>
 #include <setjmp.h>
 
+/*
+ *  Original test was:
+ */
+// void *foo[]={(void *)&("X"[0])};
+// 
+// main ()
+// {
+//   if (((char*)foo[0])[0] != 'X')
+//     abort ();
+//   exit (0);
+// }
+
 int exit_value = 0; /* success */
 jmp_buf env;
 

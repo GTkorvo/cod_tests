@@ -7,6 +7,31 @@
 #include <stdarg.h>
 #include <setjmp.h>
 
+/*
+ *  Original test was:
+ */
+// long a = 1;
+// 
+// foo ()
+// {
+//   switch (a % 2 % 2 % 2 % 2 % 2 % 2 % 2 % 2)
+//     {
+//     case 0:
+//       return 0;
+//     case 1:
+//       return 1;
+//     default:
+//       return -1;
+//     }
+// }
+// 
+// main ()
+// {
+//   if (foo () != 1)
+//     abort ();
+//   exit (0);
+// }
+
 int exit_value = 0; /* success */
 jmp_buf env;
 

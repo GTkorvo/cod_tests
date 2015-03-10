@@ -7,6 +7,22 @@
 #include <stdarg.h>
 #include <setjmp.h>
 
+/*
+ *  Original test was:
+ */
+// int a,b;
+// main()
+// {
+//   int c=-2;
+//   int d=0xfe;
+//   int e=a&1;
+//   int f=b&2;
+//   if ((char)(c|(e&f)) == (char)d)
+//     return 0;
+//   else
+//     abort();
+// }
+
 int exit_value = 0; /* success */
 jmp_buf env;
 

@@ -7,6 +7,12 @@
 #include <stdarg.h>
 #include <setjmp.h>
 
+/*
+ *  Original test was:
+ */
+// f(long a){return (--a > 0);}
+// main(){if(f(0x80000000L)==0)abort();exit(0);}
+
 int exit_value = 0; /* success */
 jmp_buf env;
 

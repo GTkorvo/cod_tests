@@ -7,6 +7,19 @@
 #include <stdarg.h>
 #include <setjmp.h>
 
+/*
+ *  Original test was:
+ */
+// double x = 0x1.fp1;
+// int main()
+// {
+//   if (x !=  3.875)
+//     abort ();
+//   exit (0);
+// }
+// 
+// 
+
 int exit_value = 0; /* success */
 jmp_buf env;
 

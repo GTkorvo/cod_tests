@@ -7,6 +7,11 @@
 #include <stdarg.h>
 #include <setjmp.h>
 
+/*
+ *  Original test was:
+ */
+// enum rgb c = 42;
+
 int exit_value = 0; /* success */
 jmp_buf env;
 

@@ -7,6 +7,23 @@
 #include <stdarg.h>
 #include <setjmp.h>
 
+/*
+ *  Original test was:
+ */
+// f (x)
+// {
+//   if (x != 0 || x == 0)
+//     return 0;
+//   return 1;
+// }
+// 
+// main ()
+// {
+//   if (f (3))
+//     abort ();
+//   exit (0);
+// }
+
 int exit_value = 0; /* success */
 jmp_buf env;
 

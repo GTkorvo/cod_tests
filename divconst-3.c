@@ -7,6 +7,22 @@
 #include <stdarg.h>
 #include <setjmp.h>
 
+/*
+ *  Original test was:
+ */
+// long long
+// f (long long x)
+// {
+//   return x / 10000000000LL;
+// }
+// 
+// main ()
+// {
+//   if (f (10000000000LL) != 1 || f (100000000000LL) != 10)
+//     abort ();
+//   exit (0);
+// }
+
 int exit_value = 0; /* success */
 jmp_buf env;
 

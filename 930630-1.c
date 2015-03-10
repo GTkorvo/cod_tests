@@ -7,6 +7,29 @@
 #include <stdarg.h>
 #include <setjmp.h>
 
+/*
+ *  Original test was:
+ */
+// main ()
+// {
+//   struct
+//     {
+//       signed int bf0:17;
+//       signed int bf1:7;
+//     } bf;
+// 
+//   bf.bf1 = 7;
+//   f (bf.bf1);
+//   exit (0);
+// }
+// 
+// f (x)
+//      int x;
+// {
+//   if (x != 7)
+//     abort ();
+// }
+
 int exit_value = 0; /* success */
 jmp_buf env;
 

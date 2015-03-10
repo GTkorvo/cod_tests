@@ -7,6 +7,30 @@
 #include <stdarg.h>
 #include <setjmp.h>
 
+/*
+ *  Original test was:
+ */
+// int a = 1;
+// int b = -1;
+// 
+// int c = 1;
+// int d = 0;
+// 
+// main ()
+// {
+//   double e;
+//   double f;
+//   double g;
+// 
+//   f = c;
+//   g = d;
+//   e = (a < b) ? f : g;
+//   if (e)
+//     abort ();
+//   exit(0);
+// }
+// 
+
 int exit_value = 0; /* success */
 jmp_buf env;
 

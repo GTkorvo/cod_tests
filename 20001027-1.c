@@ -7,6 +7,21 @@
 #include <stdarg.h>
 #include <setjmp.h>
 
+/*
+ *  Original test was:
+ */
+// int x,*p=&x;
+// 
+// int main()
+// {
+//   int i=0;
+//   x=1;
+//   p[i]=2;
+//   if (x != 2)
+//     abort ();
+//   exit (0);
+// }
+
 int exit_value = 0; /* success */
 jmp_buf env;
 

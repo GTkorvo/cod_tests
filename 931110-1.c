@@ -7,6 +7,28 @@
 #include <stdarg.h>
 #include <setjmp.h>
 
+/*
+ *  Original test was:
+ */
+// typedef struct
+// {
+//   short f:3, g:3, h:10;
+// } small;
+// 
+// struct
+// {
+//   int i;
+//   small s[10];
+// } x;
+// 
+// main ()
+// {
+//   int i;
+//   for (i = 0; i < 10; i++)
+//     x.s[i].f = 0;
+//   exit (0);
+// }
+
 int exit_value = 0; /* success */
 jmp_buf env;
 

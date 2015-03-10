@@ -7,6 +7,17 @@
 #include <stdarg.h>
 #include <setjmp.h>
 
+/*
+ *  Original test was:
+ */
+// extern int abort();
+// typedef int (*frob)();
+// frob f[] = {abort};
+// main()
+// {
+//   exit(0);
+// }
+
 int exit_value = 0; /* success */
 jmp_buf env;
 

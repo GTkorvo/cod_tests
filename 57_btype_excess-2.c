@@ -7,6 +7,11 @@
 #include <stdarg.h>
 #include <setjmp.h>
 
+/*
+ *  Original test was:
+ */
+// char int i;
+
 int exit_value = 0; /* success */
 jmp_buf env;
 

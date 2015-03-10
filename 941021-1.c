@@ -7,6 +7,30 @@
 #include <stdarg.h>
 #include <setjmp.h>
 
+/*
+ *  Original test was:
+ */
+// double glob_dbl;
+// 
+// f (pdbl, value)
+//      double *pdbl;
+//      double value;
+// {
+//   if (pdbl == 0)
+//     pdbl = &glob_dbl;
+// 
+//   *pdbl = value;
+// }
+// 
+// main ()
+// {
+//   f ((void *) 0, 55.1);
+// 
+//   if (glob_dbl != 55.1)
+//     abort ();
+//   exit (0);
+// }
+
 int exit_value = 0; /* success */
 jmp_buf env;
 

@@ -7,6 +7,14 @@
 #include <stdarg.h>
 #include <setjmp.h>
 
+/*
+ *  Original test was:
+ */
+// enum color {RED, GREEN, BLUE};
+// enum color {R, G, B};
+// 
+// enum color c;
+
 int exit_value = 0; /* success */
 jmp_buf env;
 

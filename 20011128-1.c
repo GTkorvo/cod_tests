@@ -7,6 +7,15 @@
 #include <stdarg.h>
 #include <setjmp.h>
 
+/*
+ *  Original test was:
+ */
+// main()
+// {
+//   char blah[33] = "01234567890123456789";
+//   exit (0);
+// }
+
 int exit_value = 0; /* success */
 jmp_buf env;
 

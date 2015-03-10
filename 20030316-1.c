@@ -7,6 +7,22 @@
 #include <stdarg.h>
 #include <setjmp.h>
 
+/*
+ *  Original test was:
+ */
+// /* PR target/9164 */
+// /* The comparison operand was sign extended erraneously.  */
+// 
+// int
+// main (void)
+// {
+//     long j = 0x40000000;
+//     if ((unsigned int) (0x40000000 + j) < 0L)
+//  	abort ();
+// 
+//     return 0;
+// }
+
 int exit_value = 0; /* success */
 jmp_buf env;
 

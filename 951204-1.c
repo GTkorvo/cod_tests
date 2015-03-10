@@ -7,6 +7,28 @@
 #include <stdarg.h>
 #include <setjmp.h>
 
+/*
+ *  Original test was:
+ */
+// f (char *x)
+// {
+//   *x = 'x';
+// }
+// 
+// main ()
+// {
+//   int i;
+//   char x = '\0';
+// 
+//   for (i = 0; i < 100; ++i)
+//     {
+//       f (&x);
+//       if (*(const char *) &x != 'x')
+// 	abort ();
+//     }
+//   exit (0);
+// }
+
 int exit_value = 0; /* success */
 jmp_buf env;
 

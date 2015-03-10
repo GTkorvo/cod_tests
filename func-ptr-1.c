@@ -7,6 +7,26 @@
 #include <stdarg.h>
 #include <setjmp.h>
 
+/*
+ *  Original test was:
+ */
+// static double f (float a);
+// static double (*fp) (float a);
+// 
+// main ()
+// {
+//   fp = f;
+//   if (fp ((float) 1) != 1.0)
+//     abort ();
+//   exit (0);
+// }
+// 
+// static double
+// f (float a)
+// {
+//   return a;
+// }
+
 int exit_value = 0; /* success */
 jmp_buf env;
 

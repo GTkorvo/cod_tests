@@ -7,6 +7,24 @@
 #include <stdarg.h>
 #include <setjmp.h>
 
+/*
+ *  Original test was:
+ */
+// char *
+// f (char *p)
+// {
+//   short x = *p++ << 16;
+//   return p;
+// }
+// 
+// main ()
+// {
+//   char *p = "";
+//   if (f (p) != p + 1)
+//     abort ();
+//   exit (0);
+// }
+
 int exit_value = 0; /* success */
 jmp_buf env;
 

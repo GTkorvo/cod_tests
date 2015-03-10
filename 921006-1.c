@@ -7,6 +7,16 @@
 #include <stdarg.h>
 #include <setjmp.h>
 
+/*
+ *  Original test was:
+ */
+// /* REPRODUCED:RUN:SIGNAL MACHINE:i386 OPTIONS:-O */
+// main()
+// {
+// if(strcmp("X","")<0)abort();
+// exit(0);
+// }
+
 int exit_value = 0; /* success */
 jmp_buf env;
 

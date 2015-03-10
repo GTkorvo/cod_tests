@@ -7,6 +7,19 @@
 #include <stdarg.h>
 #include <setjmp.h>
 
+/*
+ *  Original test was:
+ */
+// main ()
+// {
+//   if ((__complex__ double) 0.0 != (__complex__ double) (-0.0))
+//     abort ();
+// 
+//   if (0.0 != -0.0)
+//     abort ();
+//   exit (0);
+// }
+
 int exit_value = 0; /* success */
 jmp_buf env;
 

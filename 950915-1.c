@@ -7,6 +7,25 @@
 #include <stdarg.h>
 #include <setjmp.h>
 
+/*
+ *  Original test was:
+ */
+// long int a = 100000;
+// long int b = 21475;
+// 
+// long
+// f ()
+// {
+//   return ((long long) a * (long long) b) >> 16;
+// }
+// 
+// main ()
+// {
+//   if (f () < 0)
+//     abort ();
+//   exit (0);
+// }
+
 int exit_value = 0; /* success */
 jmp_buf env;
 

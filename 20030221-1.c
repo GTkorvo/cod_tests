@@ -7,6 +7,27 @@
 #include <stdarg.h>
 #include <setjmp.h>
 
+/*
+ *  Original test was:
+ */
+// /* PR optimization/8613 */
+// /* Contributed by Glen Nakamura */
+// 
+// extern void abort (void);
+//  
+// int main (void)
+// {
+//   char buf[16] = "1234567890";
+//   char *p = buf;
+// 
+//   *p++ = (char) __builtin_strlen (buf);
+// 
+//   if ((buf[0] != 10) || (p - buf != 1))
+//     abort ();
+// 
+//   return 0;
+// }
+
 int exit_value = 0; /* success */
 jmp_buf env;
 

@@ -7,6 +7,28 @@
 #include <stdarg.h>
 #include <setjmp.h>
 
+/*
+ *  Original test was:
+ */
+// struct F { int x; int y; };
+// 
+// int main()
+// {
+//   int timeout = 0;
+//   int x = 0;
+//   while (1)
+//     {
+//       const struct F i = { x++, };
+//       if (i.x > 0)
+// 	break;
+//       if (++timeout > 5)
+// 	goto die;
+//     }
+//   return 0;
+//  die:
+//   abort ();
+// }
+
 int exit_value = 0; /* success */
 jmp_buf env;
 

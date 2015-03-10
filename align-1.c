@@ -7,6 +7,19 @@
 #include <stdarg.h>
 #include <setjmp.h>
 
+/*
+ *  Original test was:
+ */
+// typedef int new_int __attribute__ ((aligned(16)));
+// struct S { int x; };
+//  
+// int main()
+// {
+//   if (sizeof(struct S) != sizeof(int))
+//     abort ();
+//   return 0;
+// }
+
 int exit_value = 0; /* success */
 jmp_buf env;
 

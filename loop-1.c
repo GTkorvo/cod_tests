@@ -7,6 +7,28 @@
 #include <stdarg.h>
 #include <setjmp.h>
 
+/*
+ *  Original test was:
+ */
+// main ()
+// {
+//   int i, j, k[3];
+// 
+//   j = 0;
+//   for (i=0; i < 3; i++)
+//     {
+//       k[i] = j++;
+//     }
+// 
+//   for (i=2; i >= 0; i--)
+//     {
+//       if (k[i] != i)
+// 	abort ();
+//     }
+// 
+//   exit (0);
+// }
+
 int exit_value = 0; /* success */
 jmp_buf env;
 

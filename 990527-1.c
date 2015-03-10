@@ -7,6 +7,40 @@
 #include <stdarg.h>
 #include <setjmp.h>
 
+/*
+ *  Original test was:
+ */
+// int sum;
+// 
+// void
+// g (int i)
+// {
+//   sum += i;
+// }
+// 
+// void
+// f(int j)
+// {
+//   int i;
+// 
+//   for (i = 0; i < 9; i++)
+//     {
+//       j++;
+//       g (j);
+//       j = 9;
+//     }
+// }
+// 
+// int
+// main ()
+// {
+//   f (0);
+//   if (sum != 81)
+//     abort ();
+//   exit (0);
+// }
+// 
+
 int exit_value = 0; /* success */
 jmp_buf env;
 

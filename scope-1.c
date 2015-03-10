@@ -7,6 +7,27 @@
 #include <stdarg.h>
 #include <setjmp.h>
 
+/*
+ *  Original test was:
+ */
+// int v = 3;
+// 
+// f ()
+// {
+//   int v = 4;
+//   {
+//     extern int v;
+//     if (v != 3)
+//       abort ();
+//   }
+// }
+// 
+// main ()
+// {
+//   f ();
+//   exit (0);
+// }
+
 int exit_value = 0; /* success */
 jmp_buf env;
 

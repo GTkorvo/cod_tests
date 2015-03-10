@@ -7,6 +7,12 @@
 #include <stdarg.h>
 #include <setjmp.h>
 
+/*
+ *  Original test was:
+ */
+// f(got){if(got!=0xffff)abort();}
+// main(){signed char c=-1;unsigned u=(unsigned short)c;f(u);exit(0);}
+
 int exit_value = 0; /* success */
 jmp_buf env;
 

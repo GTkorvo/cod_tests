@@ -7,6 +7,24 @@
 #include <stdarg.h>
 #include <setjmp.h>
 
+/*
+ *  Original test was:
+ */
+// fp (double a, int b)
+// {
+//   if (a != 33 || b != 11)
+//     abort ();
+// }
+// 
+// main ()
+// {
+//   int (*f) (double, int) = fp;
+// 
+//   fp (33, 11);
+//   f (33, 11);
+//   exit (0);
+// }
+
 int exit_value = 0; /* success */
 jmp_buf env;
 

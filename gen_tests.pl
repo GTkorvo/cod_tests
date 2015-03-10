@@ -10,7 +10,7 @@ getopts("v",\%options);
 print "Verbose\n" if defined $options{v};
 print "-v $options{v}\n" if defined $options{v};
 sub parse_c_test($);
-sub generate_cod_test($$$);
+sub generate_cod_test($$$$);
 
 my ($filename, $outputdir )  =  @ARGV;
 
@@ -18,11 +18,11 @@ my $outputname = basename($filename);
 my $sourcedir = dirname($filename);
 
 my ($decls, $subroutines) = parse_c_test($filename) ;
-generate_cod_test($outputdir . "/" . $outputname , $decls, $subroutines);
+generate_cod_test($outputdir . "/" . $outputname , $decls, $subroutines, $filename);
 
-sub generate_cod_test($$$) 
+sub generate_cod_test($$$$) 
 {
-    my ($filename, $decls, $subroutines) = @_;
+    my ($filename, $decls, $subroutines, $input_filename) = @_;
 
     foreach my $sub (@$subroutines) {
         my ($name, $decl, $body) = @$sub;
@@ -39,6 +39,19 @@ print INT<<EOF;
 #include <stdlib.h>
 #include <stdarg.h>
 #include <setjmp.h>
+
+/*
+ *  Original test was:
+ */
+EOF
+open(my $fh, '<:encoding(UTF-8)', $input_filename)
+  or die "Could not open file '$input_filename' $!";
+ 
+while (my $row = <$fh>) {
+  chomp $row;
+  print INT "// $row\n";
+}
+print INT<<EOF;
 
 int exit_value = 0; /* success */
 jmp_buf env;
@@ -323,7 +336,7 @@ sub parse_c_test($) {
 	    $subroutine_name = $1;
 	}
 	$subroutine_prefix =~ s/\n/ /g;
-	my $subroutine_header;
+	my $subroutine_header = "";
 	@lines = split (/\n/, $last_segment);
 	my $first = 1;
 	while ($count) {

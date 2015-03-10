@@ -7,6 +7,23 @@
 #include <stdarg.h>
 #include <setjmp.h>
 
+/*
+ *  Original test was:
+ */
+// int
+// f(long long x)
+// {
+//   x >>= 8;
+//   return x & 0xff;
+// }
+// 
+// main()
+// {
+//   if (f(0x0123456789ABCDEFLL) != 0xCD)
+//     abort();
+//   exit (0);
+// }
+
 int exit_value = 0; /* success */
 jmp_buf env;
 

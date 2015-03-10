@@ -7,6 +7,21 @@
 #include <stdarg.h>
 #include <setjmp.h>
 
+/*
+ *  Original test was:
+ */
+// struct {
+//     unsigned bit : 30;
+// } t;
+// 
+// int main()
+// {
+//     if (!(t.bit++))
+// 	exit (0);
+//     else
+// 	abort ();
+// }
+
 int exit_value = 0; /* success */
 jmp_buf env;
 

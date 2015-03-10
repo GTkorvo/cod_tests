@@ -7,6 +7,28 @@
 #include <stdarg.h>
 #include <setjmp.h>
 
+/*
+ *  Original test was:
+ */
+// double
+// f(double x)
+// {
+//   return x*x;
+// }
+// 
+// double
+// Int(double (*f)(double), double a)
+// {
+//   return (*f)(a);
+// }
+// 
+// main()
+// {
+//   if (Int(&f,2.0) != 4.0)
+//     abort();
+//   exit (0);
+// }
+
 int exit_value = 0; /* success */
 jmp_buf env;
 

@@ -7,6 +7,28 @@
 #include <stdarg.h>
 #include <setjmp.h>
 
+/*
+ *  Original test was:
+ */
+// extern void exit (int);
+// extern void abort (void);
+// 
+// struct { int a; int b[5]; } x;
+// int *y;
+// 
+// int foo (void)
+// {
+//   return y - x.b;
+// }
+// 
+// int main (void)
+// {
+//   y = x.b;
+//   if (foo ())
+//     abort ();
+//   exit (0);
+// }
+
 int exit_value = 0; /* success */
 jmp_buf env;
 

@@ -7,6 +7,46 @@
 #include <stdarg.h>
 #include <setjmp.h>
 
+/*
+ *  Original test was:
+ */
+// 
+// static int t = 0;
+// static int a[4];
+// 
+// static int ap(int i){
+//   if (t > 3)
+//     abort();
+//   a[t++] = i;
+//   return 1;
+// }
+// 
+// static void testit(void){
+//   int ir[4] = {0,1,2,3};
+//   int ix,n,m;
+//   n=1; m=3;
+//   for (ix=1;ix<=4;ix++) {
+//     if (n == 1) m = 4;
+//     else        m = n-1;
+//     ap(ir[n-1]);
+//     n = m;
+//   }
+// }
+// 
+// int main(void)
+// {
+//   testit();
+//   if (a[0] != 0)
+//     abort();
+//   if (a[1] != 3)
+//     abort();
+//   if (a[2] != 2)
+//     abort();
+//   if (a[3] != 1)
+//     abort();
+//   exit(0);
+// }
+
 int exit_value = 0; /* success */
 jmp_buf env;
 
@@ -57,7 +97,7 @@ main(int argc, char**argv)
     cod_extern_entry externs[] = 
     {
 	{"ap", (void*)(long)-1},
-	{"ap", (void*)(long)-1},
+	{"testit", (void*)(long)-1},
 	{"main", (void*)(long)-1},
 	{"abort", (void*)my_abort},
 	{"exit", (void*)test_exit},
@@ -67,8 +107,8 @@ main(int argc, char**argv)
     };
 
     char extern_string[] = "\n\
-	static int ap(int i); static void testit();\n\
 	static int ap(int i);\n\
+	static void testit();\n\
 	int main();\n\
     	void exit(int value);\n\
         void abort();\n\
@@ -77,6 +117,14 @@ main(int argc, char**argv)
     char *func_bodies[] = {
 
 /* body for ap */
+"{\n\
+  if (t > 3)\n\
+    abort();\n\
+  a[t++] = i;\n\
+  return 1;\n\
+}",
+
+/* body for testit */
 "{\n\
   int ir[4] = {0,1,2,3};\n\
   int ix,n,m;\n\
@@ -87,14 +135,6 @@ main(int argc, char**argv)
     ap(ir[n-1]);\n\
     n = m;\n\
   }\n\
-}",
-
-/* body for ap */
-"{\n\
-  if (t > 3)\n\
-    abort();\n\
-  a[t++] = i;\n\
-  return 1;\n\
 }",
 
 /* body for main */
@@ -113,8 +153,8 @@ main(int argc, char**argv)
 ""};
 
     char *func_decls[] = {
-	"static int ap(int i); static void testit();",
 	"static int ap(int i);",
+	"static void testit();",
 	"int main();",
 	""};
 
@@ -165,7 +205,7 @@ static int a[4];",
     if (test_output) {
         /* there was output, test expected */
         fclose(test_output);
-        int ret = system("cmp loop-5.c.output /Users/eisen/prog/gcc-3.3.1-3/gcc/testsuite/gcc.expect-torture/execute/loop-5.expect");
+        int ret = system("cmp loop-5.c.output ./pre_patch/loop-5.expect");
         ret = ret >> 8;
         if (ret == 1) {
             printf("Test ./generated/loop-5.c failed, output differs\n");

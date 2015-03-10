@@ -7,6 +7,21 @@
 #include <stdarg.h>
 #include <setjmp.h>
 
+/*
+ *  Original test was:
+ */
+// f()
+// {
+//   return (unsigned char)("\377"[0]);
+// }
+// 
+// main()
+// {
+//   if (f() != (unsigned char)(0377))
+//     abort();
+//   exit (0);
+// }
+
 int exit_value = 0; /* success */
 jmp_buf env;
 

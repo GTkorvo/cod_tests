@@ -7,6 +7,24 @@
 #include <stdarg.h>
 #include <setjmp.h>
 
+/*
+ *  Original test was:
+ */
+// char a[10] = "deadbeef";
+// 
+// char
+// acc_a (long i)
+// {
+//   return a[i-2000000000L];
+// }
+// 
+// main ()
+// {
+//   if (acc_a (2000000000L) != 'd')
+//     abort ();
+//   exit (0);
+// }
+
 int exit_value = 0; /* success */
 jmp_buf env;
 

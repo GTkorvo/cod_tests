@@ -7,6 +7,20 @@
 #include <stdarg.h>
 #include <setjmp.h>
 
+/*
+ *  Original test was:
+ */
+// main()
+// {
+//   int i;
+//   for (i = 1; i < 100; i++)
+//     ;
+//   if (i == 100) 
+//     exit (0);
+//   abort ();
+// }
+// 
+
 int exit_value = 0; /* success */
 jmp_buf env;
 

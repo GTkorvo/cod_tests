@@ -7,6 +7,31 @@
 #include <stdarg.h>
 #include <setjmp.h>
 
+/*
+ *  Original test was:
+ */
+// int main ()
+// {
+//     int nResult;
+//     int b=0;
+//     int i = -1;
+// 
+//     do
+//     {
+//      if (b!=0) {
+//        abort ();
+//        nResult=1;
+//      } else {
+//       nResult=0;
+//      }
+//      i++;
+//      b=(i+2)*4;
+//     } while (i < 0);
+//     exit (0);
+// }
+// 
+// 
+
 int exit_value = 0; /* success */
 jmp_buf env;
 

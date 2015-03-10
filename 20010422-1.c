@@ -7,6 +7,25 @@
 #include <stdarg.h>
 #include <setjmp.h>
 
+/*
+ *  Original test was:
+ */
+// unsigned int foo(unsigned int x)
+// {
+//   if (x < 5)
+//     x = 4;
+//   else
+//     x = 8;
+//   return x;
+// }
+// 
+// int main(void)
+// {
+//   if (foo (8) != 8)
+//     abort ();
+//   exit (0);
+// }
+
 int exit_value = 0; /* success */
 jmp_buf env;
 
