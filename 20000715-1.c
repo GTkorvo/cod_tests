@@ -363,7 +363,7 @@ main(int argc, char**argv)
                 func();
             }
             if (exit_value != 0) {
-                printf("Test ./20000715-1.c failed\n");
+                printf("Test ./generated/20000715-1.c failed\n");
                 exit(exit_value);
             }
         } else {
@@ -376,14 +376,14 @@ main(int argc, char**argv)
         int ret = system("cmp 20000715-1.c.output /Users/eisen/prog/gcc-3.3.1-3/gcc/testsuite/gcc.expect-torture/execute/20000715-1.expect");
         ret = ret >> 8;
         if (ret == 1) {
-            printf("Test ./20000715-1.c failed, output differs\n");
+            printf("Test ./generated/20000715-1.c failed, output differs\n");
             exit(1);
         }
         if (ret != 0) {
-            printf("Test ./20000715-1.c failed, output missing\n");
+            printf("Test ./generated/20000715-1.c failed, output missing\n");
             exit(1);
         }
     }
-    if (verbose) printf("Test ./20000715-1.c Succeeded\n");
+    if (verbose) printf("Test ./generated/20000715-1.c Succeeded\n");
     return 0;
 }

@@ -130,7 +130,7 @@ main(int argc, char**argv)
     char *func_bodies[] = {
 
 /* body for abort */
-"struc, *rtx;\n\
+"\n\
 \n\
 rtx dummy ( int *a, rtx *b)\n\
 ",

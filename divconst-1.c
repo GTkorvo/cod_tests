@@ -100,8 +100,7 @@ main(int argc, char**argv)
     char *global_decls[] = {
 	"typedef struct{\n\
   unsigned a, b, c, d;\n\
-};",
-	"t1;",
+} t1;",
 ""};
 
     char *func_decls[] = {

@@ -117,8 +117,7 @@ main(int argc, char**argv)
   unsigned char c  : 1;\n\
   unsigned char d  : 1;\n\
   unsigned char e  : 1;\n\
-};",
-	"a_struct;",
+} a_struct;",
 ""};
 
     char *func_decls[] = {

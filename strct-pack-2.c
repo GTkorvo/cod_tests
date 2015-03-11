@@ -91,8 +91,7 @@ main(int argc, char**argv)
 	"typedef struct{\n\
   short a __attribute__ ((aligned (2),packed));\n\
   short *ap[2]  __attribute__ ((aligned (2),packed));\n\
-};",
-	"A;",
+} A;",
 ""};
 
     char *func_decls[] = {

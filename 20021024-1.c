@@ -122,8 +122,8 @@ main(int argc, char**argv)
         int test_printf(const char *format, ...);\n\
         int printf(const char *format, ...);";
     char *global_decls[] = {
-	"void exit (int);\n\
-void abort (void);\n\
+	"\n\
+\n\
 \n\
 unsigned long long *cp, m;",
 ""};

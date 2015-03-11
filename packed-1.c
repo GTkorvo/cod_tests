@@ -99,8 +99,7 @@ main(int argc, char**argv)
 	"short x1 = 17;",
 	"struct{\n\
   short i __attribute__ ((packed));\n\
-};",
-	"t;",
+} t;",
 ""};
 
     char *func_decls[] = {

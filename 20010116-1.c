@@ -116,8 +116,7 @@ main(int argc, char**argv)
 extern void ok (int);",
 	"typedef struct{\n\
   int x, y, z;\n\
-};",
-	"Data;",
+} Data;",
 ""};
 
     char *func_decls[] = {

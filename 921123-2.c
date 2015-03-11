@@ -103,10 +103,8 @@ main(int argc, char**argv)
     char *global_decls[] = {
 	"typedef struct{\n\
   unsigned short b0, b1, b2, b3;\n\
-};",
-	"four_quarters;\n\
-\n\
-four_quarters x;\n\
+} four_quarters;",
+	"four_quarters x;\n\
 int a, b;",
 ""};
 

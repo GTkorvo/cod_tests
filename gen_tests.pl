@@ -307,14 +307,20 @@ sub parse_c_test($) {
 		next;
 	    }
 	    if (substr($last_line, -1) eq "=") {
-	        push @tmp_decls, "$last_line" . shift(@array). ";";
-		$array[0] = substr($array[0], 1);  # kill semi
+	        my $init_value = shift(@array);
+		my $next_semi = index $array[0],";";
+		my $termination = substr($array[0], 0, $next_semi+1);
+	        push @tmp_decls, "$last_line" . $init_value . $termination;
+		$array[0] = substr($array[0], $next_semi+1);  # kill semi
 		$last_line = "";
 		next;
 	    }
 	    if ($last_line =~ /.*struct.*/) {
-	        push @tmp_decls, "$last_line" . shift(@array). ";";
-		$array[0] = substr($array[0], 1);  # kill semi
+	        my $struct_list = shift(@array);
+		my $next_semi = index $array[0],";";
+		my $termination = substr($array[0], 0, $next_semi+1);
+	        push @tmp_decls, "$last_line" . $struct_list . $termination;
+		$array[0] = substr($array[0], $next_semi+1);  # kill semi
 		$last_line = "";
 		next;
 	    }

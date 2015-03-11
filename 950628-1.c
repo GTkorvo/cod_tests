@@ -113,8 +113,7 @@ main(int argc, char**argv)
 	"typedef struct{\n\
   char hours, day, month;\n\
   short year;\n\
-};",
-	"T;",
+} T;",
 ""};
 
     char *func_decls[] = {

@@ -110,8 +110,7 @@ main(int argc, char**argv)
     int field[6];\n\
   }\n\
   slot[4];\n\
-};",
-	"s;",
+} s;",
 ""};
 
     char *func_decls[] = {

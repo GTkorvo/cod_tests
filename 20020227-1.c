@@ -101,7 +101,7 @@ main(int argc, char**argv)
     };
 
     char extern_string[] = "\n\
-	 extern void f2 (struct x*); extern void f1 (); int main ();\n\
+	extern void f2 (struct x*); extern void f1 (); int main ();\n\
 	void f1 ();\n\
 	void f2 (struct x *y);\n\
     	void exit(int value);\n\
@@ -110,11 +110,11 @@ main(int argc, char**argv)
         int printf(const char *format, ...);";
     char *global_decls[] = {
 	"typedef __complex__ float cf;",
-	"struct x{ char c; cf f; };",
+	"struct x{ char c; cf f; } __attribute__ ((__packed__));",
 ""};
 
     char *func_decls[] = {
-	" extern void f2 (struct x*); extern void f1 (); int main ();",
+	"extern void f2 (struct x*); extern void f1 (); int main ();",
 	"void f1 ();",
 	"void f2 (struct x *y);",
 	""};
