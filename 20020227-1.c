@@ -108,6 +108,17 @@ main(int argc, char**argv)
         void abort();\n\
         int test_printf(const char *format, ...);\n\
         int printf(const char *format, ...);";
+    char *global_decls[] = {
+	"typedef __complex__ float cf;",
+	"struct x{ char c; cf f; };",
+""};
+
+    char *func_decls[] = {
+	" extern void f2 (struct x*); extern void f1 (); int main ();",
+	"void f1 ();",
+	"void f2 (struct x *y);",
+	""};
+
     char *func_bodies[] = {
 
 /* body for f2 */
@@ -129,17 +140,6 @@ main(int argc, char**argv)
   if (y->f != 1 || y->c != 42)\n\
     abort ();\n\
 }",
-""};
-
-    char *func_decls[] = {
-	" extern void f2 (struct x*); extern void f1 (); int main ();",
-	"void f1 ();",
-	"void f2 (struct x *y);",
-	""};
-
-    char *global_decls[] = {
-	"typedef __complex__ float cf;\n\
-struct x",
 ""};
 
     int i;

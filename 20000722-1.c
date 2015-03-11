@@ -102,6 +102,19 @@ main(int argc, char**argv)
         void abort();\n\
         int test_printf(const char *format, ...);\n\
         int printf(const char *format, ...);";
+    char *global_decls[] = {
+	"struct s { char *p; int t; };\n\
+\n\
+extern void bar (void);\n\
+extern void foo (struct s *);",
+""};
+
+    char *func_decls[] = {
+	"int main();",
+	"void  bar ();",
+	"void foo (struct s *p);",
+	""};
+
     char *func_bodies[] = {
 
 /* body for main */
@@ -122,19 +135,6 @@ main(int argc, char**argv)
     abort();\n\
   p->t = 2;\n\
 }",
-""};
-
-    char *func_decls[] = {
-	"int main();",
-	"void  bar ();",
-	"void foo (struct s *p);",
-	""};
-
-    char *global_decls[] = {
-	"struct s { char *p; int t; };\n\
-\n\
-extern void bar (void);\n\
-extern void foo (struct s *);",
 ""};
 
     int i;

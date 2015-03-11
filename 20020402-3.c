@@ -157,6 +157,39 @@ main(int argc, char**argv)
         void abort();\n\
         int test_printf(const char *format, ...);\n\
         int printf(const char *format, ...);";
+    char *global_decls[] = {
+	"typedef unsigned long long CORE_ADDR;\n\
+\n\
+struct blockvector;",
+	"struct symtab {\n\
+  struct blockvector *blockvector;\n\
+};",
+	"struct sec {\n\
+  void *unused;\n\
+};",
+	"struct symbol {\n\
+  int len;\n\
+  char *name;\n\
+};",
+	"struct block {\n\
+	CORE_ADDR startaddr, endaddr;\n\
+	struct symbol *function;\n\
+	struct block *superblock;\n\
+	unsigned char gcc_compile_flag;\n\
+	int nsyms;\n\
+	struct symbol syms[1];\n\
+};",
+	"struct blockvector {\n\
+	int nblocks;\n\
+	struct block *block[2];\n\
+};",
+""};
+
+    char *func_decls[] = {
+	"struct blockvector *blockvector_for_pc_sect(register CORE_ADDR pc, 					    struct symtab *symtab);",
+	"int main();",
+	""};
+
     char *func_bodies[] = {
 
 /* body for blockvector_for_pc_sect */
@@ -206,39 +239,6 @@ main(int argc, char**argv)
 \n\
   return 0;\n\
 }",
-""};
-
-    char *func_decls[] = {
-	"struct blockvector *blockvector_for_pc_sect(register CORE_ADDR pc, 					    struct symtab *symtab);",
-	"int main();",
-	""};
-
-    char *global_decls[] = {
-	"typedef unsigned long long CORE_ADDR;\n\
-\n\
-struct blockvector;",
-	"struct symtab {\n\
-  struct blockvector *blockvector;\n\
-};",
-	"struct sec {\n\
-  void *unused;\n\
-};",
-	"struct symbol {\n\
-  int len;\n\
-  char *name;\n\
-};",
-	"struct block {\n\
-	CORE_ADDR startaddr, endaddr;\n\
-	struct symbol *function;\n\
-	struct block *superblock;\n\
-	unsigned char gcc_compile_flag;\n\
-	int nsyms;\n\
-	struct symbol syms[1];\n\
-};",
-	"struct blockvector {\n\
-	int nblocks;\n\
-	struct block *block[2];\n\
-};",
 ""};
 
     int i;

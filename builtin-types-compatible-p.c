@@ -109,6 +109,25 @@ main(int argc, char**argv)
         void abort();\n\
         int test_printf(const char *format, ...);\n\
         int printf(const char *format, ...);";
+    char *global_decls[] = {
+	"int i;\n\
+double d;\n\
+\n\
+/* Make sure we return a constant.  */\n\
+float rootbeer[__builtin_types_compatible_p (int, typeof(i))];",
+	"typedef enum { hot, dog, poo, bear } dingos;",
+	"typedef enum { janette, laura, amanda } cranberry;\n\
+\n\
+typedef float same1;\n\
+typedef float same2;\n\
+\n\
+int main (void);",
+""};
+
+    char *func_decls[] = {
+	"int main ();",
+	""};
+
     char *func_bodies[] = {
 
 /* body for main */
@@ -132,25 +151,6 @@ main(int argc, char**argv)
     abort ();\n\
   exit (0);\n\
 }",
-""};
-
-    char *func_decls[] = {
-	"int main ();",
-	""};
-
-    char *global_decls[] = {
-	"int i;\n\
-double d;\n\
-\n\
-/* Make sure we return a constant.  */\n\
-float rootbeer[__builtin_types_compatible_p (int, typeof(i))];",
-	"typedef enum { hot, dog, poo, bear } dingos;",
-	"typedef enum { janette, laura, amanda } cranberry;\n\
-\n\
-typedef float same1;\n\
-typedef float same2;\n\
-\n\
-int main (void);",
 ""};
 
     int i;

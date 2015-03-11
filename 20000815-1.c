@@ -148,38 +148,6 @@ main(int argc, char**argv)
         void abort();\n\
         int test_printf(const char *format, ...);\n\
         int printf(const char *format, ...);";
-    char *func_bodies[] = {
-
-/* body for cse_rtx_addr_varies_p */
-"{ return 0; }",
-
-/* body for remove_from_table */
-"{ abort (); }",
-
-/* body for main */
-"{\n\
-  struct write_data writes;\n\
-  struct table_elt elt;\n\
-\n\
-  __builtin_memset(&elt, 0, sizeof(elt));\n\
-  elt.in_memory = 1;\n\
-  table[0] = &elt;\n\
-\n\
-  __builtin_memset(&writes, 0, sizeof(writes));\n\
-  writes.var = 1;\n\
-  writes.nonscalar = 1;\n\
-\n\
-  invalidate_memory(&writes);\n\
-  return 0;\n\
-}",
-""};
-
-    char *func_decls[] = {
-	"int cse_rtx_addr_varies_p(void *x);",
-	"void remove_from_table(struct table_elt *x, int y);",
-	"int main();",
-	""};
-
     char *global_decls[] = {
 	"struct table_elt\n\
 {\n\
@@ -212,6 +180,38 @@ static struct table_elt *table[32];\n\
 void\n\
 invalidate_memory (writes)\n\
      struct write_data *writes;",
+""};
+
+    char *func_decls[] = {
+	"int cse_rtx_addr_varies_p(void *x);",
+	"void remove_from_table(struct table_elt *x, int y);",
+	"int main();",
+	""};
+
+    char *func_bodies[] = {
+
+/* body for cse_rtx_addr_varies_p */
+"{ return 0; }",
+
+/* body for remove_from_table */
+"{ abort (); }",
+
+/* body for main */
+"{\n\
+  struct write_data writes;\n\
+  struct table_elt elt;\n\
+\n\
+  __builtin_memset(&elt, 0, sizeof(elt));\n\
+  elt.in_memory = 1;\n\
+  table[0] = &elt;\n\
+\n\
+  __builtin_memset(&writes, 0, sizeof(writes));\n\
+  writes.var = 1;\n\
+  writes.nonscalar = 1;\n\
+\n\
+  invalidate_memory(&writes);\n\
+  return 0;\n\
+}",
 ""};
 
     int i;

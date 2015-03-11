@@ -96,6 +96,14 @@ main(int argc, char**argv)
         void abort();\n\
         int test_printf(const char *format, ...);\n\
         int printf(const char *format, ...);";
+    char *global_decls[] = {
+""};
+
+    char *func_decls[] = {
+	"int compare(unsigned int x, unsigned int y);",
+	"void main();",
+	""};
+
     char *func_bodies[] = {
 
 /* body for compare */
@@ -116,14 +124,6 @@ main(int argc, char**argv)
  else\n\
     exit(0);\n\
 }",
-""};
-
-    char *func_decls[] = {
-	"int compare(unsigned int x, unsigned int y);",
-	"void main();",
-	""};
-
-    char *global_decls[] = {
 ""};
 
     int i;

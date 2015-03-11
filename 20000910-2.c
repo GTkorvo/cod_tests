@@ -106,6 +106,18 @@ main(int argc, char**argv)
         void abort();\n\
         int test_printf(const char *format, ...);\n\
         int printf(const char *format, ...);";
+    char *global_decls[] = {
+	"#include <stdlib.h>\n\
+#include <string.h>",
+	"char *list[] ={ \"*\", \"e\" };",
+""};
+
+    char *func_decls[] = {
+	"static int bar (const char *fmt);",
+	"static void foo ();",
+	"int main ();",
+	""};
+
     char *func_bodies[] = {
 
 /* body for bar */
@@ -131,18 +143,6 @@ main(int argc, char**argv)
 "{\n\
   foo ();\n\
 }",
-""};
-
-    char *func_decls[] = {
-	"static int bar (const char *fmt);",
-	"static void foo ();",
-	"int main ();",
-	""};
-
-    char *global_decls[] = {
-	"#include <stdlib.h>\n\
-#include <string.h>",
-	"char *list[] ={ \"*\", \"e\" };",
 ""};
 
     int i;

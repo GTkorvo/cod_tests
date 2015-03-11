@@ -107,6 +107,18 @@ main(int argc, char**argv)
         void abort();\n\
         int test_printf(const char *format, ...);\n\
         int printf(const char *format, ...);";
+    char *global_decls[] = {
+	"\n\
+\n\
+\n\
+int aim_callhandler(int sess, int conn, unsigned short family, unsigned short type);",
+""};
+
+    char *func_decls[] = {
+	"int aim_callhandler(int sess, int conn, unsigned short family, unsigned short type);",
+	"int main ();",
+	""};
+
     char *func_bodies[] = {
 
 /* body for aim_callhandler */
@@ -133,18 +145,6 @@ main(int argc, char**argv)
   aim_callhandler (0, 1, 0, 0);\n\
   exit (0);\n\
 }",
-""};
-
-    char *func_decls[] = {
-	"int aim_callhandler(int sess, int conn, unsigned short family, unsigned short type);",
-	"int main ();",
-	""};
-
-    char *global_decls[] = {
-	"\n\
-\n\
-\n\
-int aim_callhandler(int sess, int conn, unsigned short family, unsigned short type);",
 ""};
 
     int i;

@@ -120,6 +120,29 @@ main(int argc, char**argv)
         void abort();\n\
         int test_printf(const char *format, ...);\n\
         int printf(const char *format, ...);";
+    char *global_decls[] = {
+	"typedef struct {\n\
+  long r[(19 + sizeof (long))/(sizeof (long))];\n\
+} realvaluetype;\n\
+\n\
+typedef void *tree;",
+	"struct brfic_args\n\
+{\n\
+  tree type;\n\
+  tree i;\n\
+  realvaluetype d;\n\
+};\n\
+\n\
+static void\n\
+build_real_from_int_cst_1 (data)\n\
+     void * data;",
+""};
+
+    char *func_decls[] = {
+	"static realvaluetype real_value_from_int_cst (tree x, tree y);",
+	"int main();",
+	""};
+
     char *func_bodies[] = {
 
 /* body for real_value_from_int_cst */
@@ -142,29 +165,6 @@ main(int argc, char**argv)
     abort ();\n\
   return 0;\n\
 }",
-""};
-
-    char *func_decls[] = {
-	"static realvaluetype real_value_from_int_cst (tree x, tree y);",
-	"int main();",
-	""};
-
-    char *global_decls[] = {
-	"typedef struct {\n\
-  long r[(19 + sizeof (long))/(sizeof (long))];\n\
-} realvaluetype;\n\
-\n\
-typedef void *tree;",
-	"struct brfic_args\n\
-{\n\
-  tree type;\n\
-  tree i;\n\
-  realvaluetype d;\n\
-};\n\
-\n\
-static void\n\
-build_real_from_int_cst_1 (data)\n\
-     void * data;",
 ""};
 
     int i;

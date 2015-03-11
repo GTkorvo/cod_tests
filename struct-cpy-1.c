@@ -119,6 +119,30 @@ main(int argc, char**argv)
         void abort();\n\
         int test_printf(const char *format, ...);\n\
         int printf(const char *format, ...);";
+    char *global_decls[] = {
+	"struct termios\n\
+{\n\
+  unsigned int a;\n\
+  unsigned int b;\n\
+  unsigned int c;\n\
+  unsigned int d;\n\
+  unsigned char pad[28];\n\
+};",
+	"struct tty_driver\n\
+{\n\
+  unsigned char pad1[38];\n\
+  struct termios t __attribute__ ((aligned (8)));\n\
+};\n\
+\n\
+static struct termios zero_t;\n\
+static struct tty_driver pty;",
+""};
+
+    char *func_decls[] = {
+	"void ini ();",
+	"int main ();",
+	""};
+
     char *func_bodies[] = {
 
 /* body for ini */
@@ -142,30 +166,6 @@ main(int argc, char**argv)
     abort ();\n\
   return 0;\n\
 }",
-""};
-
-    char *func_decls[] = {
-	"void ini ();",
-	"int main ();",
-	""};
-
-    char *global_decls[] = {
-	"struct termios\n\
-{\n\
-  unsigned int a;\n\
-  unsigned int b;\n\
-  unsigned int c;\n\
-  unsigned int d;\n\
-  unsigned char pad[28];\n\
-};",
-	"struct tty_driver\n\
-{\n\
-  unsigned char pad1[38];\n\
-  struct termios t __attribute__ ((aligned (8)));\n\
-};\n\
-\n\
-static struct termios zero_t;\n\
-static struct tty_driver pty;",
 ""};
 
     int i;

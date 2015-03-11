@@ -111,6 +111,28 @@ main(int argc, char**argv)
         void abort();\n\
         int test_printf(const char *format, ...);\n\
         int printf(const char *format, ...);";
+    char *global_decls[] = {
+	"#include <stdlib.h>\n\
+\n\
+typedef signed short SInt16;",
+	"typedef struct {\n\
+    SInt16 minx;\n\
+    SInt16 maxx;\n\
+    SInt16 miny;\n\
+    SInt16 maxy;\n\
+} IOGBounds;\n\
+\n\
+int expectedwidth = 50;\n\
+\n\
+unsigned int *global_vramPtr = (unsigned int *)0xa000;",
+	"IOGBounds global_bounds ={ 100, 150, 100, 150 };",
+	"IOGBounds global_saveRect ={ 75, 175, 75, 175 };",
+""};
+
+    char *func_decls[] = {
+	"void main();",
+	""};
+
     char *func_bodies[] = {
 
 /* body for main */
@@ -130,28 +152,6 @@ main(int argc, char**argv)
     abort ();\n\
   exit (0);\n\
 }",
-""};
-
-    char *func_decls[] = {
-	"void main();",
-	""};
-
-    char *global_decls[] = {
-	"#include <stdlib.h>\n\
-\n\
-typedef signed short SInt16;",
-	"typedef struct {\n\
-    SInt16 minx;\n\
-    SInt16 maxx;\n\
-    SInt16 miny;\n\
-    SInt16 maxy;\n\
-} IOGBounds;\n\
-\n\
-int expectedwidth = 50;\n\
-\n\
-unsigned int *global_vramPtr = (unsigned int *)0xa000;",
-	"IOGBounds global_bounds ={ 100, 150, 100, 150 };",
-	"IOGBounds global_saveRect ={ 75, 175, 75, 175 };",
 ""};
 
     int i;

@@ -121,6 +121,19 @@ main(int argc, char**argv)
         void abort();\n\
         int test_printf(const char *format, ...);\n\
         int printf(const char *format, ...);";
+    char *global_decls[] = {
+	"void exit (int);\n\
+void abort (void);\n\
+\n\
+unsigned long long *cp, m;",
+""};
+
+    char *func_decls[] = {
+	"void foo ();",
+	"void bar (unsigned rop, unsigned long long *r);",
+	"int main();",
+	""};
+
     char *func_bodies[] = {
 
 /* body for foo */
@@ -159,19 +172,6 @@ top:\n\
     abort ();\n\
   exit (0);\n\
 }",
-""};
-
-    char *func_decls[] = {
-	"void foo ();",
-	"void bar (unsigned rop, unsigned long long *r);",
-	"int main();",
-	""};
-
-    char *global_decls[] = {
-	"void exit (int);\n\
-void abort (void);\n\
-\n\
-unsigned long long *cp, m;",
 ""};
 
     int i;

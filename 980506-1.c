@@ -100,20 +100,6 @@ main(int argc, char**argv)
         void abort();\n\
         int test_printf(const char *format, ...);\n\
         int printf(const char *format, ...);";
-    char *func_bodies[] = {
-
-/* body for main */
-"{\n\
-  struct decision *p = 0;\n\
-  clear_modes (p);\n\
-  exit (0);\n\
-}",
-""};
-
-    char *func_decls[] = {
-	"void main();",
-	""};
-
     char *global_decls[] = {
 	"struct decision\n\
 {\n\
@@ -125,6 +111,20 @@ main(int argc, char**argv)
 static void\n\
 clear_modes (p)\n\
      register struct decision *p;",
+""};
+
+    char *func_decls[] = {
+	"void main();",
+	""};
+
+    char *func_bodies[] = {
+
+/* body for main */
+"{\n\
+  struct decision *p = 0;\n\
+  clear_modes (p);\n\
+  exit (0);\n\
+}",
 ""};
 
     int i;

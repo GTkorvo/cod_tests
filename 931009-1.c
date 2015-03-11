@@ -104,6 +104,15 @@ main(int argc, char**argv)
         void abort();\n\
         int test_printf(const char *format, ...);\n\
         int printf(const char *format, ...);";
+    char *global_decls[] = {
+""};
+
+    char *func_decls[] = {
+	"void main ();",
+	"static g (int *out, size, lo, hi);",
+	"void f ();",
+	""};
+
     char *func_bodies[] = {
 
 /* body for main */
@@ -129,15 +138,6 @@ main(int argc, char**argv)
   if (a[0] != 0 || a[1] != 1)\n\
     abort ();\n\
 }",
-""};
-
-    char *func_decls[] = {
-	"void main ();",
-	"static g (int *out, size, lo, hi);",
-	"void f ();",
-	""};
-
-    char *global_decls[] = {
 ""};
 
     int i;

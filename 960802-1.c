@@ -118,6 +118,18 @@ main(int argc, char**argv)
         void abort();\n\
         int test_printf(const char *format, ...);\n\
         int printf(const char *format, ...);";
+    char *global_decls[] = {
+	"long val = 0x5e000000;",
+""};
+
+    char *func_decls[] = {
+	"long f1 ();",
+	"long f2 ();",
+	"void f3 (long b);",
+	"void f4 ();",
+	"void main ();",
+	""};
+
     char *func_bodies[] = {
 
 /* body for f1 */
@@ -150,18 +162,6 @@ main(int argc, char**argv)
     abort ();\n\
   exit (0);\n\
 }",
-""};
-
-    char *func_decls[] = {
-	"long f1 ();",
-	"long f2 ();",
-	"void f3 (long b);",
-	"void f4 ();",
-	"void main ();",
-	""};
-
-    char *global_decls[] = {
-	"long val = 0x5e000000;",
 ""};
 
     int i;

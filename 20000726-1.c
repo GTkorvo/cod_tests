@@ -107,6 +107,23 @@ main(int argc, char**argv)
         void abort();\n\
         int test_printf(const char *format, ...);\n\
         int printf(const char *format, ...);";
+    char *global_decls[] = {
+	"void adjust_xy (short *, short *);",
+	"struct adjust_template\n\
+{\n\
+  short kx_x;\n\
+  short kx_y;\n\
+  short kx;\n\
+  short kz;\n\
+};",
+	"static struct adjust_template adjust ={0, 0, 1, 1};",
+""};
+
+    char *func_decls[] = {
+	"void main ();",
+	"void adjust_xy (short  *x, short  *y);",
+	""};
+
     char *func_bodies[] = {
 
 /* body for main */
@@ -125,23 +142,6 @@ main(int argc, char**argv)
 "{\n\
   *x = adjust.kx_x * *x + adjust.kx_y * *y + adjust.kx;\n\
 }",
-""};
-
-    char *func_decls[] = {
-	"void main ();",
-	"void adjust_xy (short  *x, short  *y);",
-	""};
-
-    char *global_decls[] = {
-	"void adjust_xy (short *, short *);",
-	"struct adjust_template\n\
-{\n\
-  short kx_x;\n\
-  short kx_y;\n\
-  short kx;\n\
-  short kz;\n\
-};",
-	"static struct adjust_template adjust ={0, 0, 1, 1};",
 ""};
 
     int i;

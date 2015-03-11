@@ -91,6 +91,14 @@ main(int argc, char**argv)
         void abort();\n\
         int test_printf(const char *format, ...);\n\
         int printf(const char *format, ...);";
+    char *global_decls[] = {
+	"int array[10] ={1, 1, 1, 1, 1, 1, 1, 1, 1, 1};",
+""};
+
+    char *func_decls[] = {
+	"void main ();",
+	""};
+
     char *func_bodies[] = {
 
 /* body for main */
@@ -108,14 +116,6 @@ main(int argc, char**argv)
     abort ();\n\
   exit (0);\n\
 }",
-""};
-
-    char *func_decls[] = {
-	"void main ();",
-	""};
-
-    char *global_decls[] = {
-	"int array[10] ={1, 1, 1, 1, 1, 1, 1, 1, 1, 1};",
 ""};
 
     int i;

@@ -146,6 +146,18 @@ main(int argc, char**argv)
         void abort();\n\
         int test_printf(const char *format, ...);\n\
         int printf(const char *format, ...);";
+    char *global_decls[] = {
+	"void **bar;",
+""};
+
+    char *func_decls[] = {
+	"long baz1 (void *a);",
+	"int baz2 (const char *a);",
+	"int baz3 (int i);",
+	"int foo (void *a, long b, int c);",
+	"int main ();",
+	""};
+
     char *func_bodies[] = {
 
 /* body for baz1 */
@@ -210,18 +222,6 @@ main(int argc, char**argv)
   foo (&n, 1, 0xc811);\n\
   exit (0);\n\
 }",
-""};
-
-    char *func_decls[] = {
-	"long baz1 (void *a);",
-	"int baz2 (const char *a);",
-	"int baz3 (int i);",
-	"int foo (void *a, long b, int c);",
-	"int main ();",
-	""};
-
-    char *global_decls[] = {
-	"void **bar;",
 ""};
 
     int i;

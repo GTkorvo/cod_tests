@@ -235,6 +235,46 @@ main(int argc, char**argv)
         void abort();\n\
         int test_printf(const char *format, ...);\n\
         int printf(const char *format, ...);";
+    char *global_decls[] = {
+	"#include <stdio.h>",
+	"int fail_count = 0;",
+""};
+
+    char *func_decls[] = {
+	"float fp_add (float a, float b);",
+	"float fp_sub (float a, float b);",
+	"float fp_mul (float a, float b);",
+	"float fp_div (float a, float b);",
+	"float fp_neg (float a);",
+	"double dp_add (double a, double b);",
+	"double dp_sub (double a, double b);",
+	"double dp_mul (double a, double b);",
+	"double dp_div (double a, double b);",
+	"double dp_neg (double a);",
+	"double fp_to_dp (float f);",
+	"float dp_to_fp (double d);",
+	"int eqsf2 (float a, float b);",
+	"int nesf2 (float a, float b);",
+	"int gtsf2 (float a, float b);",
+	"int gesf2 (float a, float b);",
+	"int ltsf2 (float a, float b);",
+	"int lesf2 (float a, float b);",
+	"int eqdf2 (double a, double b);",
+	"int nedf2 (double a, double b);",
+	"int gtdf2 (double a, double b);",
+	"int gedf2 (double a, double b);",
+	"int ltdf2 (double a, double b);",
+	"int ledf2 (double a, double b);",
+	"float floatsisf (int i);",
+	"double floatsidf (int i);",
+	"int fixsfsi (float f);",
+	"int fixdfsi (double d);",
+	"unsigned int fixunssfsi (float f);",
+	"unsigned int fixunsdfsi (double d);",
+	"int fail (char *msg);",
+	"int main();",
+	""};
+
     char *func_bodies[] = {
 
 /* body for fp_add */
@@ -378,46 +418,6 @@ main(int argc, char**argv)
     abort ();\n\
   exit (0);\n\
 }",
-""};
-
-    char *func_decls[] = {
-	"float fp_add (float a, float b);",
-	"float fp_sub (float a, float b);",
-	"float fp_mul (float a, float b);",
-	"float fp_div (float a, float b);",
-	"float fp_neg (float a);",
-	"double dp_add (double a, double b);",
-	"double dp_sub (double a, double b);",
-	"double dp_mul (double a, double b);",
-	"double dp_div (double a, double b);",
-	"double dp_neg (double a);",
-	"double fp_to_dp (float f);",
-	"float dp_to_fp (double d);",
-	"int eqsf2 (float a, float b);",
-	"int nesf2 (float a, float b);",
-	"int gtsf2 (float a, float b);",
-	"int gesf2 (float a, float b);",
-	"int ltsf2 (float a, float b);",
-	"int lesf2 (float a, float b);",
-	"int eqdf2 (double a, double b);",
-	"int nedf2 (double a, double b);",
-	"int gtdf2 (double a, double b);",
-	"int gedf2 (double a, double b);",
-	"int ltdf2 (double a, double b);",
-	"int ledf2 (double a, double b);",
-	"float floatsisf (int i);",
-	"double floatsidf (int i);",
-	"int fixsfsi (float f);",
-	"int fixdfsi (double d);",
-	"unsigned int fixunssfsi (float f);",
-	"unsigned int fixunsdfsi (double d);",
-	"int fail (char *msg);",
-	"int main();",
-	""};
-
-    char *global_decls[] = {
-	"#include <stdio.h>",
-	"int fail_count = 0;",
 ""};
 
     int i;

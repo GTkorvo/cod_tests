@@ -78,13 +78,7 @@ main(int argc, char**argv)
         void abort();\n\
         int test_printf(const char *format, ...);\n\
         int printf(const char *format, ...);";
-    char *func_bodies[] = {
-
-/* body for f */
-"{return (--a > 0);}",
-
-/* body for main */
-"{if(f(0x80000000L)==0)abort();exit(0);}",
+    char *global_decls[] = {
 ""};
 
     char *func_decls[] = {
@@ -92,7 +86,13 @@ main(int argc, char**argv)
 	"void main();",
 	""};
 
-    char *global_decls[] = {
+    char *func_bodies[] = {
+
+/* body for f */
+"{return (--a > 0);}",
+
+/* body for main */
+"{if(f(0x80000000L)==0)abort();exit(0);}",
 ""};
 
     int i;

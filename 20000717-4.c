@@ -102,6 +102,23 @@ main(int argc, char**argv)
         void abort();\n\
         int test_printf(const char *format, ...);\n\
         int printf(const char *format, ...);";
+    char *global_decls[] = {
+	"struct{\n\
+  int offset;\n\
+  struct slot\n\
+  {\n\
+    int field[6];\n\
+  }\n\
+  slot[4];\n\
+};",
+	"s;",
+""};
+
+    char *func_decls[] = {
+	"int x ();",
+	"int main ();",
+	""};
+
     char *func_bodies[] = {
 
 /* body for x */
@@ -115,16 +132,6 @@ main(int argc, char**argv)
 "{\n\
   return 0;\n\
 }",
-""};
-
-    char *func_decls[] = {
-	"int x ();",
-	"int main ();",
-	""};
-
-    char *global_decls[] = {
-	"struct",
-	"s;",
 ""};
 
     int i;

@@ -214,6 +214,28 @@ main(int argc, char**argv)
         void abort();\n\
         int test_printf(const char *format, ...);\n\
         int printf(const char *format, ...);";
+    char *global_decls[] = {
+	"struct DUPFFstruct\n\
+{\n\
+  int maxdeg;\n\
+  int deg;\n\
+  FFelem *coeffs;\n\
+};\n\
+\n\
+typedef struct DUPFFstruct *DUPFF;",
+""};
+
+    char *func_decls[] = {
+	"int DUPFFdeg(const DUPFF f);",
+	"DUPFF DUPFFnew(const int maxdeg);",
+	"void DUPFFfree(DUPFF x);",
+	"void DUPFFswap(DUPFF x, DUPFF y);",
+	"DUPFF DUPFFcopy(const DUPFF x);",
+	"void DUPFFshift_add(DUPFF f, const DUPFF g, int deg, const FFelem coeff);",
+	"DUPFF DUPFFexgcd(DUPFF *fcofac, DUPFF *gcofac, const DUPFF f, const DUPFF g);",
+	"int main();",
+	""};
+
     char *func_bodies[] = {
 
 /* body for DUPFFdeg */
@@ -312,28 +334,6 @@ main(int argc, char**argv)
   h = DUPFFexgcd(&cf, &cg, f, g);\n\
   return 0;\n\
 }",
-""};
-
-    char *func_decls[] = {
-	"int DUPFFdeg(const DUPFF f);",
-	"DUPFF DUPFFnew(const int maxdeg);",
-	"void DUPFFfree(DUPFF x);",
-	"void DUPFFswap(DUPFF x, DUPFF y);",
-	"DUPFF DUPFFcopy(const DUPFF x);",
-	"void DUPFFshift_add(DUPFF f, const DUPFF g, int deg, const FFelem coeff);",
-	"DUPFF DUPFFexgcd(DUPFF *fcofac, DUPFF *gcofac, const DUPFF f, const DUPFF g);",
-	"int main();",
-	""};
-
-    char *global_decls[] = {
-	"struct DUPFFstruct\n\
-{\n\
-  int maxdeg;\n\
-  int deg;\n\
-  FFelem *coeffs;\n\
-};\n\
-\n\
-typedef struct DUPFFstruct *DUPFF;",
 ""};
 
     int i;

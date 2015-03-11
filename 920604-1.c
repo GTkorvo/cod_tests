@@ -89,6 +89,14 @@ main(int argc, char**argv)
         void abort();\n\
         int test_printf(const char *format, ...);\n\
         int printf(const char *format, ...);";
+    char *global_decls[] = {
+""};
+
+    char *func_decls[] = {
+	"long long mod (long long a, b);",
+	"int main ();",
+	""};
+
     char *func_bodies[] = {
 
 /* body for mod */
@@ -101,14 +109,6 @@ main(int argc, char**argv)
   mod (1LL, 2LL);\n\
   exit (0);\n\
 }",
-""};
-
-    char *func_decls[] = {
-	"long long mod (long long a, b);",
-	"int main ();",
-	""};
-
-    char *global_decls[] = {
 ""};
 
     int i;

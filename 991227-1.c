@@ -87,6 +87,14 @@ main(int argc, char**argv)
         void abort();\n\
         int test_printf(const char *format, ...);\n\
         int printf(const char *format, ...);";
+    char *global_decls[] = {
+""};
+
+    char *func_decls[] = {
+	"char* doit(int flag);",
+	"int main();",
+	""};
+
     char *func_bodies[] = {
 
 /* body for doit */
@@ -101,14 +109,6 @@ main(int argc, char**argv)
     exit(0);\n\
   abort();\n\
 }",
-""};
-
-    char *func_decls[] = {
-	"char* doit(int flag);",
-	"int main();",
-	""};
-
-    char *global_decls[] = {
 ""};
 
     int i;

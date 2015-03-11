@@ -97,6 +97,14 @@ main(int argc, char**argv)
         void abort();\n\
         int test_printf(const char *format, ...);\n\
         int printf(const char *format, ...);";
+    char *global_decls[] = {
+""};
+
+    char *func_decls[] = {
+	"int false();",
+	"int main (int argc,char *argv[]);",
+	""};
+
     char *func_bodies[] = {
 
 /* body for false */
@@ -116,14 +124,6 @@ main(int argc, char**argv)
 \n\
   return 0;\n\
 }",
-""};
-
-    char *func_decls[] = {
-	"int false();",
-	"int main (int argc,char *argv[]);",
-	""};
-
-    char *global_decls[] = {
 ""};
 
     int i;

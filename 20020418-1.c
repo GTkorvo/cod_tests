@@ -100,6 +100,15 @@ main(int argc, char**argv)
         void abort();\n\
         int test_printf(const char *format, ...);\n\
         int printf(const char *format, ...);";
+    char *global_decls[] = {
+	"struct foo { int a; };",
+""};
+
+    char *func_decls[] = {
+	"void gcc_crash(struct foo *p);",
+	"int main();",
+	""};
+
     char *func_bodies[] = {
 
 /* body for gcc_crash */
@@ -121,15 +130,6 @@ main(int argc, char**argv)
 \n\
 	exit (0);\n\
 }",
-""};
-
-    char *func_decls[] = {
-	"void gcc_crash(struct foo *p);",
-	"int main();",
-	""};
-
-    char *global_decls[] = {
-	"struct foo { int a; };",
 ""};
 
     int i;

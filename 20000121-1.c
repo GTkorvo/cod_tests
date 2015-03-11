@@ -92,6 +92,15 @@ main(int argc, char**argv)
         void abort();\n\
         int test_printf(const char *format, ...);\n\
         int printf(const char *format, ...);";
+    char *global_decls[] = {
+""};
+
+    char *func_decls[] = {
+	"void big(long long u);",
+	"void doit(unsigned int a,unsigned int b,char *id);",
+	"int main();",
+	""};
+
     char *func_bodies[] = {
 
 /* body for big */
@@ -109,15 +118,6 @@ main(int argc, char**argv)
   doit(1,1,\"\\n\");\n\
   return 0;\n\
 }",
-""};
-
-    char *func_decls[] = {
-	"void big(long long u);",
-	"void doit(unsigned int a,unsigned int b,char *id);",
-	"int main();",
-	""};
-
-    char *global_decls[] = {
 ""};
 
     int i;

@@ -90,20 +90,6 @@ main(int argc, char**argv)
         void abort();\n\
         int test_printf(const char *format, ...);\n\
         int printf(const char *format, ...);";
-    char *func_bodies[] = {
-
-/* body for main */
-"{\n\
-  if (s.b != 3)\n\
-    abort ();\n\
-  exit (0);\n\
-}",
-""};
-
-    char *func_decls[] = {
-	"void main ();",
-	""};
-
     char *global_decls[] = {
 	"struct s\n\
 {\n\
@@ -113,6 +99,20 @@ main(int argc, char**argv)
   int d[3];\n\
 };",
 	"struct s s ={ .b = 3, .d = {2,0,0} };",
+""};
+
+    char *func_decls[] = {
+	"void main ();",
+	""};
+
+    char *func_bodies[] = {
+
+/* body for main */
+"{\n\
+  if (s.b != 3)\n\
+    abort ();\n\
+  exit (0);\n\
+}",
 ""};
 
     int i;

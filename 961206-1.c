@@ -134,6 +134,17 @@ main(int argc, char**argv)
         void abort();\n\
         int test_printf(const char *format, ...);\n\
         int printf(const char *format, ...);";
+    char *global_decls[] = {
+""};
+
+    char *func_decls[] = {
+	"int sub1 (unsigned long long i);",
+	"int sub2 (unsigned long long i);",
+	"int sub3 (unsigned long long i);",
+	"int sub4 (unsigned long long i);",
+	"void main();",
+	""};
+
     char *func_bodies[] = {
 
 /* body for sub1 */
@@ -184,17 +195,6 @@ main(int argc, char**argv)
 \n\
   exit (0);\n\
 }",
-""};
-
-    char *func_decls[] = {
-	"int sub1 (unsigned long long i);",
-	"int sub2 (unsigned long long i);",
-	"int sub3 (unsigned long long i);",
-	"int sub4 (unsigned long long i);",
-	"void main();",
-	""};
-
-    char *global_decls[] = {
 ""};
 
     int i;

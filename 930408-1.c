@@ -105,6 +105,21 @@ main(int argc, char**argv)
         void abort();\n\
         int test_printf(const char *format, ...);\n\
         int printf(const char *format, ...);";
+    char *global_decls[] = {
+	"typedef enum foo E;\n\
+enum foo",
+	";",
+	"struct {\n\
+  E eval;\n\
+} s;",
+""};
+
+    char *func_decls[] = {
+	"void p();",
+	"void f();",
+	"void main();",
+	""};
+
     char *func_bodies[] = {
 
 /* body for p */
@@ -127,21 +142,6 @@ main(int argc, char**argv)
   f();\n\
   exit(0);\n\
 }",
-""};
-
-    char *func_decls[] = {
-	"void p();",
-	"void f();",
-	"void main();",
-	""};
-
-    char *global_decls[] = {
-	"typedef enum foo E;\n\
-enum foo",
-	";",
-	"struct {\n\
-  E eval;\n\
-} s;",
 ""};
 
     int i;

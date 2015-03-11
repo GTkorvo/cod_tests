@@ -109,6 +109,18 @@ main(int argc, char**argv)
         void abort();\n\
         int test_printf(const char *format, ...);\n\
         int printf(const char *format, ...);";
+    char *global_decls[] = {
+	"static int which_alternative = 3;\n\
+\n\
+static const char *i960_output_ldconst (void);",
+""};
+
+    char *func_decls[] = {
+	"static const char * output_25 ();",
+	"static const char *i960_output_ldconst ();",
+	"int main();",
+	""};
+
     char *func_bodies[] = {
 
 /* body for output_25 */
@@ -138,18 +150,6 @@ main(int argc, char**argv)
     abort ();\n\
   exit (0);\n\
 }",
-""};
-
-    char *func_decls[] = {
-	"static const char * output_25 ();",
-	"static const char *i960_output_ldconst ();",
-	"int main();",
-	""};
-
-    char *global_decls[] = {
-	"static int which_alternative = 3;\n\
-\n\
-static const char *i960_output_ldconst (void);",
 ""};
 
     int i;

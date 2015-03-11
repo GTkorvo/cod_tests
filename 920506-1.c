@@ -76,18 +76,18 @@ main(int argc, char**argv)
         void abort();\n\
         int test_printf(const char *format, ...);\n\
         int printf(const char *format, ...);";
-    char *func_bodies[] = {
-
-/* body for main */
-"{int*p=l;switch(*p++){case 0:exit(0);case 1:break;case 2:break;case 3:case 4:break;}abort();}",
+    char *global_decls[] = {
+	"int l[]={0,1};",
 ""};
 
     char *func_decls[] = {
 	"void main();",
 	""};
 
-    char *global_decls[] = {
-	"int l[]={0,1};",
+    char *func_bodies[] = {
+
+/* body for main */
+"{int*p=l;switch(*p++){case 0:exit(0);case 1:break;case 2:break;case 3:case 4:break;}abort();}",
 ""};
 
     int i;

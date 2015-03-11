@@ -123,6 +123,29 @@ main(int argc, char**argv)
         void abort();\n\
         int test_printf(const char *format, ...);\n\
         int printf(const char *format, ...);";
+    char *global_decls[] = {
+	"typedef __SIZE_TYPE__ size_t;\n\
+extern size_t strlen (const char *s);",
+	"typedef struct A {\n\
+  int a, b;\n\
+} A;",
+	"typedef struct B {\n\
+  struct A **a;\n\
+  int b;\n\
+} B;\n\
+\n\
+A *a;\n\
+int b = 1, c;\n\
+B d[1];",
+""};
+
+    char *func_decls[] = {
+	"void foo (A *x, const char *y, int z);",
+	"A *bar (const char *v, int w, int x, const char *y, int z);",
+	"void test (const char *x, int *y);",
+	"int main ();",
+	""};
+
     char *func_bodies[] = {
 
 /* body for foo */
@@ -152,29 +175,6 @@ main(int argc, char**argv)
   d->a = &a;\n\
   test (\"\", 0);\n\
 }",
-""};
-
-    char *func_decls[] = {
-	"void foo (A *x, const char *y, int z);",
-	"A *bar (const char *v, int w, int x, const char *y, int z);",
-	"void test (const char *x, int *y);",
-	"int main ();",
-	""};
-
-    char *global_decls[] = {
-	"typedef __SIZE_TYPE__ size_t;\n\
-extern size_t strlen (const char *s);",
-	"typedef struct A {\n\
-  int a, b;\n\
-} A;",
-	"typedef struct B {\n\
-  struct A **a;\n\
-  int b;\n\
-} B;\n\
-\n\
-A *a;\n\
-int b = 1, c;\n\
-B d[1];",
 ""};
 
     int i;

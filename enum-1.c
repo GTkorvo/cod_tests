@@ -119,6 +119,18 @@ main(int argc, char**argv)
         void abort();\n\
         int test_printf(const char *format, ...);\n\
         int printf(const char *format, ...);";
+    char *global_decls[] = {
+	"typedef enum",
+	"token;\n\
+\n\
+static token tok;",
+""};
+
+    char *func_decls[] = {
+	"static int atom ();",
+	"void main ();",
+	""};
+
     char *func_bodies[] = {
 
 /* body for atom */
@@ -138,18 +150,6 @@ main(int argc, char**argv)
     abort ();\n\
   exit (0);\n\
 }",
-""};
-
-    char *func_decls[] = {
-	"static int atom ();",
-	"void main ();",
-	""};
-
-    char *global_decls[] = {
-	"typedef enum",
-	"token;\n\
-\n\
-static token tok;",
 ""};
 
     int i;

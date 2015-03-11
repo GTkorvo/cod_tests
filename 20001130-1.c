@@ -99,6 +99,16 @@ main(int argc, char**argv)
         void abort();\n\
         int test_printf(const char *format, ...);\n\
         int printf(const char *format, ...);";
+    char *global_decls[] = {
+	"static int mem[3];",
+""};
+
+    char *func_decls[] = {
+	"static inline int bar();",
+	"static int foo(int x);",
+	"int main();",
+	""};
+
     char *func_bodies[] = {
 
 /* body for bar */
@@ -122,16 +132,6 @@ main(int argc, char**argv)
   foo(0);\n\
   return 0;\n\
 }",
-""};
-
-    char *func_decls[] = {
-	"static inline int bar();",
-	"static int foo(int x);",
-	"int main();",
-	""};
-
-    char *global_decls[] = {
-	"static int mem[3];",
 ""};
 
     int i;

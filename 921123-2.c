@@ -100,6 +100,21 @@ main(int argc, char**argv)
         void abort();\n\
         int test_printf(const char *format, ...);\n\
         int printf(const char *format, ...);";
+    char *global_decls[] = {
+	"typedef struct{\n\
+  unsigned short b0, b1, b2, b3;\n\
+};",
+	"four_quarters;\n\
+\n\
+four_quarters x;\n\
+int a, b;",
+""};
+
+    char *func_decls[] = {
+	"void f (four_quarters j);",
+	"void main ();",
+	""};
+
     char *func_bodies[] = {
 
 /* body for f */
@@ -118,19 +133,6 @@ main(int argc, char**argv)
     abort();\n\
   exit (0);\n\
 }",
-""};
-
-    char *func_decls[] = {
-	"void f (four_quarters j);",
-	"void main ();",
-	""};
-
-    char *global_decls[] = {
-	"typedef struct",
-	"four_quarters;\n\
-\n\
-four_quarters x;\n\
-int a, b;",
 ""};
 
     int i;

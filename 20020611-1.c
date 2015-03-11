@@ -108,6 +108,18 @@ main(int argc, char**argv)
         void abort();\n\
         int test_printf(const char *format, ...);\n\
         int printf(const char *format, ...);";
+    char *global_decls[] = {
+	"int p;\n\
+int k;\n\
+unsigned int n;",
+	"unsigned int n = 30;",
+""};
+
+    char *func_decls[] = {
+	"void x ();",
+	"void main ();",
+	""};
+
     char *func_bodies[] = {
 
 /* body for x */
@@ -133,18 +145,6 @@ main(int argc, char**argv)
     abort ();\n\
   exit (0);\n\
 }",
-""};
-
-    char *func_decls[] = {
-	"void x ();",
-	"void main ();",
-	""};
-
-    char *global_decls[] = {
-	"int p;\n\
-int k;\n\
-unsigned int n;",
-	"unsigned int n = 30;",
 ""};
 
     int i;

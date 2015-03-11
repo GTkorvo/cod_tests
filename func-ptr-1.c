@@ -92,6 +92,16 @@ main(int argc, char**argv)
         void abort();\n\
         int test_printf(const char *format, ...);\n\
         int printf(const char *format, ...);";
+    char *global_decls[] = {
+	"static double f (float a);\n\
+static double (*fp) (float a);",
+""};
+
+    char *func_decls[] = {
+	"void main ();",
+	"static double f (float a);",
+	""};
+
     char *func_bodies[] = {
 
 /* body for main */
@@ -106,16 +116,6 @@ main(int argc, char**argv)
 "{\n\
   return a;\n\
 }",
-""};
-
-    char *func_decls[] = {
-	"void main ();",
-	"static double f (float a);",
-	""};
-
-    char *global_decls[] = {
-	"static double f (float a);\n\
-static double (*fp) (float a);",
 ""};
 
     int i;

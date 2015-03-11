@@ -135,6 +135,22 @@ main(int argc, char**argv)
         void abort();\n\
         int test_printf(const char *format, ...);\n\
         int printf(const char *format, ...);";
+    char *global_decls[] = {
+	"struct epic_rx_desc{\n\
+  unsigned int next;\n\
+};",
+	"struct epic_private{\n\
+  struct epic_rx_desc *rx_ring;\n\
+  unsigned int rx_skbuff[5];\n\
+};",
+	"static int check_rx_ring[5] ={ 12,14,16,18,10 };",
+""};
+
+    char *func_decls[] = {
+	"static void epic_init_ring(struct epic_private *ep);",
+	"int main();",
+	""};
+
     char *func_bodies[] = {
 
 /* body for epic_init_ring */
@@ -171,19 +187,6 @@ main(int argc, char**argv)
   }\n\
   return 0;\n\
 }",
-""};
-
-    char *func_decls[] = {
-	"static void epic_init_ring(struct epic_private *ep);",
-	"int main();",
-	""};
-
-    char *global_decls[] = {
-	"struct epic_rx_desc",
-	";",
-	"struct epic_private",
-	";",
-	"static int check_rx_ring[5] ={ 12,14,16,18,10 };",
 ""};
 
     int i;

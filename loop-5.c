@@ -114,6 +114,17 @@ main(int argc, char**argv)
         void abort();\n\
         int test_printf(const char *format, ...);\n\
         int printf(const char *format, ...);";
+    char *global_decls[] = {
+	"static int t = 0;\n\
+static int a[4];",
+""};
+
+    char *func_decls[] = {
+	"static int ap(int i);",
+	"static void testit();",
+	"int main();",
+	""};
+
     char *func_bodies[] = {
 
 /* body for ap */
@@ -150,17 +161,6 @@ main(int argc, char**argv)
     abort();\n\
   exit(0);\n\
 }",
-""};
-
-    char *func_decls[] = {
-	"static int ap(int i);",
-	"static void testit();",
-	"int main();",
-	""};
-
-    char *global_decls[] = {
-	"static int t = 0;\n\
-static int a[4];",
 ""};
 
     int i;

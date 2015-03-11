@@ -99,6 +99,18 @@ main(int argc, char**argv)
         void abort();\n\
         int test_printf(const char *format, ...);\n\
         int printf(const char *format, ...);";
+    char *global_decls[] = {
+	"#include <stdio.h>\n\
+#include <string.h>\n\
+#include <stdlib.h>",
+	"typedef struct{void*super;int name;int size;}t;",
+""};
+
+    char *func_decls[] = {
+	"t*f(t*clas,int size);",
+	"void main();",
+	""};
+
     char *func_bodies[] = {
 
 /* body for f */
@@ -120,18 +132,6 @@ main(int argc, char**argv)
   if(bar->super!=&foo||bar->name!=0||bar->size!=sizeof(t))abort();\n\
   exit(0);\n\
 }",
-""};
-
-    char *func_decls[] = {
-	"t*f(t*clas,int size);",
-	"void main();",
-	""};
-
-    char *global_decls[] = {
-	"#include <stdio.h>\n\
-#include <string.h>\n\
-#include <stdlib.h>",
-	"typedef struct{void*super;int name;int size;}t;",
 ""};
 
     int i;

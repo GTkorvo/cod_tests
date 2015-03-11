@@ -104,6 +104,18 @@ main(int argc, char**argv)
         void abort();\n\
         int test_printf(const char *format, ...);\n\
         int printf(const char *format, ...);";
+    char *global_decls[] = {
+	"\n\
+\n\
+int fcntl_lock(int fd, int op, long long offset, long long count, int type);",
+""};
+
+    char *func_decls[] = {
+	"int vfswrap_lock(char *fsp, int fd, int op, long long offset, long long count, int type);",
+	"int fcntl_lock(int fd, int op, long long offset, long long count, int type);",
+	"int main();",
+	""};
+
     char *func_bodies[] = {
 
 /* body for vfswrap_lock */
@@ -123,18 +135,6 @@ main(int argc, char**argv)
 \n\
   return 0;\n\
 }",
-""};
-
-    char *func_decls[] = {
-	"int vfswrap_lock(char *fsp, int fd, int op, long long offset, long long count, int type);",
-	"int fcntl_lock(int fd, int op, long long offset, long long count, int type);",
-	"int main();",
-	""};
-
-    char *global_decls[] = {
-	"\n\
-\n\
-int fcntl_lock(int fd, int op, long long offset, long long count, int type);",
 ""};
 
     int i;

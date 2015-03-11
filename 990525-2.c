@@ -117,6 +117,20 @@ main(int argc, char**argv)
         void abort();\n\
         int test_printf(const char *format, ...);\n\
         int printf(const char *format, ...);";
+    char *global_decls[] = {
+	"typedef struct {\n\
+    int v[4];\n\
+} Test1;\n\
+\n\
+Test1 func2();",
+""};
+
+    char *func_decls[] = {
+	"int func1();",
+	"Test1 func2();",
+	"int main();",
+	""};
+
     char *func_bodies[] = {
 
 /* body for func1 */
@@ -149,20 +163,6 @@ main(int argc, char**argv)
     func1();\n\
     exit (0);\n\
 }",
-""};
-
-    char *func_decls[] = {
-	"int func1();",
-	"Test1 func2();",
-	"int main();",
-	""};
-
-    char *global_decls[] = {
-	"typedef struct {\n\
-    int v[4];\n\
-} Test1;\n\
-\n\
-Test1 func2();",
 ""};
 
     int i;

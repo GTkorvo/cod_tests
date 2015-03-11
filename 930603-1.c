@@ -104,6 +104,17 @@ main(int argc, char**argv)
         void abort();\n\
         int test_printf(const char *format, ...);\n\
         int printf(const char *format, ...);";
+    char *global_decls[] = {
+""};
+
+    char *func_decls[] = {
+	"float fx (float x);",
+	"void main ();",
+	"float inita ();",
+	"float initc ();",
+	"void f ();",
+	""};
+
     char *func_bodies[] = {
 
 /* body for fx */
@@ -132,17 +143,6 @@ main(int argc, char**argv)
 
 /* body for f */
 "{}",
-""};
-
-    char *func_decls[] = {
-	"float fx (float x);",
-	"void main ();",
-	"float inita ();",
-	"float initc ();",
-	"void f ();",
-	""};
-
-    char *global_decls[] = {
 ""};
 
     int i;

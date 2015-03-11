@@ -79,13 +79,7 @@ main(int argc, char**argv)
         void abort();\n\
         int test_printf(const char *format, ...);\n\
         int printf(const char *format, ...);";
-    char *func_bodies[] = {
-
-/* body for f */
-"{switch(y){case 1:return 1;}return 0;}",
-
-/* body for main */
-"{if(f((t)1)!=1)abort();exit(0);}",
+    char *global_decls[] = {
 ""};
 
     char *func_decls[] = {
@@ -93,7 +87,13 @@ main(int argc, char**argv)
 	"void main();",
 	""};
 
-    char *global_decls[] = {
+    char *func_bodies[] = {
+
+/* body for f */
+"{switch(y){case 1:return 1;}return 0;}",
+
+/* body for main */
+"{if(f((t)1)!=1)abort();exit(0);}",
 ""};
 
     int i;

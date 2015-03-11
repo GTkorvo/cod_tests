@@ -95,6 +95,21 @@ main(int argc, char**argv)
         void abort();\n\
         int test_printf(const char *format, ...);\n\
         int printf(const char *format, ...);";
+    char *global_decls[] = {
+	"struct fd\n\
+{\n\
+	unsigned char a;\n\
+	unsigned char b;\n\
+}",
+	"f ={ 5 };",
+""};
+
+    char *func_decls[] = {
+	"struct fd *g();",
+	"int h();",
+	"int main();",
+	""};
+
     char *func_bodies[] = {
 
 /* body for g */
@@ -111,21 +126,6 @@ main(int argc, char**argv)
 		abort ();\n\
 	exit (0);\n\
 }",
-""};
-
-    char *func_decls[] = {
-	"struct fd *g();",
-	"int h();",
-	"int main();",
-	""};
-
-    char *global_decls[] = {
-	"struct fd\n\
-{\n\
-	unsigned char a;\n\
-	unsigned char b;\n\
-}",
-	"f ={ 5 };",
 ""};
 
     int i;

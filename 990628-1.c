@@ -136,6 +136,24 @@ main(int argc, char**argv)
         void abort();\n\
         int test_printf(const char *format, ...);\n\
         int printf(const char *format, ...);";
+    char *global_decls[] = {
+	"#include <stdlib.h>",
+	"struct {\n\
+    long sqlcode;\n\
+} sqlca;",
+	"struct data_record {\n\
+    int dummy;\n\
+    int a[100];\n\
+} *data_ptr, data_tmp;",
+""};
+
+    char *func_decls[] = {
+	"int num_records();",
+	"void fetch();",
+	"void load_data();",
+	"void main();",
+	""};
+
     char *func_bodies[] = {
 
 /* body for num_records */
@@ -176,24 +194,6 @@ main(int argc, char**argv)
       abort ();\n\
     exit (0);\n\
 }",
-""};
-
-    char *func_decls[] = {
-	"int num_records();",
-	"void fetch();",
-	"void load_data();",
-	"void main();",
-	""};
-
-    char *global_decls[] = {
-	"#include <stdlib.h>",
-	"struct {\n\
-    long sqlcode;\n\
-} sqlca;",
-	"struct data_record {\n\
-    int dummy;\n\
-    int a[100];\n\
-} *data_ptr, data_tmp;",
 ""};
 
     int i;

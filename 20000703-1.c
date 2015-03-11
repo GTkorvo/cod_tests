@@ -100,7 +100,6 @@ main(int argc, char**argv)
     cod_extern_entry externs[] = 
     {
 	{"abort", (void*)(long)-1},
-	{"foo", (void*)(long)-1},
 	{"bar", (void*)(long)-1},
 	{"main", (void*)(long)-1},
 	{"abort", (void*)my_abort},
@@ -111,30 +110,29 @@ main(int argc, char**argv)
     };
 
     char extern_string[] = "\n\
-	void abort();\n\
-	void foo(struct baz *p, unsigned int c, unsigned int d);\n\
+	void abort(void exit(int), struct baz);\n\
 	void bar(struct baz *p, unsigned int c, unsigned int d);\n\
 	int main();\n\
     	void exit(int value);\n\
         void abort();\n\
         int test_printf(const char *format, ...);\n\
         int printf(const char *format, ...);";
+    char *global_decls[] = {
+""};
+
+    char *func_decls[] = {
+	"void abort(void exit(int), struct baz);",
+	"void bar(struct baz *p, unsigned int c, unsigned int d);",
+	"int main();",
+	""};
+
     char *func_bodies[] = {
 
 /* body for abort */
-"{\n\
-  char a[17];\n\
-  char b[3];\n\
-  unsigned int c;\n\
-  unsigned int d;\n\
-}",
-
-/* body for foo */
-"{\n\
-  __builtin_memcpy (p->b, \"abc\", 3);\n\
-  p->c = c;\n\
-  p->d = d;\n\
-}",
+"\n\
+\n\
+void foo(struct baz *p, unsigned int c, unsigned int d)\n\
+",
 
 /* body for bar */
 "{\n\
@@ -160,21 +158,10 @@ main(int argc, char**argv)
 }",
 ""};
 
-    char *func_decls[] = {
-	"void abort();",
-	"void foo(struct baz *p, unsigned int c, unsigned int d);",
-	"void bar(struct baz *p, unsigned int c, unsigned int d);",
-	"int main();",
-	""};
-
-    char *global_decls[] = {
-	";",
-""};
-
     int i;
-    cod_code gen_code[4];
+    cod_code gen_code[3];
     cod_parse_context context;
-    for (i=0; i < 4; i++) {
+    for (i=0; i < 3; i++) {
         int j;
         if (verbose) {
              printf("Working on subroutine %s\n", externs[i].extern_name);
@@ -197,7 +184,7 @@ main(int argc, char**argv)
         cod_subroutine_declaration(func_decls[i], context);
         gen_code[i] = cod_code_gen(func_bodies[i], context);
         externs[i].extern_value = (void*) gen_code[i]->func;
-        if (i == 3) {
+        if (i == 2) {
             int (*func)() = (int(*)()) externs[i].extern_value;
             if (setjmp(env) == 0) {
                 func();

@@ -96,6 +96,15 @@ main(int argc, char**argv)
         void abort();\n\
         int test_printf(const char *format, ...);\n\
         int printf(const char *format, ...);";
+    char *global_decls[] = {
+	"unsigned short buf[] ={1, 4, 16, 64, 256};",
+""};
+
+    char *func_decls[] = {
+	"unsigned bug (unsigned short value, unsigned short *buffer, unsigned short *bufend);",
+	"int main();",
+	""};
+
     char *func_bodies[] = {
 
 /* body for bug */
@@ -115,15 +124,6 @@ main(int argc, char**argv)
 \n\
   exit (0);\n\
 }",
-""};
-
-    char *func_decls[] = {
-	"unsigned bug (unsigned short value, unsigned short *buffer, unsigned short *bufend);",
-	"int main();",
-	""};
-
-    char *global_decls[] = {
-	"unsigned short buf[] ={1, 4, 16, 64, 256};",
 ""};
 
     int i;

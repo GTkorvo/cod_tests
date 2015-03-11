@@ -122,6 +122,25 @@ main(int argc, char**argv)
         void abort();\n\
         int test_printf(const char *format, ...);\n\
         int printf(const char *format, ...);";
+    char *global_decls[] = {
+	"\n\
+\n\
+typedef signed short int16_t;\n\
+typedef unsigned short uint16_t;\n\
+\n\
+int16_t logadd (int16_t *a, int16_t *b);\n\
+void ba_compute_psd (int16_t start);",
+	"int16_t masktab[6] ={ 1, 2, 3, 4, 5};",
+	"int16_t psd[6] ={ 50, 40, 30, 20, 10};",
+	"int16_t bndpsd[6] ={ 1, 2, 3, 4, 5};",
+""};
+
+    char *func_decls[] = {
+	"void ba_compute_psd (int16_t start);",
+	"int16_t logadd (int16_t *a, int16_t *b);",
+	"int main ();",
+	""};
+
     char *func_bodies[] = {
 
 /* body for ba_compute_psd */
@@ -155,25 +174,6 @@ main(int argc, char**argv)
   if (bndpsd[1] != 140) abort ();\n\
   return 0;\n\
 }",
-""};
-
-    char *func_decls[] = {
-	"void ba_compute_psd (int16_t start);",
-	"int16_t logadd (int16_t *a, int16_t *b);",
-	"int main ();",
-	""};
-
-    char *global_decls[] = {
-	"\n\
-\n\
-typedef signed short int16_t;\n\
-typedef unsigned short uint16_t;\n\
-\n\
-int16_t logadd (int16_t *a, int16_t *b);\n\
-void ba_compute_psd (int16_t start);",
-	"int16_t masktab[6] ={ 1, 2, 3, 4, 5};",
-	"int16_t psd[6] ={ 50, 40, 30, 20, 10};",
-	"int16_t bndpsd[6] ={ 1, 2, 3, 4, 5};",
 ""};
 
     int i;

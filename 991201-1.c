@@ -117,6 +117,30 @@ main(int argc, char**argv)
         void abort();\n\
         int test_printf(const char *format, ...);\n\
         int printf(const char *format, ...);";
+    char *global_decls[] = {
+	"struct vc_data {\n\
+	unsigned long	space;\n\
+	unsigned char   vc_palette[16*3];        \n\
+};",
+	"struct vc {\n\
+	struct vc_data *d;\n\
+};\n\
+\n\
+struct vc_data a_con;",
+	"struct vc vc_cons[63] ={ &a_con };",
+	"int default_red[16];\n\
+int default_grn[16];\n\
+int default_blu[16];\n\
+\n\
+extern void bar(int);",
+""};
+
+    char *func_decls[] = {
+	"void reset_palette(int currcons);",
+	"void bar(int k);",
+	"int main();",
+	""};
+
     char *func_bodies[] = {
 
 /* body for reset_palette */
@@ -141,30 +165,6 @@ main(int argc, char**argv)
 	reset_palette(0);\n\
 	exit(0);\n\
 }",
-""};
-
-    char *func_decls[] = {
-	"void reset_palette(int currcons);",
-	"void bar(int k);",
-	"int main();",
-	""};
-
-    char *global_decls[] = {
-	"struct vc_data {\n\
-	unsigned long	space;\n\
-	unsigned char   vc_palette[16*3];        \n\
-};",
-	"struct vc {\n\
-	struct vc_data *d;\n\
-};\n\
-\n\
-struct vc_data a_con;",
-	"struct vc vc_cons[63] ={ &a_con };",
-	"int default_red[16];\n\
-int default_grn[16];\n\
-int default_blu[16];\n\
-\n\
-extern void bar(int);",
 ""};
 
     int i;

@@ -102,6 +102,16 @@ main(int argc, char**argv)
         void abort();\n\
         int test_printf(const char *format, ...);\n\
         int printf(const char *format, ...);";
+    char *global_decls[] = {
+	"typedef struct {int dims[0]; } *A;",
+""};
+
+    char *func_decls[] = {
+	"f(unsigned long obj);",
+	"long g();",
+	"void main ();",
+	""};
+
     char *func_bodies[] = {
 
 /* body for f */
@@ -129,16 +139,6 @@ main(int argc, char**argv)
 
 /* body for main */
 "{int x;f(g());exit(0);}",
-""};
-
-    char *func_decls[] = {
-	"f(unsigned long obj);",
-	"long g();",
-	"void main ();",
-	""};
-
-    char *global_decls[] = {
-	"typedef struct {int dims[0]; } *A;",
 ""};
 
     int i;

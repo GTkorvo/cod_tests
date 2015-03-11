@@ -139,6 +139,19 @@ main(int argc, char**argv)
         void abort();\n\
         int test_printf(const char *format, ...);\n\
         int printf(const char *format, ...);";
+    char *global_decls[] = {
+	"typedef unsigned int dev_t;\n\
+typedef unsigned int kdev_t;",
+""};
+
+    char *func_decls[] = {
+	"static inline kdev_t to_kdev_t(int dev);",
+	"void do_mknod(const char * filename, int mode, kdev_t dev);",
+	"char * getname(const char * filename);",
+	"int sys_mknod(const char * filename, int mode, dev_t dev);",
+	"int main();",
+	""};
+
     char *func_bodies[] = {
 
 /* body for to_kdev_t */
@@ -194,19 +207,6 @@ main(int argc, char**argv)
 \n\
 	return sys_mknod(\"test\",1,0x12345678);\n\
 }",
-""};
-
-    char *func_decls[] = {
-	"static inline kdev_t to_kdev_t(int dev);",
-	"void do_mknod(const char * filename, int mode, kdev_t dev);",
-	"char * getname(const char * filename);",
-	"int sys_mknod(const char * filename, int mode, dev_t dev);",
-	"int main();",
-	""};
-
-    char *global_decls[] = {
-	"typedef unsigned int dev_t;\n\
-typedef unsigned int kdev_t;",
 ""};
 
     int i;

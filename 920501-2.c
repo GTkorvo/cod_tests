@@ -194,6 +194,17 @@ main(int argc, char**argv)
         void abort();\n\
         int test_printf(const char *format, ...);\n\
         int printf(const char *format, ...);";
+    char *global_decls[] = {
+	"unsigned long factab[10];",
+""};
+
+    char *func_decls[] = {
+	"unsigned long gcd_ll (unsigned long long x, unsigned long long y);",
+	"unsigned long long powmod_ll (unsigned long long b, unsigned e, unsigned long long m);",
+	"void facts (unsigned long long t, int a_int, int x0, unsigned p);",
+	"void main ();",
+	""};
+
     char *func_bodies[] = {
 
 /* body for gcd_ll */
@@ -301,17 +312,6 @@ main(int argc, char**argv)
     abort();\n\
   exit (0);\n\
 }",
-""};
-
-    char *func_decls[] = {
-	"unsigned long gcd_ll (unsigned long long x, unsigned long long y);",
-	"unsigned long long powmod_ll (unsigned long long b, unsigned e, unsigned long long m);",
-	"void facts (unsigned long long t, int a_int, int x0, unsigned p);",
-	"void main ();",
-	""};
-
-    char *global_decls[] = {
-	"unsigned long factab[10];",
 ""};
 
     int i;

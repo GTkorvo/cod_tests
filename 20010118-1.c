@@ -115,6 +115,18 @@ main(int argc, char**argv)
         void abort();\n\
         int test_printf(const char *format, ...);\n\
         int printf(const char *format, ...);";
+    char *global_decls[] = {
+	"typedef struct {\n\
+  int a, b, c, d, e, f;\n\
+} A;",
+""};
+
+    char *func_decls[] = {
+	"void foo (A *v, int w, int x, int *y, int *z);",
+	"void bar (A *v, int x, int y, int w, int h);",
+	"int main ();",
+	""};
+
     char *func_bodies[] = {
 
 /* body for foo */
@@ -149,18 +161,6 @@ main(int argc, char**argv)
     abort();\n\
   exit(0);\n\
 }",
-""};
-
-    char *func_decls[] = {
-	"void foo (A *v, int w, int x, int *y, int *z);",
-	"void bar (A *v, int x, int y, int w, int h);",
-	"int main ();",
-	""};
-
-    char *global_decls[] = {
-	"typedef struct {\n\
-  int a, b, c, d, e, f;\n\
-} A;",
 ""};
 
     int i;

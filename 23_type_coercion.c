@@ -134,6 +134,17 @@ main(int argc, char**argv)
         void abort();\n\
         int test_printf(const char *format, ...);\n\
         int printf(const char *format, ...);";
+    char *global_decls[] = {
+	"#include <stdio.h>",
+""};
+
+    char *func_decls[] = {
+	"void charfunc(char a);",
+	"void intfunc(int a);",
+	"void floatfunc(float a);",
+	"int main();",
+	""};
+
     char *func_bodies[] = {
 
 /* body for charfunc */
@@ -186,17 +197,6 @@ main(int argc, char**argv)
 \n\
    return 0;\n\
 }",
-""};
-
-    char *func_decls[] = {
-	"void charfunc(char a);",
-	"void intfunc(int a);",
-	"void floatfunc(float a);",
-	"int main();",
-	""};
-
-    char *global_decls[] = {
-	"#include <stdio.h>",
 ""};
 
     int i;

@@ -96,6 +96,15 @@ main(int argc, char**argv)
         void abort();\n\
         int test_printf(const char *format, ...);\n\
         int printf(const char *format, ...);";
+    char *global_decls[] = {
+	"typedef unsigned long long uint64;",
+""};
+
+    char *func_decls[] = {
+	"void g(uint64 x, int y, int z, uint64 *p);",
+	"int main();",
+	""};
+
     char *func_bodies[] = {
 
 /* body for g */
@@ -110,15 +119,6 @@ main(int argc, char**argv)
 	g(0xdeadbeef01234567ULL, 0, 0, &a);\n\
 	return (a == 0x01234567) ? 0 : 1;\n\
 }",
-""};
-
-    char *func_decls[] = {
-	"void g(uint64 x, int y, int z, uint64 *p);",
-	"int main();",
-	""};
-
-    char *global_decls[] = {
-	"typedef unsigned long long uint64;",
 ""};
 
     int i;

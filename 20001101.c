@@ -101,7 +101,6 @@ main(int argc, char**argv)
     cod_extern_entry externs[] = 
     {
 	{"abort", (void*)(long)-1},
-	{"dummy", (void*)(long)-1},
 	{"bogus", (void*)(long)-1},
 	{"main", (void*)(long)-1},
 	{"abort", (void*)my_abort},
@@ -113,26 +112,28 @@ main(int argc, char**argv)
 
     char extern_string[] = "\n\
 	extern void abort();\n\
-	rtx dummy ( int *a, rtx *b);\n\
 	void bogus (rtx insn, rtx thread, rtx delay_list);\n\
 	int main();\n\
     	void exit(int value);\n\
         void abort();\n\
         int test_printf(const char *format, ...);\n\
         int printf(const char *format, ...);";
+    char *global_decls[] = {
+""};
+
+    char *func_decls[] = {
+	"extern void abort();",
+	"void bogus (rtx insn, rtx thread, rtx delay_list);",
+	"int main();",
+	""};
+
     char *func_bodies[] = {
 
 /* body for abort */
-"{\n\
-  unsigned int unchanging : 1;\n\
-}",
-
-/* body for dummy */
-"{\n\
-  *a = 1;\n\
-  *b = (rtx)7;\n\
-  return (rtx)1;\n\
-}",
+"struc, *rtx;\n\
+\n\
+rtx dummy ( int *a, rtx *b)\n\
+",
 
 /* body for bogus */
 "{\n\
@@ -159,21 +160,10 @@ main(int argc, char**argv)
 }",
 ""};
 
-    char *func_decls[] = {
-	"extern void abort();",
-	"rtx dummy ( int *a, rtx *b);",
-	"void bogus (rtx insn, rtx thread, rtx delay_list);",
-	"int main();",
-	""};
-
-    char *global_decls[] = {
-	"struc, *rtx;",
-""};
-
     int i;
-    cod_code gen_code[4];
+    cod_code gen_code[3];
     cod_parse_context context;
-    for (i=0; i < 4; i++) {
+    for (i=0; i < 3; i++) {
         int j;
         if (verbose) {
              printf("Working on subroutine %s\n", externs[i].extern_name);
@@ -196,7 +186,7 @@ main(int argc, char**argv)
         cod_subroutine_declaration(func_decls[i], context);
         gen_code[i] = cod_code_gen(func_bodies[i], context);
         externs[i].extern_value = (void*) gen_code[i]->func;
-        if (i == 3) {
+        if (i == 2) {
             int (*func)() = (int(*)()) externs[i].extern_value;
             if (setjmp(env) == 0) {
                 func();

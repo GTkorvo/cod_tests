@@ -91,6 +91,15 @@ main(int argc, char**argv)
         void abort();\n\
         int test_printf(const char *format, ...);\n\
         int printf(const char *format, ...);";
+    char *global_decls[] = {
+	"static double one = 1.0;",
+""};
+
+    char *func_decls[] = {
+	"void f();",
+	"void main();",
+	""};
+
     char *func_bodies[] = {
 
 /* body for f */
@@ -107,15 +116,6 @@ main(int argc, char**argv)
   if (f()) abort();\n\
   exit (0);\n\
 }",
-""};
-
-    char *func_decls[] = {
-	"void f();",
-	"void main();",
-	""};
-
-    char *global_decls[] = {
-	"static double one = 1.0;",
 ""};
 
     int i;

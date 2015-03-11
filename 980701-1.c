@@ -100,6 +100,16 @@ main(int argc, char**argv)
         void abort();\n\
         int test_printf(const char *format, ...);\n\
         int printf(const char *format, ...);";
+    char *global_decls[] = {
+	"unsigned char a[2];",
+""};
+
+    char *func_decls[] = {
+	"ns_name_skip (unsigned char **x, unsigned char *y);",
+	"int dn_skipname(unsigned char *ptr, unsigned char *eom);",
+	"void main();",
+	""};
+
     char *func_bodies[] = {
 
 /* body for ns_name_skip */
@@ -123,16 +133,6 @@ main(int argc, char**argv)
     abort ();\n\
   exit (0);\n\
 }",
-""};
-
-    char *func_decls[] = {
-	"ns_name_skip (unsigned char **x, unsigned char *y);",
-	"int dn_skipname(unsigned char *ptr, unsigned char *eom);",
-	"void main();",
-	""};
-
-    char *global_decls[] = {
-	"unsigned char a[2];",
 ""};
 
     int i;

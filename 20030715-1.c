@@ -113,6 +113,17 @@ main(int argc, char**argv)
         void abort();\n\
         int test_printf(const char *format, ...);\n\
         int printf(const char *format, ...);";
+    char *global_decls[] = {
+	"int strcmp (const char *, const char *);\n\
+int ap_standalone;",
+""};
+
+    char *func_decls[] = {
+	"const char *ap_check_cmd_context (void *a, int b);",
+	"const char *server_type (void *a, void *b, char *arg);",
+	"int main ();",
+	""};
+
     char *func_bodies[] = {
 
 /* body for ap_check_cmd_context */
@@ -141,17 +152,6 @@ main(int argc, char**argv)
   server_type (0, 0, \"standalone\");\n\
   return 0;\n\
 }",
-""};
-
-    char *func_decls[] = {
-	"const char *ap_check_cmd_context (void *a, int b);",
-	"const char *server_type (void *a, void *b, char *arg);",
-	"int main ();",
-	""};
-
-    char *global_decls[] = {
-	"int strcmp (const char *, const char *);\n\
-int ap_standalone;",
 ""};
 
     int i;

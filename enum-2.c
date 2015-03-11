@@ -96,6 +96,21 @@ main(int argc, char**argv)
         void abort();\n\
         int test_printf(const char *format, ...);\n\
         int printf(const char *format, ...);";
+    char *global_decls[] = {
+	"enum foo { FOO, BAR };\n\
+\n\
+/* Even though the underlying type of an enum is unspecified, the type\n\
+   of enumeration constants is explicitly defined as int (6.4.4.3/2 in\n\
+   the C99 Standard).  Therefore, `i' must not be promoted to\n\
+   `unsigned' in the comparison below;",
+	"we must exit the loop when it\n\
+   becomes negative. */",
+""};
+
+    char *func_decls[] = {
+	"int main ();",
+	""};
+
     char *func_bodies[] = {
 
 /* body for main */
@@ -107,21 +122,6 @@ main(int argc, char**argv)
 \n\
   exit (0);\n\
 }",
-""};
-
-    char *func_decls[] = {
-	"int main ();",
-	""};
-
-    char *global_decls[] = {
-	"enum foo { FOO, BAR };\n\
-\n\
-/* Even though the underlying type of an enum is unspecified, the type\n\
-   of enumeration constants is explicitly defined as int (6.4.4.3/2 in\n\
-   the C99 Standard).  Therefore, `i' must not be promoted to\n\
-   `unsigned' in the comparison below;",
-	"we must exit the loop when it\n\
-   becomes negative. */",
 ""};
 
     int i;

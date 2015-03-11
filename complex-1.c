@@ -122,6 +122,17 @@ main(int argc, char**argv)
         void abort();\n\
         int test_printf(const char *format, ...);\n\
         int printf(const char *format, ...);";
+    char *global_decls[] = {
+""};
+
+    char *func_decls[] = {
+	"double g0 (double x);",
+	"double g1 (double x);",
+	"double g2 (double x);",
+	"__complex__ double cexp (__complex__ double x);",
+	"void main ();",
+	""};
+
     char *func_bodies[] = {
 
 /* body for g0 */
@@ -160,17 +171,6 @@ main(int argc, char**argv)
     abort ();\n\
   exit (0);\n\
 }",
-""};
-
-    char *func_decls[] = {
-	"double g0 (double x);",
-	"double g1 (double x);",
-	"double g2 (double x);",
-	"__complex__ double cexp (__complex__ double x);",
-	"void main ();",
-	""};
-
-    char *global_decls[] = {
 ""};
 
     int i;

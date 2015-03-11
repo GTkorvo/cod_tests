@@ -142,6 +142,18 @@ main(int argc, char**argv)
         void abort();\n\
         int test_printf(const char *format, ...);\n\
         int printf(const char *format, ...);";
+    char *global_decls[] = {
+""};
+
+    char *func_decls[] = {
+	"void fail1();",
+	"void fail2();",
+	"void fail3();",
+	"void fail4();",
+	"void foo(long x);",
+	"int main();",
+	""};
+
     char *func_bodies[] = {
 
 /* body for fail1 */
@@ -204,18 +216,6 @@ main(int argc, char**argv)
   foo (1);\n\
   exit (0);\n\
 }",
-""};
-
-    char *func_decls[] = {
-	"void fail1();",
-	"void fail2();",
-	"void fail3();",
-	"void fail4();",
-	"void foo(long x);",
-	"int main();",
-	""};
-
-    char *global_decls[] = {
 ""};
 
     int i;

@@ -96,6 +96,18 @@ main(int argc, char**argv)
         void abort();\n\
         int test_printf(const char *format, ...);\n\
         int printf(const char *format, ...);";
+    char *global_decls[] = {
+	"float __complex__  x = 1.0 + 14.0 * (1.0fi);\n\
+float __complex__  y = 7.0 + 5.0 * (1.0fi);\n\
+float __complex__  w = 8.0 + 19.0 * (1.0fi);\n\
+float __complex__  z;",
+""};
+
+    char *func_decls[] = {
+	"float __complex__ p (float __complex__  a, float __complex__  b);",
+	"void main ();",
+	""};
+
     char *func_bodies[] = {
 
 /* body for p */
@@ -112,18 +124,6 @@ main(int argc, char**argv)
     abort ();\n\
   exit (0);\n\
 }",
-""};
-
-    char *func_decls[] = {
-	"float __complex__ p (float __complex__  a, float __complex__  b);",
-	"void main ();",
-	""};
-
-    char *global_decls[] = {
-	"float __complex__  x = 1.0 + 14.0 * (1.0fi);\n\
-float __complex__  y = 7.0 + 5.0 * (1.0fi);\n\
-float __complex__  w = 8.0 + 19.0 * (1.0fi);\n\
-float __complex__  z;",
 ""};
 
     int i;

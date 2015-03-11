@@ -81,20 +81,19 @@ main(int argc, char**argv)
         void abort();\n\
         int test_printf(const char *format, ...);\n\
         int printf(const char *format, ...);";
-    char *func_bodies[] = {
-
-/* body for abort */
-"\n\
-main()\n\
-",
+    char *global_decls[] = {
 ""};
 
     char *func_decls[] = {
 	"extern int abort(typedef int (*frob)(), frob f[] =);",
 	""};
 
-    char *global_decls[] = {
-	"frob f[] ={abort};",
+    char *func_bodies[] = {
+
+/* body for abort */
+"\n\
+main()\n\
+",
 ""};
 
     int i;

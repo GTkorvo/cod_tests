@@ -90,6 +90,14 @@ main(int argc, char**argv)
         void abort();\n\
         int test_printf(const char *format, ...);\n\
         int printf(const char *format, ...);";
+    char *global_decls[] = {
+""};
+
+    char *func_decls[] = {
+	"long long a = -1; long long llabs (long long); void abort (); int main();",
+	"long long llabs (long long b);",
+	""};
+
     char *func_bodies[] = {
 
 /* body for llabs */
@@ -103,14 +111,6 @@ main(int argc, char**argv)
 "{\n\
 	abort ();\n\
 }",
-""};
-
-    char *func_decls[] = {
-	"long long a = -1; long long llabs (long long); void abort (); int main();",
-	"long long llabs (long long b);",
-	""};
-
-    char *global_decls[] = {
 ""};
 
     int i;

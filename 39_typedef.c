@@ -105,6 +105,25 @@ main(int argc, char**argv)
         void abort();\n\
         int test_printf(const char *format, ...);\n\
         int printf(const char *format, ...);";
+    char *global_decls[] = {
+	"#include <stdio.h>\n\
+\n\
+typedef int MyInt;",
+	"struct FunStruct\n\
+{\n\
+   int i;\n\
+   int j;\n\
+};\n\
+\n\
+typedef struct FunStruct MyFunStruct;\n\
+\n\
+typedef MyFunStruct *MoreFunThanEver;",
+""};
+
+    char *func_decls[] = {
+	"int main();",
+	""};
+
     char *func_bodies[] = {
 
 /* body for main */
@@ -122,25 +141,6 @@ main(int argc, char**argv)
 \n\
    return 0;\n\
 }",
-""};
-
-    char *func_decls[] = {
-	"int main();",
-	""};
-
-    char *global_decls[] = {
-	"#include <stdio.h>\n\
-\n\
-typedef int MyInt;",
-	"struct FunStruct\n\
-{\n\
-   int i;\n\
-   int j;\n\
-};\n\
-\n\
-typedef struct FunStruct MyFunStruct;\n\
-\n\
-typedef MyFunStruct *MoreFunThanEver;",
 ""};
 
     int i;

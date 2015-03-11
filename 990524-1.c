@@ -102,6 +102,16 @@ main(int argc, char**argv)
         void abort();\n\
         int test_printf(const char *format, ...);\n\
         int printf(const char *format, ...);";
+    char *global_decls[] = {
+	"char a[] = \"12345\";\n\
+char b[] = \"12345\";",
+""};
+
+    char *func_decls[] = {
+	"void loop (char * pz, char * pzDta);",
+	"void main();",
+	""};
+
     char *func_bodies[] = {
 
 /* body for loop */
@@ -127,16 +137,6 @@ main(int argc, char**argv)
   loop (a, b);\n\
   exit (0);\n\
 }",
-""};
-
-    char *func_decls[] = {
-	"void loop (char * pz, char * pzDta);",
-	"void main();",
-	""};
-
-    char *global_decls[] = {
-	"char a[] = \"12345\";\n\
-char b[] = \"12345\";",
 ""};
 
     int i;

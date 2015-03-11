@@ -100,6 +100,18 @@ main(int argc, char**argv)
         void abort();\n\
         int test_printf(const char *format, ...);\n\
         int printf(const char *format, ...);";
+    char *global_decls[] = {
+	"typedef struct { unsigned short a; } A;\n\
+\n\
+\n\
+",
+""};
+
+    char *func_decls[] = {
+	"void foo (unsigned int x);",
+	"int main (int argc, char **argv);",
+	""};
+
     char *func_bodies[] = {
 
 /* body for foo */
@@ -115,18 +127,6 @@ main(int argc, char**argv)
     foo (((A) { ((!(i >> 4) ? 8 : 64 + (i >> 4)) << 8) + (i << 4) } ).a);\n\
   exit (0);\n\
 }",
-""};
-
-    char *func_decls[] = {
-	"void foo (unsigned int x);",
-	"int main (int argc, char **argv);",
-	""};
-
-    char *global_decls[] = {
-	"typedef struct { unsigned short a; } A;\n\
-\n\
-\n\
-",
 ""};
 
     int i;

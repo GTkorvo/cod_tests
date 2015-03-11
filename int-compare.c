@@ -196,6 +196,21 @@ main(int argc, char**argv)
         void abort();\n\
         int test_printf(const char *format, ...);\n\
         int printf(const char *format, ...);";
+    char *global_decls[] = {
+	"#include <limits.h>",
+""};
+
+    char *func_decls[] = {
+	"int gt (int a, int b);",
+	"int ge (int a, int b);",
+	"int lt (int a, int b);",
+	"int le (int a, int b);",
+	"void true (int c);",
+	"void false (int c);",
+	"void f ();",
+	"void main ();",
+	""};
+
     char *func_bodies[] = {
 
 /* body for gt */
@@ -302,21 +317,6 @@ main(int argc, char**argv)
   f ();\n\
   exit (0);\n\
 }",
-""};
-
-    char *func_decls[] = {
-	"int gt (int a, int b);",
-	"int ge (int a, int b);",
-	"int lt (int a, int b);",
-	"int le (int a, int b);",
-	"void true (int c);",
-	"void false (int c);",
-	"void f ();",
-	"void main ();",
-	""};
-
-    char *global_decls[] = {
-	"#include <limits.h>",
 ""};
 
     int i;

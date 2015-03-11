@@ -102,6 +102,14 @@ main(int argc, char**argv)
         void abort();\n\
         int test_printf(const char *format, ...);\n\
         int printf(const char *format, ...);";
+    char *global_decls[] = {
+""};
+
+    char *func_decls[] = {
+	"void f(int i, int j, int radius, int width, int N);",
+	"int main(int argc, char **argv);",
+	""};
+
     char *func_bodies[] = {
 
 /* body for f */
@@ -128,14 +136,6 @@ main(int argc, char**argv)
       f(i,1,exc_rad,2*exc_rad + 1, N);\n\
     exit (0);\n\
   }",
-""};
-
-    char *func_decls[] = {
-	"void f(int i, int j, int radius, int width, int N);",
-	"int main(int argc, char **argv);",
-	""};
-
-    char *global_decls[] = {
 ""};
 
     int i;

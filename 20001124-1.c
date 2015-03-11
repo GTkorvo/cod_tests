@@ -154,6 +154,30 @@ main(int argc, char**argv)
         void abort();\n\
         int test_printf(const char *format, ...);\n\
         int printf(const char *format, ...);";
+    char *global_decls[] = {
+	"struct inode {\n\
+	long long		i_size;\n\
+	struct super_block	*i_sb;\n\
+};",
+	"struct file {\n\
+	long long		f_pos;\n\
+};",
+	"struct super_block {\n\
+	int			s_blocksize;\n\
+	unsigned char		s_blocksize_bits;\n\
+	int			s_hs;\n\
+};",
+	"struct super_block s;\n\
+struct inode i;\n\
+struct file f;",
+""};
+
+    char *func_decls[] = {
+	"static char * isofs_bread(unsigned int block);",
+	"static int do_isofs_readdir(struct inode *inode, struct file *filp);",
+	"int main(int argc, char **argv);",
+	""};
+
     char *func_bodies[] = {
 
 /* body for isofs_bread */
@@ -209,30 +233,6 @@ main(int argc, char**argv)
 	do_isofs_readdir(&i,&f);\n\
 	abort ();\n\
 }",
-""};
-
-    char *func_decls[] = {
-	"static char * isofs_bread(unsigned int block);",
-	"static int do_isofs_readdir(struct inode *inode, struct file *filp);",
-	"int main(int argc, char **argv);",
-	""};
-
-    char *global_decls[] = {
-	"struct inode {\n\
-	long long		i_size;\n\
-	struct super_block	*i_sb;\n\
-};",
-	"struct file {\n\
-	long long		f_pos;\n\
-};",
-	"struct super_block {\n\
-	int			s_blocksize;\n\
-	unsigned char		s_blocksize_bits;\n\
-	int			s_hs;\n\
-};",
-	"struct super_block s;\n\
-struct inode i;\n\
-struct file f;",
 ""};
 
     int i;

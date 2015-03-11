@@ -103,6 +103,16 @@ main(int argc, char**argv)
         void abort();\n\
         int test_printf(const char *format, ...);\n\
         int printf(const char *format, ...);";
+    char *global_decls[] = {
+	"__complex__ double ag = 1.0 + 1.0i;\n\
+__complex__ double bg = -2.0 + 2.0i;",
+""};
+
+    char *func_decls[] = {
+	"__complex__ double f (__complex__ double x, __complex__ double y);",
+	"void main ();",
+	""};
+
     char *func_bodies[] = {
 
 /* body for f */
@@ -128,16 +138,6 @@ main(int argc, char**argv)
 \n\
   exit (0);\n\
 }",
-""};
-
-    char *func_decls[] = {
-	"__complex__ double f (__complex__ double x, __complex__ double y);",
-	"void main ();",
-	""};
-
-    char *global_decls[] = {
-	"__complex__ double ag = 1.0 + 1.0i;\n\
-__complex__ double bg = -2.0 + 2.0i;",
 ""};
 
     int i;

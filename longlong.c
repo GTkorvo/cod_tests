@@ -115,6 +115,19 @@ main(int argc, char**argv)
         void abort();\n\
         int test_printf(const char *format, ...);\n\
         int printf(const char *format, ...);";
+    char *global_decls[] = {
+	"typedef unsigned long long uint64;\n\
+unsigned long pars;\n\
+\n\
+uint64 b[32];\n\
+uint64 *r = b;",
+""};
+
+    char *func_decls[] = {
+	"void alpha_ep_extbl_i_eq_0();",
+	"int  main();",
+	""};
+
     char *func_bodies[] = {
 
 /* body for alpha_ep_extbl_i_eq_0 */
@@ -147,19 +160,6 @@ main(int argc, char**argv)
 \n\
   exit (0);\n\
 }",
-""};
-
-    char *func_decls[] = {
-	"void alpha_ep_extbl_i_eq_0();",
-	"int  main();",
-	""};
-
-    char *global_decls[] = {
-	"typedef unsigned long long uint64;\n\
-unsigned long pars;\n\
-\n\
-uint64 b[32];\n\
-uint64 *r = b;",
 ""};
 
     int i;

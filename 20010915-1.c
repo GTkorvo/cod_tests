@@ -153,6 +153,26 @@ main(int argc, char**argv)
         void abort();\n\
         int test_printf(const char *format, ...);\n\
         int printf(const char *format, ...);";
+    char *global_decls[] = {
+	"extern void f (void);\n\
+extern int x (int, char **);\n\
+extern int r (const char *);\n\
+extern char *s (char *, char **);\n\
+extern char *m (char *);\n\
+char *u;\n\
+char *h;\n\
+int check = 0;\n\
+int o = 0;",
+""};
+
+    char *func_decls[] = {
+	"int main (int argc, char **argv);",
+	"int x (int argc, char **argv);",
+	"char *m (char *x);",
+	"char *s (char *v, char **pp);",
+	"int r (const char *f);",
+	""};
+
     char *func_bodies[] = {
 
 /* body for main */
@@ -215,26 +235,6 @@ main(int argc, char**argv)
   cnt++;\n\
   return 1;\n\
 }",
-""};
-
-    char *func_decls[] = {
-	"int main (int argc, char **argv);",
-	"int x (int argc, char **argv);",
-	"char *m (char *x);",
-	"char *s (char *v, char **pp);",
-	"int r (const char *f);",
-	""};
-
-    char *global_decls[] = {
-	"extern void f (void);\n\
-extern int x (int, char **);\n\
-extern int r (const char *);\n\
-extern char *s (char *, char **);\n\
-extern char *m (char *);\n\
-char *u;\n\
-char *h;\n\
-int check = 0;\n\
-int o = 0;",
 ""};
 
     int i;

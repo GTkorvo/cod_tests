@@ -106,6 +106,15 @@ main(int argc, char**argv)
         void abort();\n\
         int test_printf(const char *format, ...);\n\
         int printf(const char *format, ...);";
+    char *global_decls[] = {
+	"char g_list[] ={ '1' };",
+""};
+
+    char *func_decls[] = {
+	"void g (void *p, char *list, int length, char **elementPtr, char **nextPtr);",
+	"int main ();",
+	""};
+
     char *func_bodies[] = {
 
 /* body for g */
@@ -131,15 +140,6 @@ main(int argc, char**argv)
 \n\
   return 0;\n\
 }",
-""};
-
-    char *func_decls[] = {
-	"void g (void *p, char *list, int length, char **elementPtr, char **nextPtr);",
-	"int main ();",
-	""};
-
-    char *global_decls[] = {
-	"char g_list[] ={ '1' };",
 ""};
 
     int i;

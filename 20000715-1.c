@@ -206,6 +206,21 @@ main(int argc, char**argv)
         void abort();\n\
         int test_printf(const char *format, ...);\n\
         int printf(const char *format, ...);";
+    char *global_decls[] = {
+	"int x, y;",
+""};
+
+    char *func_decls[] = {
+	"void test1();",
+	"void test2();",
+	"void test3();",
+	"static void init_xy();",
+	"void test4();",
+	"void test5();",
+	"void test6();",
+	"int main();",
+	""};
+
     char *func_bodies[] = {
 
 /* body for test1 */
@@ -316,23 +331,6 @@ main(int argc, char**argv)
 }",
 ""};
 
-    char *func_decls[] = {
-	"void test1();",
-	"void test2();",
-	"void test3();",
-	"static void init_xy();",
-	"void test4();",
-	"void test5();",
-	"void test6();",
-	"int main();",
-	""};
-
-    char *global_decls[] = {
-	"void abort(void);\n\
-void exit(int);",
-	"int x, y;",
-""};
-
     int i;
     cod_code gen_code[8];
     cod_parse_context context;
@@ -365,7 +363,7 @@ void exit(int);",
                 func();
             }
             if (exit_value != 0) {
-                printf("Test ./generated/20000715-1.c failed\n");
+                printf("Test ./20000715-1.c failed\n");
                 exit(exit_value);
             }
         } else {
@@ -378,14 +376,14 @@ void exit(int);",
         int ret = system("cmp 20000715-1.c.output /Users/eisen/prog/gcc-3.3.1-3/gcc/testsuite/gcc.expect-torture/execute/20000715-1.expect");
         ret = ret >> 8;
         if (ret == 1) {
-            printf("Test ./generated/20000715-1.c failed, output differs\n");
+            printf("Test ./20000715-1.c failed, output differs\n");
             exit(1);
         }
         if (ret != 0) {
-            printf("Test ./generated/20000715-1.c failed, output missing\n");
+            printf("Test ./20000715-1.c failed, output missing\n");
             exit(1);
         }
     }
-    if (verbose) printf("Test ./generated/20000715-1.c Succeeded\n");
+    if (verbose) printf("Test ./20000715-1.c Succeeded\n");
     return 0;
 }

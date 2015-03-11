@@ -118,6 +118,14 @@ main(int argc, char**argv)
         void abort();\n\
         int test_printf(const char *format, ...);\n\
         int printf(const char *format, ...);";
+    char *global_decls[] = {
+""};
+
+    char *func_decls[] = {
+	"typedef unsigned long long ULL; ULL back; ULL hpart, lpart; ULL build(long h, long l);",
+	"void main();",
+	""};
+
     char *func_bodies[] = {
 
 /* body for build */
@@ -158,14 +166,6 @@ main(int argc, char**argv)
     abort();\n\
   exit(0);\n\
 }",
-""};
-
-    char *func_decls[] = {
-	"typedef unsigned long long ULL; ULL back; ULL hpart, lpart; ULL build(long h, long l);",
-	"void main();",
-	""};
-
-    char *global_decls[] = {
 ""};
 
     int i;

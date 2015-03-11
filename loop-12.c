@@ -103,6 +103,16 @@ main(int argc, char**argv)
         void abort();\n\
         int test_printf(const char *format, ...);\n\
         int printf(const char *format, ...);";
+    char *global_decls[] = {
+	"char *p;",
+""};
+
+    char *func_decls[] = {
+	"static int  is_end_of_statement ();",
+	"void foo ();",
+	"int main ();",
+	""};
+
     char *func_bodies[] = {
 
 /* body for is_end_of_statement */
@@ -124,16 +134,6 @@ main(int argc, char**argv)
   foo ();\n\
   return 0;\n\
 }",
-""};
-
-    char *func_decls[] = {
-	"static int  is_end_of_statement ();",
-	"void foo ();",
-	"int main ();",
-	""};
-
-    char *global_decls[] = {
-	"char *p;",
 ""};
 
     int i;

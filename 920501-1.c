@@ -79,13 +79,7 @@ main(int argc, char**argv)
         void abort();\n\
         int test_printf(const char *format, ...);\n\
         int printf(const char *format, ...);";
-    char *func_bodies[] = {
-
-/* body for x */
-"{if(!s[0]){s[1+s[1]]=s[1];return 1;}}",
-
-/* body for main */
-"{s[0]=s[1]=0;if(x(0)!=1)abort();exit(0);}",
+    char *global_decls[] = {
 ""};
 
     char *func_decls[] = {
@@ -93,7 +87,13 @@ main(int argc, char**argv)
 	"void main();",
 	""};
 
-    char *global_decls[] = {
+    char *func_bodies[] = {
+
+/* body for x */
+"{if(!s[0]){s[1+s[1]]=s[1];return 1;}}",
+
+/* body for main */
+"{s[0]=s[1]=0;if(x(0)!=1)abort();exit(0);}",
 ""};
 
     int i;

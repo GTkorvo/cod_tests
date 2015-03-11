@@ -111,6 +111,19 @@ main(int argc, char**argv)
         void abort();\n\
         int test_printf(const char *format, ...);\n\
         int printf(const char *format, ...);";
+    char *global_decls[] = {
+	"long *wm_TR;\n\
+long *wm_HB;\n\
+long *wm_SPB;\n\
+\n\
+long mem[100];",
+""};
+
+    char *func_decls[] = {
+	"void f (long *mr_TR, long *mr_SPB, long *mr_HB, long *reg1, long *reg2);",
+	"void main ();",
+	""};
+
     char *func_bodies[] = {
 
 /* body for f */
@@ -137,19 +150,6 @@ main(int argc, char**argv)
   f (mem + 100, mem + 6, mem + 8, mem + 99, mem + 99);\n\
   exit (0);\n\
 }",
-""};
-
-    char *func_decls[] = {
-	"void f (long *mr_TR, long *mr_SPB, long *mr_HB, long *reg1, long *reg2);",
-	"void main ();",
-	""};
-
-    char *global_decls[] = {
-	"long *wm_TR;\n\
-long *wm_HB;\n\
-long *wm_SPB;\n\
-\n\
-long mem[100];",
 ""};
 
     int i;

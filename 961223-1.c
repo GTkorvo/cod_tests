@@ -95,6 +95,17 @@ main(int argc, char**argv)
         void abort();\n\
         int test_printf(const char *format, ...);\n\
         int printf(const char *format, ...);";
+    char *global_decls[] = {
+	"struct s {\n\
+  double d;\n\
+};",
+""};
+
+    char *func_decls[] = {
+	"inline struct s sub (struct s s);",
+	"void main ();",
+	""};
+
     char *func_bodies[] = {
 
 /* body for sub */
@@ -111,17 +122,6 @@ main(int argc, char**argv)
     abort ();\n\
   exit (0);\n\
 }",
-""};
-
-    char *func_decls[] = {
-	"inline struct s sub (struct s s);",
-	"void main ();",
-	""};
-
-    char *global_decls[] = {
-	"struct s {\n\
-  double d;\n\
-};",
 ""};
 
     int i;

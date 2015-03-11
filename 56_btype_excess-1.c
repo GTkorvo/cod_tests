@@ -73,14 +73,14 @@ main(int argc, char**argv)
         void abort();\n\
         int test_printf(const char *format, ...);\n\
         int printf(const char *format, ...);";
-    char *func_bodies[] = {
+    char *global_decls[] = {
+	"struct A {} int i;",
 ""};
 
     char *func_decls[] = {
 	""};
 
-    char *global_decls[] = {
-	"struct A {} int i;",
+    char *func_bodies[] = {
 ""};
 
     int i;

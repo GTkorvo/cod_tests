@@ -188,6 +188,58 @@ main(int argc, char**argv)
         void abort();\n\
         int test_printf(const char *format, ...);\n\
         int printf(const char *format, ...);";
+    char *global_decls[] = {
+	"typedef long long bfd_signed_vma;\n\
+typedef bfd_signed_vma file_ptr;",
+	"typedef enum bfd_boolean {false, true} boolean;\n\
+\n\
+typedef unsigned long long bfd_size_type;\n\
+\n\
+typedef unsigned int flagword;\n\
+\n\
+typedef unsigned long long CORE_ADDR;\n\
+typedef unsigned long long bfd_vma;",
+	"struct bfd_struct {\n\
+	int x;\n\
+};",
+	"struct asection_struct {\n\
+  unsigned int user_set_vma : 1;\n\
+  bfd_vma vma;\n\
+  bfd_vma lma;\n\
+  unsigned int alignment_power;\n\
+  unsigned int entsize;\n\
+};\n\
+\n\
+typedef struct bfd_struct bfd;\n\
+typedef struct asection_struct asection;\n\
+\n\
+static bfd *\n\
+bfd_openw_with_cleanup (char *filename, const char *target, char *mode);\n\
+\n\
+static asection *\n\
+bfd_make_section_anyway (bfd *abfd, const char *name);\n\
+\n\
+static boolean\n\
+bfd_set_section_size (bfd *abfd, asection *sec, bfd_size_type val);\n\
+\n\
+static boolean\n\
+bfd_set_section_flags (bfd *abfd, asection *sec, flagword flags);\n\
+\n\
+static boolean\n\
+bfd_set_section_contents (bfd *abfd, asection *section, void * data, file_ptr offset, bfd_size_type count);",
+	"static char hello[] = \"hello\";",
+""};
+
+    char *func_decls[] = {
+	"static void dump_bfd_file (char *filename, char *mode,                char *target, CORE_ADDR vaddr,                char *buf, int len);",
+	"static bfd * bfd_openw_with_cleanup (char *filename, const char *target, char *mode);",
+	"static asection * bfd_make_section_anyway (bfd *abfd, const char *name);",
+	"static boolean bfd_set_section_size (bfd *abfd, asection *sec, bfd_size_type val);",
+	"static boolean bfd_set_section_flags (bfd *abfd, asection *sec, flagword flags);",
+	"static boolean bfd_set_section_contents (bfd *abfd, asection *section, void * data, file_ptr offset, bfd_size_type count);",
+	"int main();",
+	""};
+
     char *func_bodies[] = {
 
 /* body for dump_bfd_file */
@@ -238,58 +290,6 @@ main(int argc, char**argv)
 	dump_bfd_file(0, 0, 0, (CORE_ADDR)0xdeadbeef, hello, (int)0x1eadbeef);\n\
 	exit(0);\n\
 }",
-""};
-
-    char *func_decls[] = {
-	"static void dump_bfd_file (char *filename, char *mode,                char *target, CORE_ADDR vaddr,                char *buf, int len);",
-	"static bfd * bfd_openw_with_cleanup (char *filename, const char *target, char *mode);",
-	"static asection * bfd_make_section_anyway (bfd *abfd, const char *name);",
-	"static boolean bfd_set_section_size (bfd *abfd, asection *sec, bfd_size_type val);",
-	"static boolean bfd_set_section_flags (bfd *abfd, asection *sec, flagword flags);",
-	"static boolean bfd_set_section_contents (bfd *abfd, asection *section, void * data, file_ptr offset, bfd_size_type count);",
-	"int main();",
-	""};
-
-    char *global_decls[] = {
-	"typedef long long bfd_signed_vma;\n\
-typedef bfd_signed_vma file_ptr;",
-	"typedef enum bfd_boolean {false, true} boolean;\n\
-\n\
-typedef unsigned long long bfd_size_type;\n\
-\n\
-typedef unsigned int flagword;\n\
-\n\
-typedef unsigned long long CORE_ADDR;\n\
-typedef unsigned long long bfd_vma;",
-	"struct bfd_struct {\n\
-	int x;\n\
-};",
-	"struct asection_struct {\n\
-  unsigned int user_set_vma : 1;\n\
-  bfd_vma vma;\n\
-  bfd_vma lma;\n\
-  unsigned int alignment_power;\n\
-  unsigned int entsize;\n\
-};\n\
-\n\
-typedef struct bfd_struct bfd;\n\
-typedef struct asection_struct asection;\n\
-\n\
-static bfd *\n\
-bfd_openw_with_cleanup (char *filename, const char *target, char *mode);\n\
-\n\
-static asection *\n\
-bfd_make_section_anyway (bfd *abfd, const char *name);\n\
-\n\
-static boolean\n\
-bfd_set_section_size (bfd *abfd, asection *sec, bfd_size_type val);\n\
-\n\
-static boolean\n\
-bfd_set_section_flags (bfd *abfd, asection *sec, flagword flags);\n\
-\n\
-static boolean\n\
-bfd_set_section_contents (bfd *abfd, asection *section, void * data, file_ptr offset, bfd_size_type count);",
-	"static char hello[] = \"hello\";",
 ""};
 
     int i;

@@ -135,6 +135,33 @@ main(int argc, char**argv)
         void abort();\n\
         int test_printf(const char *format, ...);\n\
         int printf(const char *format, ...);";
+    char *global_decls[] = {
+	"typedef __SIZE_TYPE__ size_t;\n\
+extern void *memcpy (void *__restrict, const void *__restrict, size_t);\n\
+\n\
+",
+	"typedef struct t\n\
+{\n\
+  unsigned a : 16;\n\
+  unsigned b : 8;\n\
+  unsigned c : 8;\n\
+  long d[4];\n\
+} *T;",
+	"typedef struct {\n\
+  long r[3];\n\
+} U;\n\
+\n\
+T bar (U, unsigned int);",
+	"struct t t ={ 26, 0, 0, { 0, 21, 22, 23 }};",
+""};
+
+    char *func_decls[] = {
+	"T foo (T x);",
+	"T baz (T x);",
+	"T bar (U d, unsigned int m);",
+	"int main ();",
+	""};
+
     char *func_bodies[] = {
 
 /* body for foo */
@@ -171,33 +198,6 @@ main(int argc, char**argv)
   foo (&t);\n\
   exit (0);\n\
 }",
-""};
-
-    char *func_decls[] = {
-	"T foo (T x);",
-	"T baz (T x);",
-	"T bar (U d, unsigned int m);",
-	"int main ();",
-	""};
-
-    char *global_decls[] = {
-	"typedef __SIZE_TYPE__ size_t;\n\
-extern void *memcpy (void *__restrict, const void *__restrict, size_t);\n\
-\n\
-",
-	"typedef struct t\n\
-{\n\
-  unsigned a : 16;\n\
-  unsigned b : 8;\n\
-  unsigned c : 8;\n\
-  long d[4];\n\
-} *T;",
-	"typedef struct {\n\
-  long r[3];\n\
-} U;\n\
-\n\
-T bar (U, unsigned int);",
-	"struct t t ={ 26, 0, 0, { 0, 21, 22, 23 }};",
 ""};
 
     int i;

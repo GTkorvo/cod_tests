@@ -102,6 +102,21 @@ main(int argc, char**argv)
         void abort();\n\
         int test_printf(const char *format, ...);\n\
         int printf(const char *format, ...);";
+    char *global_decls[] = {
+	"typedef struct { short v16; } __attribute__((packed)) jint16_t;",
+	"struct node {\n\
+  jint16_t magic;\n\
+  jint16_t nodetype;\n\
+  int totlen;\n\
+} __attribute__((packed));\n\
+\n\
+struct node node, *node_p = &node;",
+""};
+
+    char *func_decls[] = {
+	"int main();",
+	""};
+
     char *func_bodies[] = {
 
 /* body for main */
@@ -117,21 +132,6 @@ main(int argc, char**argv)
     abort();\n\
   return 0;\n\
 }",
-""};
-
-    char *func_decls[] = {
-	"int main();",
-	""};
-
-    char *global_decls[] = {
-	"typedef struct { short v16; } __attribute__((packed)) jint16_t;",
-	"struct node {\n\
-  jint16_t magic;\n\
-  jint16_t nodetype;\n\
-  int totlen;\n\
-} __attribute__((packed));\n\
-\n\
-struct node node, *node_p = &node;",
 ""};
 
     int i;

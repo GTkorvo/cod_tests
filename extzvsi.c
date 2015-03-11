@@ -107,6 +107,21 @@ main(int argc, char**argv)
         void abort();\n\
         int test_printf(const char *format, ...);\n\
         int printf(const char *format, ...);";
+    char *global_decls[] = {
+	"struct ieee\n\
+{\n\
+  unsigned int negative:1;\n\
+  unsigned int exponent:11;\n\
+  unsigned int mantissa0:20;\n\
+  unsigned int mantissa1:32;\n\
+} x;",
+""};
+
+    char *func_decls[] = {
+	"unsigned int foo ();",
+	"int main ();",
+	""};
+
     char *func_bodies[] = {
 
 /* body for foo */
@@ -128,21 +143,6 @@ main(int argc, char**argv)
     abort ();\n\
   return 0;\n\
 }",
-""};
-
-    char *func_decls[] = {
-	"unsigned int foo ();",
-	"int main ();",
-	""};
-
-    char *global_decls[] = {
-	"struct ieee\n\
-{\n\
-  unsigned int negative:1;\n\
-  unsigned int exponent:11;\n\
-  unsigned int mantissa0:20;\n\
-  unsigned int mantissa1:32;\n\
-} x;",
 ""};
 
     int i;

@@ -110,6 +110,23 @@ main(int argc, char**argv)
         void abort();\n\
         int test_printf(const char *format, ...);\n\
         int printf(const char *format, ...);";
+    char *global_decls[] = {
+	"typedef struct rtx_def\n\
+{\n\
+  int f1 :1;\n\
+  int f2 :1;\n\
+} *rtx;\n\
+\n\
+static rtx\n\
+f (orig)\n\
+     register rtx orig;",
+""};
+
+    char *func_decls[] = {
+	"void f2 ();",
+	"void main ();",
+	""};
+
     char *func_bodies[] = {
 
 /* body for f2 */
@@ -129,23 +146,6 @@ main(int argc, char**argv)
     abort ();\n\
   exit (0);\n\
 }",
-""};
-
-    char *func_decls[] = {
-	"void f2 ();",
-	"void main ();",
-	""};
-
-    char *global_decls[] = {
-	"typedef struct rtx_def\n\
-{\n\
-  int f1 :1;\n\
-  int f2 :1;\n\
-} *rtx;\n\
-\n\
-static rtx\n\
-f (orig)\n\
-     register rtx orig;",
 ""};
 
     int i;

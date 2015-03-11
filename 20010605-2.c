@@ -116,6 +116,16 @@ main(int argc, char**argv)
         void abort();\n\
         int test_printf(const char *format, ...);\n\
         int printf(const char *format, ...);";
+    char *global_decls[] = {
+""};
+
+    char *func_decls[] = {
+	"void foo (), bar (), baz (); int main ();",
+	"void foo (__complex__ double x);",
+	"void bar (__complex__ float x);",
+	"void baz (__complex__ long double x);",
+	""};
+
     char *func_bodies[] = {
 
 /* body for foo */
@@ -152,16 +162,6 @@ main(int argc, char**argv)
   if (__real__ x != 5.0L || __imag__ x != 6.0L)\n\
     abort ();\n\
 }",
-""};
-
-    char *func_decls[] = {
-	"void foo (), bar (), baz (); int main ();",
-	"void foo (__complex__ double x);",
-	"void bar (__complex__ float x);",
-	"void baz (__complex__ long double x);",
-	""};
-
-    char *global_decls[] = {
 ""};
 
     int i;

@@ -93,6 +93,14 @@ main(int argc, char**argv)
         void abort();\n\
         int test_printf(const char *format, ...);\n\
         int printf(const char *format, ...);";
+    char *global_decls[] = {
+""};
+
+    char *func_decls[] = {
+	"void fn_4parms (unsigned char a, long *b, long *c, unsigned int *d);",
+	"int main ();",
+	""};
+
     char *func_bodies[] = {
 
 /* body for fn_4parms */
@@ -110,14 +118,6 @@ main(int argc, char**argv)
   fn_4parms (a, &b, &c, &d);\n\
   return 0;\n\
 }",
-""};
-
-    char *func_decls[] = {
-	"void fn_4parms (unsigned char a, long *b, long *c, unsigned int *d);",
-	"int main ();",
-	""};
-
-    char *global_decls[] = {
 ""};
 
     int i;

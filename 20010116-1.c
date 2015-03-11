@@ -110,6 +110,22 @@ main(int argc, char**argv)
         void abort();\n\
         int test_printf(const char *format, ...);\n\
         int printf(const char *format, ...);";
+    char *global_decls[] = {
+	"\n\
+\n\
+extern void ok (int);",
+	"typedef struct{\n\
+  int x, y, z;\n\
+};",
+	"Data;",
+""};
+
+    char *func_decls[] = {
+	"void find (Data *first, Data *last);",
+	"void ok(int i);",
+	"int main ();",
+	""};
+
     char *func_bodies[] = {
 
 /* body for find */
@@ -132,20 +148,6 @@ main(int argc, char**argv)
   Data DataList[4];\n\
   find (DataList + 0, DataList + 4);\n\
 }",
-""};
-
-    char *func_decls[] = {
-	"void find (Data *first, Data *last);",
-	"void ok(int i);",
-	"int main ();",
-	""};
-
-    char *global_decls[] = {
-	"\n\
-\n\
-extern void ok (int);",
-	"typedef struct",
-	"Data;",
 ""};
 
     int i;

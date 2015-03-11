@@ -126,6 +126,21 @@ main(int argc, char**argv)
         void abort();\n\
         int test_printf(const char *format, ...);\n\
         int printf(const char *format, ...);";
+    char *global_decls[] = {
+	"typedef struct _RenderInfo RenderInfo;",
+	"struct _RenderInfo{\n\
+    int y;\n\
+    float scaley;\n\
+    int src_y;\n\
+};",
+""};
+
+    char *func_decls[] = {
+	"static void bar();",
+	"static int render_image_rgb_a (RenderInfo * info);",
+	"int main ();",
+	""};
+
     char *func_bodies[] = {
 
 /* body for bar */
@@ -168,18 +183,6 @@ main(int argc, char**argv)
        abort ();\n\
     exit(0);\n\
 }",
-""};
-
-    char *func_decls[] = {
-	"static void bar();",
-	"static int render_image_rgb_a (RenderInfo * info);",
-	"int main ();",
-	""};
-
-    char *global_decls[] = {
-	"typedef struct _RenderInfo RenderInfo;\n\
-struct _RenderInfo",
-	";",
 ""};
 
     int i;

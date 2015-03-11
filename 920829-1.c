@@ -76,17 +76,17 @@ main(int argc, char**argv)
         void abort();\n\
         int test_printf(const char *format, ...);\n\
         int printf(const char *format, ...);";
-    char *func_bodies[] = {
-
-/* body for main */
-"{if(c*3!=c3)abort();exit(0);}",
+    char *global_decls[] = {
 ""};
 
     char *func_decls[] = {
 	"long long c=2863311530LL,c3=2863311530LL*3; main();",
 	""};
 
-    char *global_decls[] = {
+    char *func_bodies[] = {
+
+/* body for main */
+"{if(c*3!=c3)abort();exit(0);}",
 ""};
 
     int i;

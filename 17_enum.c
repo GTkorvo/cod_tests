@@ -103,6 +103,25 @@ main(int argc, char**argv)
         void abort();\n\
         int test_printf(const char *format, ...);\n\
         int printf(const char *format, ...);";
+    char *global_decls[] = {
+	"#include <stdio.h>",
+	"enum fred\n\
+{\n\
+   a,\n\
+   b,\n\
+   c,\n\
+   d,\n\
+   e = 54,\n\
+   f = 73,\n\
+   g,\n\
+   h\n\
+};",
+""};
+
+    char *func_decls[] = {
+	"int main();",
+	""};
+
     char *func_bodies[] = {
 
 /* body for main */
@@ -118,25 +137,6 @@ main(int argc, char**argv)
 \n\
    return 0;\n\
 }",
-""};
-
-    char *func_decls[] = {
-	"int main();",
-	""};
-
-    char *global_decls[] = {
-	"#include <stdio.h>",
-	"enum fred\n\
-{\n\
-   a,\n\
-   b,\n\
-   c,\n\
-   d,\n\
-   e = 54,\n\
-   f = 73,\n\
-   g,\n\
-   h\n\
-};",
 ""};
 
     int i;

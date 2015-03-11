@@ -113,6 +113,20 @@ main(int argc, char**argv)
         void abort();\n\
         int test_printf(const char *format, ...);\n\
         int printf(const char *format, ...);";
+    char *global_decls[] = {
+	"#include <stdio.h>",
+""};
+
+    char *func_decls[] = {
+	"long long proc1();",
+	"long long proc2();",
+	"long long proc3();",
+	"long long proc4();",
+	"long long proc5();",
+	"void print_longlong(long long x, char *buf);",
+	"void main();",
+	""};
+
     char *func_bodies[] = {
 
 /* body for proc1 */
@@ -148,20 +162,6 @@ print_longlong(proc3(),buf);if(strcmp(\"aabbccdd12345678\",buf))abort();\n\
 print_longlong(proc4(),buf);if(strcmp(\"ffffffffffffffff\",buf))abort();\n\
 print_longlong(proc5(),buf);if(strcmp(\"aabbccdd\",buf))abort();\n\
 exit(0);}",
-""};
-
-    char *func_decls[] = {
-	"long long proc1();",
-	"long long proc2();",
-	"long long proc3();",
-	"long long proc4();",
-	"long long proc5();",
-	"void print_longlong(long long x, char *buf);",
-	"void main();",
-	""};
-
-    char *global_decls[] = {
-	"#include <stdio.h>",
 ""};
 
     int i;

@@ -133,40 +133,6 @@ main(int argc, char**argv)
         void abort();\n\
         int test_printf(const char *format, ...);\n\
         int printf(const char *format, ...);";
-    char *func_bodies[] = {
-
-/* body for f */
-"{\n\
-  static X xr = {\"return val\", 'R'};\n\
-  X r;\n\
-  r = xr;\n\
-  r.c1 = b;\n\
-  sprintf (out, \"X f(B,char,double,B):({%g,{%d,%d,%d}},'%c',%g,{%g,{%d,%d,%d}})\",\n\
-	   a.d, a.i[0], a.i[1], a.i[2], b, c, d.d, d.i[0], d.i[1], d.i[2]);\n\
-  return r;\n\
-}",
-
-/* body for main */
-"{\n\
-  X Xr;\n\
-  char tmp[100];\n\
-\n\
-  Xr = f (B1, c2, d3, B2);\n\
-  strcpy (tmp, out);\n\
-  Xr.c[0] = Xr.c1 = '\\0';\n\
-  Xr = (*fp) (B1, c2, d3, B2);\n\
-  if (strcmp (tmp, out))\n\
-    abort ();\n\
-\n\
-  exit (0);\n\
-}",
-""};
-
-    char *func_decls[] = {
-	"X f (B a, char b, double c, B d);",
-	"void main ();",
-	""};
-
     char *global_decls[] = {
 	"#include <stdio.h>\n\
 #include <string.h>\n\
@@ -196,6 +162,40 @@ double d9 = 0.9;",
 	"X X2 ={\"123\",'9'};",
 	"X X3 ={\"return-return-return\",'R'};",
 	"X (*fp) (B, char, double, B) = &f;",
+""};
+
+    char *func_decls[] = {
+	"X f (B a, char b, double c, B d);",
+	"void main ();",
+	""};
+
+    char *func_bodies[] = {
+
+/* body for f */
+"{\n\
+  static X xr = {\"return val\", 'R'};\n\
+  X r;\n\
+  r = xr;\n\
+  r.c1 = b;\n\
+  sprintf (out, \"X f(B,char,double,B):({%g,{%d,%d,%d}},'%c',%g,{%g,{%d,%d,%d}})\",\n\
+	   a.d, a.i[0], a.i[1], a.i[2], b, c, d.d, d.i[0], d.i[1], d.i[2]);\n\
+  return r;\n\
+}",
+
+/* body for main */
+"{\n\
+  X Xr;\n\
+  char tmp[100];\n\
+\n\
+  Xr = f (B1, c2, d3, B2);\n\
+  strcpy (tmp, out);\n\
+  Xr.c[0] = Xr.c1 = '\\0';\n\
+  Xr = (*fp) (B1, c2, d3, B2);\n\
+  if (strcmp (tmp, out))\n\
+    abort ();\n\
+\n\
+  exit (0);\n\
+}",
 ""};
 
     int i;

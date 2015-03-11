@@ -106,6 +106,14 @@ main(int argc, char**argv)
         void abort();\n\
         int test_printf(const char *format, ...);\n\
         int printf(const char *format, ...);";
+    char *global_decls[] = {
+""};
+
+    char *func_decls[] = {
+	"int gfbyte ( void );",
+	"int main( void );",
+	""};
+
     char *func_bodies[] = {
 
 /* body for gfbyte */
@@ -137,14 +145,6 @@ main(int argc, char**argv)
 \n\
  exit (0);\n\
 }",
-""};
-
-    char *func_decls[] = {
-	"int gfbyte ( void );",
-	"int main( void );",
-	""};
-
-    char *global_decls[] = {
 ""};
 
     int i;

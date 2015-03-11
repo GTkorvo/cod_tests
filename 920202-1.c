@@ -94,6 +94,16 @@ main(int argc, char**argv)
         void abort();\n\
         int test_printf(const char *format, ...);\n\
         int printf(const char *format, ...);";
+    char *global_decls[] = {
+	"static int rule_text_needs_stack_pop = 0;\n\
+static int input_stack_pos = 1;",
+""};
+
+    char *func_decls[] = {
+	"f ();",
+	"void main ();",
+	""};
+
     char *func_bodies[] = {
 
 /* body for f */
@@ -111,16 +121,6 @@ main(int argc, char**argv)
   f ();\n\
   exit (0);\n\
 }",
-""};
-
-    char *func_decls[] = {
-	"f ();",
-	"void main ();",
-	""};
-
-    char *global_decls[] = {
-	"static int rule_text_needs_stack_pop = 0;\n\
-static int input_stack_pos = 1;",
 ""};
 
     int i;

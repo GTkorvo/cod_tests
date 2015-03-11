@@ -126,6 +126,20 @@ main(int argc, char**argv)
         void abort();\n\
         int test_printf(const char *format, ...);\n\
         int printf(const char *format, ...);";
+    char *global_decls[] = {
+	"struct tiny\n\
+{\n\
+  char c;\n\
+  char d;\n\
+  char e;\n\
+};",
+""};
+
+    char *func_decls[] = {
+	"f (int n, struct tiny x, struct tiny y, struct tiny z, long l);",
+	"void main ();",
+	""};
+
     char *func_bodies[] = {
 
 /* body for f */
@@ -170,20 +184,6 @@ main(int argc, char**argv)
   f (3, x[0], x[1], x[2], (long) 123);\n\
   exit(0);\n\
 }",
-""};
-
-    char *func_decls[] = {
-	"f (int n, struct tiny x, struct tiny y, struct tiny z, long l);",
-	"void main ();",
-	""};
-
-    char *global_decls[] = {
-	"struct tiny\n\
-{\n\
-  char c;\n\
-  char d;\n\
-  char e;\n\
-};",
 ""};
 
     int i;

@@ -160,6 +160,30 @@ main(int argc, char**argv)
         void abort();\n\
         int test_printf(const char *format, ...);\n\
         int printf(const char *format, ...);";
+    char *global_decls[] = {
+	"(nil)\n\
+	  (nil))\n\
+   forced a splitter through the output pattern \"#\", but there was no\n\
+   matching splitter.  */",
+	"struct xx\n\
+ {\n\
+   int a;\n\
+   struct xx *b;\n\
+   short c;\n\
+ };\n\
+\n\
+int f1 (struct xx *);\n\
+void f2 (void);",
+""};
+
+    char *func_decls[] = {
+	"/* PR target/6838 from cato@df.lth.se.    cris-elf got an ICE with -O2: the insn matching       ();",
+	"int foo (struct xx *p, int b, int c, int d);",
+	"int main ();",
+	"int f1 (struct xx *p);",
+	"void f2 ();",
+	""};
+
     char *func_bodies[] = {
 
 /* body for matching */
@@ -216,30 +240,6 @@ main(int argc, char**argv)
 "{\n\
   abort ();\n\
 }",
-""};
-
-    char *func_decls[] = {
-	"/* PR target/6838 from cato@df.lth.se.    cris-elf got an ICE with -O2: the insn matching       ();",
-	"int foo (struct xx *p, int b, int c, int d);",
-	"int main ();",
-	"int f1 (struct xx *p);",
-	"void f2 ();",
-	""};
-
-    char *global_decls[] = {
-	"(nil)\n\
-	  (nil))\n\
-   forced a splitter through the output pattern \"#\", but there was no\n\
-   matching splitter.  */",
-	"struct xx\n\
- {\n\
-   int a;\n\
-   struct xx *b;\n\
-   short c;\n\
- };\n\
-\n\
-int f1 (struct xx *);\n\
-void f2 (void);",
 ""};
 
     int i;

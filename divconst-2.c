@@ -119,6 +119,19 @@ main(int argc, char**argv)
         void abort();\n\
         int test_printf(const char *format, ...);\n\
         int printf(const char *format, ...);";
+    char *global_decls[] = {
+	"long nums[] ={\n\
+  -1L, 0x7fffffffL, -0x7fffffffL - 1L\n\
+};",
+""};
+
+    char *func_decls[] = {
+	"long f (long x);",
+	"long r (long x);",
+	"long std_eqn (long num, long denom, long quot, long rem);",
+	"void main ();",
+	""};
+
     char *func_bodies[] = {
 
 /* body for f */
@@ -150,19 +163,6 @@ main(int argc, char**argv)
 \n\
   exit (0);\n\
 }",
-""};
-
-    char *func_decls[] = {
-	"long f (long x);",
-	"long r (long x);",
-	"long std_eqn (long num, long denom, long quot, long rem);",
-	"void main ();",
-	""};
-
-    char *global_decls[] = {
-	"long nums[] ={\n\
-  -1L, 0x7fffffffL, -0x7fffffffL - 1L\n\
-};",
 ""};
 
     int i;

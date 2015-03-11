@@ -87,6 +87,14 @@ main(int argc, char**argv)
         void abort();\n\
         int test_printf(const char *format, ...);\n\
         int printf(const char *format, ...);";
+    char *global_decls[] = {
+""};
+
+    char *func_decls[] = {
+	"static int f(int)  int main();",
+	"static int f(int x);",
+	""};
+
     char *func_bodies[] = {
 
 /* body for f */
@@ -101,14 +109,6 @@ main(int argc, char**argv)
 
 /* body for f */
 "{ return x; }",
-""};
-
-    char *func_decls[] = {
-	"static int f(int)  int main();",
-	"static int f(int x);",
-	""};
-
-    char *global_decls[] = {
 ""};
 
     int i;

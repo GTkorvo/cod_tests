@@ -171,6 +171,20 @@ main(int argc, char**argv)
         void abort();\n\
         int test_printf(const char *format, ...);\n\
         int printf(const char *format, ...);";
+    char *global_decls[] = {
+	"#include <stdio.h>\n\
+\n\
+/* Convert a decimal string to a long long unsigned.  No error check is\n\
+   performed.  */",
+""};
+
+    char *func_decls[] = {
+	"long long unsigned str2llu (char *str);",
+	"long unsigned sqrtllu (long long unsigned t);",
+	"int plist (long long unsigned p0, p1, long long unsigned *tab);",
+	"void main (int argc, char *argv[]);",
+	""};
+
     char *func_bodies[] = {
 
 /* body for str2llu */
@@ -249,20 +263,6 @@ main(int argc, char**argv)
 \n\
   exit(0);\n\
 }",
-""};
-
-    char *func_decls[] = {
-	"long long unsigned str2llu (char *str);",
-	"long unsigned sqrtllu (long long unsigned t);",
-	"int plist (long long unsigned p0, p1, long long unsigned *tab);",
-	"void main (int argc, char *argv[]);",
-	""};
-
-    char *global_decls[] = {
-	"#include <stdio.h>\n\
-\n\
-/* Convert a decimal string to a long long unsigned.  No error check is\n\
-   performed.  */",
 ""};
 
     int i;

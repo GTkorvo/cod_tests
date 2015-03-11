@@ -171,6 +171,23 @@ main(int argc, char**argv)
         void abort();\n\
         int test_printf(const char *format, ...);\n\
         int printf(const char *format, ...);";
+    char *global_decls[] = {
+""};
+
+    char *func_decls[] = {
+	"div1 (signed char x);",
+	"div2 (signed short x);",
+	"div3 (signed char x, signed char y);",
+	"div4 (signed short x, signed short y);",
+	"mod1 (signed char x);",
+	"mod2 (signed short x);",
+	"mod3 (signed char x, signed char y);",
+	"mod4 (signed short x, signed short y);",
+	"signed long mod5 (signed long x, signed long y);",
+	"unsigned long mod6 (unsigned long x, unsigned long y);",
+	"void main ();",
+	""};
+
     char *func_bodies[] = {
 
 /* body for div1 */
@@ -248,23 +265,6 @@ main(int argc, char**argv)
   \n\
   exit (0);\n\
 }",
-""};
-
-    char *func_decls[] = {
-	"div1 (signed char x);",
-	"div2 (signed short x);",
-	"div3 (signed char x, signed char y);",
-	"div4 (signed short x, signed short y);",
-	"mod1 (signed char x);",
-	"mod2 (signed short x);",
-	"mod3 (signed char x, signed char y);",
-	"mod4 (signed short x, signed short y);",
-	"signed long mod5 (signed long x, signed long y);",
-	"unsigned long mod6 (unsigned long x, unsigned long y);",
-	"void main ();",
-	""};
-
-    char *global_decls[] = {
 ""};
 
     int i;

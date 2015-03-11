@@ -118,6 +118,25 @@ main(int argc, char**argv)
         void abort();\n\
         int test_printf(const char *format, ...);\n\
         int printf(const char *format, ...);";
+    char *global_decls[] = {
+	"struct tmp\n\
+{\n\
+  long long int pad : 12;\n\
+  long long int field : 52;\n\
+};",
+	"struct tmp2\n\
+{\n\
+  long long int field : 52;\n\
+  long long int pad : 12;\n\
+};",
+""};
+
+    char *func_decls[] = {
+	"struct tmp sub (struct tmp tmp);",
+	"struct tmp2 sub2 (struct tmp2 tmp2);",
+	"void main();",
+	""};
+
     char *func_bodies[] = {
 
 /* body for sub */
@@ -146,25 +165,6 @@ main(int argc, char**argv)
     abort ();\n\
   exit (0);\n\
 }",
-""};
-
-    char *func_decls[] = {
-	"struct tmp sub (struct tmp tmp);",
-	"struct tmp2 sub2 (struct tmp2 tmp2);",
-	"void main();",
-	""};
-
-    char *global_decls[] = {
-	"struct tmp\n\
-{\n\
-  long long int pad : 12;\n\
-  long long int field : 52;\n\
-};",
-	"struct tmp2\n\
-{\n\
-  long long int field : 52;\n\
-  long long int pad : 12;\n\
-};",
 ""};
 
     int i;

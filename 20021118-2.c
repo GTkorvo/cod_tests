@@ -134,6 +134,18 @@ main(int argc, char**argv)
         void abort();\n\
         int test_printf(const char *format, ...);\n\
         int printf(const char *format, ...);";
+    char *global_decls[] = {
+""};
+
+    char *func_decls[] = {
+	"int t1 (float *f, int i, 	void (*f1) (double), 	void (*f2) (float, float));",
+	"int t2 (float *f, int i, 	void (*f1) (double), 	void (*f2) (float, float), 	void (*f3) (float));",
+	"void f1 (double d);",
+	"void f2 (float f1, float f2);",
+	"void f3 (float f);",
+	"int main ();",
+	""};
+
     char *func_bodies[] = {
 
 /* body for t1 */
@@ -178,18 +190,6 @@ main(int argc, char**argv)
     abort ();\n\
   exit (0);\n\
 }",
-""};
-
-    char *func_decls[] = {
-	"int t1 (float *f, int i, 	void (*f1) (double), 	void (*f2) (float, float));",
-	"int t2 (float *f, int i, 	void (*f1) (double), 	void (*f2) (float, float), 	void (*f3) (float));",
-	"void f1 (double d);",
-	"void f2 (float f1, float f2);",
-	"void f3 (float f);",
-	"int main ();",
-	""};
-
-    char *global_decls[] = {
 ""};
 
     int i;

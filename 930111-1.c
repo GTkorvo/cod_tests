@@ -98,6 +98,14 @@ main(int argc, char**argv)
         void abort();\n\
         int test_printf(const char *format, ...);\n\
         int printf(const char *format, ...);";
+    char *global_decls[] = {
+""};
+
+    char *func_decls[] = {
+	"void main();",
+	"int wwrite(long long i);",
+	""};
+
     char *func_bodies[] = {
 
 /* body for main */
@@ -121,14 +129,6 @@ main(int argc, char**argv)
       return 123;\n\
     }\n\
 }",
-""};
-
-    char *func_decls[] = {
-	"void main();",
-	"int wwrite(long long i);",
-	""};
-
-    char *global_decls[] = {
 ""};
 
     int i;

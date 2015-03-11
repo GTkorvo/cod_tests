@@ -127,6 +127,16 @@ main(int argc, char**argv)
         void abort();\n\
         int test_printf(const char *format, ...);\n\
         int printf(const char *format, ...);";
+    char *global_decls[] = {
+	"enum X { A, B, C, D, E, F, G, H, I, J, K, L, M, N, O, P, Q };",
+""};
+
+    char *func_decls[] = {
+	"void bar (const char *x, int y, const char *z);",
+	"long foo (enum X x, const void *y);",
+	"int main ();",
+	""};
+
     char *func_bodies[] = {
 
 /* body for bar */
@@ -167,16 +177,6 @@ main(int argc, char**argv)
     abort ();\n\
   exit (0);\n\
 }",
-""};
-
-    char *func_decls[] = {
-	"void bar (const char *x, int y, const char *z);",
-	"long foo (enum X x, const void *y);",
-	"int main ();",
-	""};
-
-    char *global_decls[] = {
-	"enum X { A, B, C, D, E, F, G, H, I, J, K, L, M, N, O, P, Q };",
 ""};
 
     int i;

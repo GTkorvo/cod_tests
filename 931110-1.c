@@ -92,6 +92,22 @@ main(int argc, char**argv)
         void abort();\n\
         int test_printf(const char *format, ...);\n\
         int printf(const char *format, ...);";
+    char *global_decls[] = {
+	"typedef struct{\n\
+  short f:3, g:3, h:10;\n\
+};",
+	"small;",
+	"struct{\n\
+  int i;\n\
+  small s[10];\n\
+};",
+	"x;",
+""};
+
+    char *func_decls[] = {
+	"void main ();",
+	""};
+
     char *func_bodies[] = {
 
 /* body for main */
@@ -101,17 +117,6 @@ main(int argc, char**argv)
     x.s[i].f = 0;\n\
   exit (0);\n\
 }",
-""};
-
-    char *func_decls[] = {
-	"void main ();",
-	""};
-
-    char *global_decls[] = {
-	"typedef struct",
-	"small;",
-	"struct",
-	"x;",
 ""};
 
     int i;

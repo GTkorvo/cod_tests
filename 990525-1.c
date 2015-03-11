@@ -99,6 +99,17 @@ main(int argc, char**argv)
         void abort();\n\
         int test_printf(const char *format, ...);\n\
         int printf(const char *format, ...);";
+    char *global_decls[] = {
+	"struct blah {\n\
+    int m1, m2;\n\
+};",
+""};
+
+    char *func_decls[] = {
+	"void die(struct blah arg);",
+	"int main();",
+	""};
+
     char *func_bodies[] = {
 
 /* body for die */
@@ -120,17 +131,6 @@ main(int argc, char**argv)
     die(s);\n\
     exit (0);\n\
 }",
-""};
-
-    char *func_decls[] = {
-	"void die(struct blah arg);",
-	"int main();",
-	""};
-
-    char *global_decls[] = {
-	"struct blah {\n\
-    int m1, m2;\n\
-};",
 ""};
 
     int i;

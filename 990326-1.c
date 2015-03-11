@@ -549,6 +549,79 @@ main(int argc, char**argv)
         void abort();\n\
         int test_printf(const char *format, ...);\n\
         int printf(const char *format, ...);";
+    char *global_decls[] = {
+	"struct a {\n\
+	char a, b;\n\
+	short c;\n\
+};",
+	"struct b {\n\
+	int c;\n\
+	short b, a;\n\
+};",
+	"struct c {\n\
+	unsigned int c:4, b:14, a:14;\n\
+} __attribute__ ((aligned));",
+	"struct d {\n\
+	unsigned int a:14, b:14, c:4;\n\
+} __attribute__ ((aligned));",
+	"struct e {\n\
+	int c:4, b:14, a:14;\n\
+} __attribute__ ((aligned));",
+	"struct f {\n\
+	int a:14, b:14, c:4;\n\
+} __attribute__ ((aligned));",
+	"struct gx {\n\
+	int c:4, b:14, a:14;\n\
+} __attribute__ ((aligned));",
+	"struct gy {\n\
+	int b:14, a:14, c:4;\n\
+} __attribute__ ((aligned));",
+	"struct hx {\n\
+	int a:14, b:14, c:4;\n\
+} __attribute__ ((aligned));",
+	"struct hy {\n\
+	int c:4, a:14, b:14;\n\
+} __attribute__ ((aligned));",
+""};
+
+    char *func_decls[] = {
+	"int a1();",
+	"int a2();",
+	"int a3();",
+	"int b1();",
+	"int b2();",
+	"int b3();",
+	"int c1();",
+	"int c2();",
+	"int c3();",
+	"int d1();",
+	"int d2();",
+	"int d3();",
+	"int e1();",
+	"int e2();",
+	"int e3();",
+	"int e4();",
+	"int f1();",
+	"int f2();",
+	"int f3();",
+	"int f4();",
+	"int g1();",
+	"int g2();",
+	"int g3();",
+	"int g4();",
+	"int g5();",
+	"int g6();",
+	"int g7();",
+	"int h1();",
+	"int h2();",
+	"int h3();",
+	"int h4();",
+	"int h5();",
+	"int h6();",
+	"int h7();",
+	"int main();",
+	""};
+
     char *func_bodies[] = {
 
 /* body for a1 */
@@ -883,79 +956,6 @@ main(int argc, char**argv)
     abort ();\n\
   exit (0);\n\
 }",
-""};
-
-    char *func_decls[] = {
-	"int a1();",
-	"int a2();",
-	"int a3();",
-	"int b1();",
-	"int b2();",
-	"int b3();",
-	"int c1();",
-	"int c2();",
-	"int c3();",
-	"int d1();",
-	"int d2();",
-	"int d3();",
-	"int e1();",
-	"int e2();",
-	"int e3();",
-	"int e4();",
-	"int f1();",
-	"int f2();",
-	"int f3();",
-	"int f4();",
-	"int g1();",
-	"int g2();",
-	"int g3();",
-	"int g4();",
-	"int g5();",
-	"int g6();",
-	"int g7();",
-	"int h1();",
-	"int h2();",
-	"int h3();",
-	"int h4();",
-	"int h5();",
-	"int h6();",
-	"int h7();",
-	"int main();",
-	""};
-
-    char *global_decls[] = {
-	"struct a {\n\
-	char a, b;\n\
-	short c;\n\
-};",
-	"struct b {\n\
-	int c;\n\
-	short b, a;\n\
-};",
-	"struct c {\n\
-	unsigned int c:4, b:14, a:14;\n\
-} __attribute__ ((aligned));",
-	"struct d {\n\
-	unsigned int a:14, b:14, c:4;\n\
-} __attribute__ ((aligned));",
-	"struct e {\n\
-	int c:4, b:14, a:14;\n\
-} __attribute__ ((aligned));",
-	"struct f {\n\
-	int a:14, b:14, c:4;\n\
-} __attribute__ ((aligned));",
-	"struct gx {\n\
-	int c:4, b:14, a:14;\n\
-} __attribute__ ((aligned));",
-	"struct gy {\n\
-	int b:14, a:14, c:4;\n\
-} __attribute__ ((aligned));",
-	"struct hx {\n\
-	int a:14, b:14, c:4;\n\
-} __attribute__ ((aligned));",
-	"struct hy {\n\
-	int c:4, a:14, b:14;\n\
-} __attribute__ ((aligned));",
 ""};
 
     int i;

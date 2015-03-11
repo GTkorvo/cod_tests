@@ -114,6 +114,16 @@ main(int argc, char**argv)
         void abort();\n\
         int test_printf(const char *format, ...);\n\
         int printf(const char *format, ...);";
+    char *global_decls[] = {
+""};
+
+    char *func_decls[] = {
+	"void dummy ();",
+	"int f1 (unsigned int x, unsigned int y);",
+	"int f2 (unsigned long int x, unsigned long int y);",
+	"void main ();",
+	""};
+
     char *func_bodies[] = {
 
 /* body for dummy */
@@ -149,16 +159,6 @@ main(int argc, char**argv)
   f2 ((~(unsigned long int) 0 >> 1) - 12, ~(~(unsigned long int) 0 >> 1) + 1);\n\
   exit (0);\n\
 }",
-""};
-
-    char *func_decls[] = {
-	"void dummy ();",
-	"int f1 (unsigned int x, unsigned int y);",
-	"int f2 (unsigned long int x, unsigned long int y);",
-	"void main ();",
-	""};
-
-    char *global_decls[] = {
 ""};
 
     int i;

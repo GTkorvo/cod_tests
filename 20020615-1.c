@@ -135,6 +135,21 @@ main(int argc, char**argv)
         void abort();\n\
         int test_printf(const char *format, ...);\n\
         int printf(const char *format, ...);";
+    char *global_decls[] = {
+	"typedef struct font_hints_s {\n\
+  int axes_swapped;\n\
+  int x_inverted, y_inverted;\n\
+} font_hints;",
+	"typedef struct gs_fixed_point_s {\n\
+  long x, y;\n\
+} gs_fixed_point;",
+""};
+
+    char *func_decls[] = {
+	"int line_hints(const font_hints *fh, const gs_fixed_point *p0, 	   const gs_fixed_point *p1);",
+	"int main ();",
+	""};
+
     char *func_bodies[] = {
 
 /* body for line_hints */
@@ -181,21 +196,6 @@ main(int argc, char**argv)
     abort ();\n\
   exit (0);\n\
 }",
-""};
-
-    char *func_decls[] = {
-	"int line_hints(const font_hints *fh, const gs_fixed_point *p0, 	   const gs_fixed_point *p1);",
-	"int main ();",
-	""};
-
-    char *global_decls[] = {
-	"typedef struct font_hints_s {\n\
-  int axes_swapped;\n\
-  int x_inverted, y_inverted;\n\
-} font_hints;",
-	"typedef struct gs_fixed_point_s {\n\
-  long x, y;\n\
-} gs_fixed_point;",
 ""};
 
     int i;

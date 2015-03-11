@@ -91,6 +91,15 @@ main(int argc, char**argv)
         void abort();\n\
         int test_printf(const char *format, ...);\n\
         int printf(const char *format, ...);";
+    char *global_decls[] = {
+	"struct s { int f[4]; };",
+""};
+
+    char *func_decls[] = {
+	"int foo (struct s s, int x1, int x2, int x3, int x4, int x5, int x6, int x7);",
+	"int main ();",
+	""};
+
     char *func_bodies[] = {
 
 /* body for foo */
@@ -106,15 +115,6 @@ main(int argc, char**argv)
     abort ();\n\
   exit (0);\n\
 }",
-""};
-
-    char *func_decls[] = {
-	"int foo (struct s s, int x1, int x2, int x3, int x4, int x5, int x6, int x7);",
-	"int main ();",
-	""};
-
-    char *global_decls[] = {
-	"struct s { int f[4]; };",
 ""};
 
     int i;

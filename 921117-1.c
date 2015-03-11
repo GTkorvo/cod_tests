@@ -98,6 +98,18 @@ main(int argc, char**argv)
         void abort();\n\
         int test_printf(const char *format, ...);\n\
         int printf(const char *format, ...);";
+    char *global_decls[] = {
+	"struct s {\n\
+  char text[11];\n\
+  int flag;\n\
+} cell;",
+""};
+
+    char *func_decls[] = {
+	"int check (struct s p);",
+	"void main ();",
+	""};
+
     char *func_bodies[] = {
 
 /* body for check */
@@ -116,18 +128,6 @@ main(int argc, char**argv)
     abort();\n\
   exit (0);\n\
 }",
-""};
-
-    char *func_decls[] = {
-	"int check (struct s p);",
-	"void main ();",
-	""};
-
-    char *global_decls[] = {
-	"struct s {\n\
-  char text[11];\n\
-  int flag;\n\
-} cell;",
 ""};
 
     int i;

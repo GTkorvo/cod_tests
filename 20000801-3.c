@@ -98,6 +98,20 @@ main(int argc, char**argv)
         void abort();\n\
         int test_printf(const char *format, ...);\n\
         int printf(const char *format, ...);";
+    char *global_decls[] = {
+	"typedef struct { } empty;",
+	"typedef struct {\n\
+  int i;\n\
+  empty e;\n\
+  int i2;\n\
+} st;",
+	"st s ={ .i = 0, .i2 = 1 };",
+""};
+
+    char *func_decls[] = {
+	"int main ();",
+	""};
+
     char *func_bodies[] = {
 
 /* body for main */
@@ -107,20 +121,6 @@ main(int argc, char**argv)
   else\n\
     abort ();\n\
 }",
-""};
-
-    char *func_decls[] = {
-	"int main ();",
-	""};
-
-    char *global_decls[] = {
-	"typedef struct { } empty;",
-	"typedef struct {\n\
-  int i;\n\
-  empty e;\n\
-  int i2;\n\
-} st;",
-	"st s ={ .i = 0, .i2 = 1 };",
 ""};
 
     int i;

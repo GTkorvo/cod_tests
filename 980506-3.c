@@ -100,6 +100,15 @@ main(int argc, char**argv)
         void abort();\n\
         int test_printf(const char *format, ...);\n\
         int printf(const char *format, ...);";
+    char *global_decls[] = {
+	"unsigned char lookup_table [257];",
+""};
+
+    char *func_decls[] = {
+	"static int  build_lookup (unsigned char *pattern);",
+	"int main(int argc, char **argv);",
+	""};
+
     char *func_bodies[] = {
 
 /* body for build_lookup */
@@ -119,15 +128,6 @@ main(int argc, char**argv)
   else\n\
     exit (0);\n\
 }",
-""};
-
-    char *func_decls[] = {
-	"static int  build_lookup (unsigned char *pattern);",
-	"int main(int argc, char **argv);",
-	""};
-
-    char *global_decls[] = {
-	"unsigned char lookup_table [257];",
 ""};
 
     int i;

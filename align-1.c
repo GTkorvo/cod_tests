@@ -78,11 +78,20 @@ main(int argc, char**argv)
     };
 
     char extern_string[] = "\n\
-	;   int main();\n\
+	int main();\n\
     	void exit(int value);\n\
         void abort();\n\
         int test_printf(const char *format, ...);\n\
         int printf(const char *format, ...);";
+    char *global_decls[] = {
+	"typedef int new_int",
+	"struct S{ int x; };",
+""};
+
+    char *func_decls[] = {
+	"int main();",
+	""};
+
     char *func_bodies[] = {
 
 /* body for main */
@@ -91,15 +100,6 @@ main(int argc, char**argv)
     abort ();\n\
   return 0;\n\
 }",
-""};
-
-    char *func_decls[] = {
-	";   int main();",
-	""};
-
-    char *global_decls[] = {
-	"typedef int new_int \n\
-struct S",
 ""};
 
     int i;

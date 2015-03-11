@@ -117,20 +117,6 @@ main(int argc, char**argv)
         void abort();\n\
         int test_printf(const char *format, ...);\n\
         int printf(const char *format, ...);";
-    char *func_bodies[] = {
-
-/* body for main */
-"{\n\
-  if (f (1, 0UL) != 0)\n\
-    abort ();\n\
-  exit (0);\n\
-}",
-""};
-
-    char *func_decls[] = {
-	"void main ();",
-	""};
-
     char *global_decls[] = {
 	"struct a_struct\n\
 {\n\
@@ -145,6 +131,20 @@ int\n\
 f (a, b)\n\
      unsigned char a;\n\
      unsigned long b;",
+""};
+
+    char *func_decls[] = {
+	"void main ();",
+	""};
+
+    char *func_bodies[] = {
+
+/* body for main */
+"{\n\
+  if (f (1, 0UL) != 0)\n\
+    abort ();\n\
+  exit (0);\n\
+}",
 ""};
 
     int i;

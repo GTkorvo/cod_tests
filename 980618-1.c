@@ -92,6 +92,15 @@ main(int argc, char**argv)
         void abort();\n\
         int test_printf(const char *format, ...);\n\
         int printf(const char *format, ...);";
+    char *global_decls[] = {
+	"void func(int, int);",
+""};
+
+    char *func_decls[] = {
+	"int main();",
+	"void func(int x, int y);",
+	""};
+
     char *func_bodies[] = {
 
 /* body for main */
@@ -108,15 +117,6 @@ main(int argc, char**argv)
         else\n\
                 abort ();\n\
 }",
-""};
-
-    char *func_decls[] = {
-	"int main();",
-	"void func(int x, int y);",
-	""};
-
-    char *global_decls[] = {
-	"void func(int, int);",
 ""};
 
     int i;

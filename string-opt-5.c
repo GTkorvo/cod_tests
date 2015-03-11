@@ -181,6 +181,26 @@ main(int argc, char**argv)
         void abort();\n\
         int test_printf(const char *format, ...);\n\
         int printf(const char *format, ...);";
+    char *global_decls[] = {
+	"\n\
+extern __SIZE_TYPE__ strlen (const char *);\n\
+extern int strcmp (const char *, const char *);\n\
+extern char *strchr (const char *, int);\n\
+extern char *strrchr (const char *, int);\n\
+extern char *strncpy (char *, const char *, __SIZE_TYPE__);\n\
+extern void *memset (void *, int, __SIZE_TYPE__);\n\
+extern int memcmp (const void *, const void *, __SIZE_TYPE__);\n\
+\n\
+int x = 6;\n\
+int y = 1;\n\
+char *bar = \"hi world\";\n\
+char buf [64];",
+""};
+
+    char *func_decls[] = {
+	"int main();",
+	""};
+
     char *func_bodies[] = {
 
 /* body for main */
@@ -269,26 +289,6 @@ main(int argc, char**argv)
 \n\
   return 0;\n\
 }",
-""};
-
-    char *func_decls[] = {
-	"int main();",
-	""};
-
-    char *global_decls[] = {
-	"\n\
-extern __SIZE_TYPE__ strlen (const char *);\n\
-extern int strcmp (const char *, const char *);\n\
-extern char *strchr (const char *, int);\n\
-extern char *strrchr (const char *, int);\n\
-extern char *strncpy (char *, const char *, __SIZE_TYPE__);\n\
-extern void *memset (void *, int, __SIZE_TYPE__);\n\
-extern int memcmp (const void *, const void *, __SIZE_TYPE__);\n\
-\n\
-int x = 6;\n\
-int y = 1;\n\
-char *bar = \"hi world\";\n\
-char buf [64];",
 ""};
 
     int i;

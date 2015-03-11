@@ -126,6 +126,20 @@ main(int argc, char**argv)
         void abort();\n\
         int test_printf(const char *format, ...);\n\
         int printf(const char *format, ...);";
+    char *global_decls[] = {
+	"extern int f2(void);\n\
+extern int f3(void);\n\
+extern void f1(void);",
+""};
+
+    char *func_decls[] = {
+	"void ff(int fname, int part, int nparts);",
+	"int main();",
+	"int f3();",
+	"void f1();",
+	"int f2();",
+	""};
+
     char *func_bodies[] = {
 
 /* body for ff */
@@ -172,20 +186,6 @@ main(int argc, char**argv)
 
 /* body for f2 */
 "{ abort(); }",
-""};
-
-    char *func_decls[] = {
-	"void ff(int fname, int part, int nparts);",
-	"int main();",
-	"int f3();",
-	"void f1();",
-	"int f2();",
-	""};
-
-    char *global_decls[] = {
-	"extern int f2(void);\n\
-extern int f3(void);\n\
-extern void f1(void);",
 ""};
 
     int i;

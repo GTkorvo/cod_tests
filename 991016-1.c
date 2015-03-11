@@ -131,6 +131,17 @@ main(int argc, char**argv)
         void abort();\n\
         int test_printf(const char *format, ...);\n\
         int printf(const char *format, ...);";
+    char *global_decls[] = {
+	"typedef int T0;\n\
+typedef long T1;\n\
+typedef long long T2;",
+""};
+
+    char *func_decls[] = {
+	"int doit(int sel, int n, void *p);",
+	"int main();",
+	""};
+
     char *func_bodies[] = {
 
 /* body for doit */
@@ -178,17 +189,6 @@ main(int argc, char**argv)
 \n\
   exit (0);\n\
 }",
-""};
-
-    char *func_decls[] = {
-	"int doit(int sel, int n, void *p);",
-	"int main();",
-	""};
-
-    char *global_decls[] = {
-	"typedef int T0;\n\
-typedef long T1;\n\
-typedef long long T2;",
 ""};
 
     int i;

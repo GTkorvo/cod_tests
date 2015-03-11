@@ -131,6 +131,8 @@ EOF
 	$_ = $decl;
 	$decl =~ s/extern.*abort[^;]*;//g;
 	$decl =~ s/extern.*exit[^;]*;//g;
+	$decl =~ s/void.*abort[^;]*;//g;
+	$decl =~ s/void.*exit[^;]*;//g;
 	next if ($decl=~/^\s*$/s);
 	$decl =~ s/\\/\\\\/g;
 	$decl =~ s/\n/\\n\\\n/g;
@@ -142,9 +144,9 @@ EOF
     $global_decls .= "\"\"};\n";
     print INT "$externs_table\n";
     print INT "$externs_string\n";
-    print INT "$function_bodies\n";
-    print INT "$function_decls\n";
     print INT "$global_decls\n";
+    print INT "$function_decls\n";
+    print INT "$function_bodies\n";
     print INT "    int i;\n";
     print INT "    cod_code gen_code[". scalar @$subroutines. "];\n";
     print INT "    cod_parse_context context;\n";
@@ -212,6 +214,7 @@ sub parse_c_test($) {
     my $file;
     
     my @decls = ();
+    my @tmp_decls = ();
     my @subroutines = ();
     open my $fileHandle, '<', $filename;
     
@@ -304,7 +307,13 @@ sub parse_c_test($) {
 		next;
 	    }
 	    if (substr($last_line, -1) eq "=") {
-	        push @decls, "$last_line" . shift(@array). ";";
+	        push @tmp_decls, "$last_line" . shift(@array). ";";
+		$array[0] = substr($array[0], 1);  # kill semi
+		$last_line = "";
+		next;
+	    }
+	    if ($last_line =~ /.*struct.*/) {
+	        push @tmp_decls, "$last_line" . shift(@array). ";";
 		$array[0] = substr($array[0], 1);  # kill semi
 		$last_line = "";
 		next;
@@ -322,6 +331,8 @@ sub parse_c_test($) {
 	    print "This is a declaration set [\n $subroutine_prefix\n]\n\n\n" if ($options{v});
 	    push @decls, $subroutine_prefix if ($subroutine_prefix !~ /^\s*$/);
 	  }
+	  push @decls, @tmp_decls;
+	  @tmp_decls = ();
 	  next;
 	}
 	my @params = split(/,/, $params);

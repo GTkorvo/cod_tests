@@ -110,6 +110,21 @@ main(int argc, char**argv)
         void abort();\n\
         int test_printf(const char *format, ...);\n\
         int printf(const char *format, ...);";
+    char *global_decls[] = {
+	"struct tag {\n\
+  int m1;\n\
+  char *m2[5];\n\
+} s1, *p1;\n\
+\n\
+int i;",
+""};
+
+    char *func_decls[] = {
+	"void main();",
+	"func1(int *p);",
+	"foo (char *s);",
+	""};
+
     char *func_bodies[] = {
 
 /* body for main */
@@ -138,21 +153,6 @@ main(int argc, char**argv)
 
 /* body for foo */
 "{}",
-""};
-
-    char *func_decls[] = {
-	"void main();",
-	"func1(int *p);",
-	"foo (char *s);",
-	""};
-
-    char *global_decls[] = {
-	"struct tag {\n\
-  int m1;\n\
-  char *m2[5];\n\
-} s1, *p1;\n\
-\n\
-int i;",
 ""};
 
     int i;

@@ -99,6 +99,19 @@ main(int argc, char**argv)
         void abort();\n\
         int test_printf(const char *format, ...);\n\
         int printf(const char *format, ...);";
+    char *global_decls[] = {
+	"struct T\n\
+{\n\
+unsigned i:8;\n\
+unsigned c:24;\n\
+};",
+""};
+
+    char *func_decls[] = {
+	"f(struct T t);",
+	"void main();",
+	""};
+
     char *func_bodies[] = {
 
 /* body for f */
@@ -116,19 +129,6 @@ t.c=0xffff11;\n\
 if(f(t)!=0x11)abort();\n\
 exit(0);\n\
 }",
-""};
-
-    char *func_decls[] = {
-	"f(struct T t);",
-	"void main();",
-	""};
-
-    char *global_decls[] = {
-	"struct T\n\
-{\n\
-unsigned i:8;\n\
-unsigned c:24;\n\
-};",
 ""};
 
     int i;

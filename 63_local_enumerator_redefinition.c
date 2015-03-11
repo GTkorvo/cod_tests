@@ -88,6 +88,17 @@ main(int argc, char**argv)
         void abort();\n\
         int test_printf(const char *format, ...);\n\
         int printf(const char *format, ...);";
+    char *global_decls[] = {
+	"enum {\n\
+    FOO,\n\
+    BAR\n\
+};",
+""};
+
+    char *func_decls[] = {
+	"int main();",
+	""};
+
     char *func_bodies[] = {
 
 /* body for main */
@@ -99,17 +110,6 @@ main(int argc, char**argv)
 \n\
     return BAR - FOO;\n\
 }",
-""};
-
-    char *func_decls[] = {
-	"int main();",
-	""};
-
-    char *global_decls[] = {
-	"enum {\n\
-    FOO,\n\
-    BAR\n\
-};",
 ""};
 
     int i;

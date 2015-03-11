@@ -109,6 +109,18 @@ main(int argc, char**argv)
         void abort();\n\
         int test_printf(const char *format, ...);\n\
         int printf(const char *format, ...);";
+    char *global_decls[] = {
+	"struct baz {\n\
+  int a, b, c, d, e;\n\
+};",
+""};
+
+    char *func_decls[] = {
+	"void bar(struct baz *x, int f, int g, int h, int i, int j);",
+	"void foo(struct baz x, char **y);",
+	"int main();",
+	""};
+
     char *func_bodies[] = {
 
 /* body for bar */
@@ -135,18 +147,6 @@ main(int argc, char**argv)
   foo(x,(char **)0);\n\
   exit(0);\n\
 }",
-""};
-
-    char *func_decls[] = {
-	"void bar(struct baz *x, int f, int g, int h, int i, int j);",
-	"void foo(struct baz x, char **y);",
-	"int main();",
-	""};
-
-    char *global_decls[] = {
-	"struct baz {\n\
-  int a, b, c, d, e;\n\
-};",
 ""};
 
     int i;

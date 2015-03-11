@@ -120,6 +120,20 @@ main(int argc, char**argv)
         void abort();\n\
         int test_printf(const char *format, ...);\n\
         int printf(const char *format, ...);";
+    char *global_decls[] = {
+	"\n\
+\n\
+static char arg0[] = \"arg0\";\n\
+static char arg1[] = \"arg1\";",
+""};
+
+    char *func_decls[] = {
+	"static void  attr_rtx (char *varg0, char *varg1);",
+	"static char * attr_string (char *str);",
+	"static void  attr_eq (char *name, char *value);",
+	"int main();",
+	""};
+
     char *func_bodies[] = {
 
 /* body for attr_rtx */
@@ -150,20 +164,6 @@ main(int argc, char**argv)
   attr_eq (arg0, arg1);\n\
   exit (0);\n\
 }",
-""};
-
-    char *func_decls[] = {
-	"static void  attr_rtx (char *varg0, char *varg1);",
-	"static char * attr_string (char *str);",
-	"static void  attr_eq (char *name, char *value);",
-	"int main();",
-	""};
-
-    char *global_decls[] = {
-	"\n\
-\n\
-static char arg0[] = \"arg0\";\n\
-static char arg1[] = \"arg1\";",
 ""};
 
     int i;

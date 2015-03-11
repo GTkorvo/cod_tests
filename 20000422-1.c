@@ -113,6 +113,20 @@ main(int argc, char**argv)
         void abort();\n\
         int test_printf(const char *format, ...);\n\
         int printf(const char *format, ...);";
+    char *global_decls[] = {
+	"int ops[13] ={\n\
+  11, 12, 46, 3, 2, 2, 3, 2, 1, 3, 2, 1, 2\n\
+};",
+	"int correct[13] ={\n\
+  46, 12, 11, 3, 3, 3, 2, 2, 2, 2, 2, 1, 1\n\
+};",
+	"int num = 13;",
+""};
+
+    char *func_decls[] = {
+	"int main();",
+	""};
+
     char *func_bodies[] = {
 
 /* body for main */
@@ -141,20 +155,6 @@ main(int argc, char**argv)
 \n\
   exit (0);\n\
 }",
-""};
-
-    char *func_decls[] = {
-	"int main();",
-	""};
-
-    char *global_decls[] = {
-	"int ops[13] ={\n\
-  11, 12, 46, 3, 2, 2, 3, 2, 1, 3, 2, 1, 2\n\
-};",
-	"int correct[13] ={\n\
-  46, 12, 11, 3, 3, 3, 2, 2, 2, 2, 2, 1, 1\n\
-};",
-	"int num = 13;",
 ""};
 
     int i;

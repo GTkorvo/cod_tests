@@ -94,6 +94,17 @@ main(int argc, char**argv)
         void abort();\n\
         int test_printf(const char *format, ...);\n\
         int printf(const char *format, ...);";
+    char *global_decls[] = {
+	"unsigned int a[0x1000];\n\
+extern const unsigned long v;",
+	"const unsigned long v = 0xdeadbeefL;",
+""};
+
+    char *func_decls[] = {
+	"void main ();",
+	"void f (unsigned long a);",
+	""};
+
     char *func_bodies[] = {
 
 /* body for main */
@@ -108,17 +119,6 @@ main(int argc, char**argv)
   if (a != 0xdeadbeefL)\n\
     abort();\n\
 }",
-""};
-
-    char *func_decls[] = {
-	"void main ();",
-	"void f (unsigned long a);",
-	""};
-
-    char *global_decls[] = {
-	"unsigned int a[0x1000];\n\
-extern const unsigned long v;",
-	"const unsigned long v = 0xdeadbeefL;",
 ""};
 
     int i;

@@ -106,6 +106,16 @@ main(int argc, char**argv)
         void abort();\n\
         int test_printf(const char *format, ...);\n\
         int printf(const char *format, ...);";
+    char *global_decls[] = {
+	"char buf[10];",
+""};
+
+    char *func_decls[] = {
+	"static void bar (int x);",
+	"inline char * foo (char *tmp);",
+	"int main ();",
+	""};
+
     char *func_bodies[] = {
 
 /* body for bar */
@@ -125,16 +135,6 @@ main(int argc, char**argv)
   bar ((foo (buf) - 1 - buf) == 1);\n\
   exit (0);\n\
 }",
-""};
-
-    char *func_decls[] = {
-	"static void bar (int x);",
-	"inline char * foo (char *tmp);",
-	"int main ();",
-	""};
-
-    char *global_decls[] = {
-	"char buf[10];",
 ""};
 
     int i;

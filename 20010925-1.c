@@ -100,6 +100,22 @@ main(int argc, char**argv)
         void abort();\n\
         int test_printf(const char *format, ...);\n\
         int printf(const char *format, ...);";
+    char *global_decls[] = {
+	"\n\
+\n\
+\n\
+extern void * memcpy (void *, const void *, unsigned int);\n\
+int foo (void *, void *, unsigned int c);\n\
+\n\
+int src[10];\n\
+int dst[10];",
+""};
+
+    char *func_decls[] = {
+	"int main();",
+	"int foo (void *a, void *b, unsigned int c);",
+	""};
+
     char *func_bodies[] = {
 
 /* body for main */
@@ -117,22 +133,6 @@ main(int argc, char**argv)
   memcpy (a, b, c);\n\
   return 0;\n\
 }",
-""};
-
-    char *func_decls[] = {
-	"int main();",
-	"int foo (void *a, void *b, unsigned int c);",
-	""};
-
-    char *global_decls[] = {
-	"\n\
-\n\
-\n\
-extern void * memcpy (void *, const void *, unsigned int);\n\
-int foo (void *, void *, unsigned int c);\n\
-\n\
-int src[10];\n\
-int dst[10];",
 ""};
 
     int i;

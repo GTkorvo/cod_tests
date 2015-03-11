@@ -89,6 +89,19 @@ main(int argc, char**argv)
         void abort();\n\
         int test_printf(const char *format, ...);\n\
         int printf(const char *format, ...);";
+    char *global_decls[] = {
+	"struct S\n\
+{\n\
+  char f1;\n\
+  int f2[2];\n\
+};",
+	"struct S object ={'X', 8, 9};",
+""};
+
+    char *func_decls[] = {
+	"void main ();",
+	""};
+
     char *func_bodies[] = {
 
 /* body for main */
@@ -97,19 +110,6 @@ main(int argc, char**argv)
     abort ();\n\
   exit (0);\n\
 }",
-""};
-
-    char *func_decls[] = {
-	"void main ();",
-	""};
-
-    char *global_decls[] = {
-	"struct S\n\
-{\n\
-  char f1;\n\
-  int f2[2];\n\
-};",
-	"struct S object ={'X', 8, 9};",
 ""};
 
     int i;
