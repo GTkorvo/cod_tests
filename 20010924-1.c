@@ -149,32 +149,28 @@ main(int argc, char**argv)
 	"struct {\n\
   char a1c;\n\
   char *a1p;\n\
-}",
-	"a1 ={\n\
+} a1 = {\n\
   '4',\n\
   \"62\"\n\
 };",
 	"struct {\n\
   char a2c;\n\
   char a2p[2];\n\
-}",
-	"a2 ={\n\
+} a2 = {\n\
   'v',\n\
   \"cq\"\n\
 };",
 	"struct {\n\
   char a3c;\n\
   char a3p[];\n\
-}",
-	"a3 ={\n\
+} a3 = {\n\
   'o',\n\
   \"wx\"\n\
 };",
 	"struct {\n\
   char a4c;\n\
   char a4p[];\n\
-}",
-	"a4 ={\n\
+} a4 = {\n\
   '9',\n\
   { 'e', 'b' }\n\
 };",

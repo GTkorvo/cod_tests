@@ -150,8 +150,10 @@ main(int argc, char**argv)
 	"struct A\n\
 {\n\
   unsigned long p, q, r, s;\n\
-}",
-	"x ={ 13, 14, 15, 16 };",
+} x = { 13, 14, 15, 16 };\n\
+\n\
+\n\
+",
 ""};
 
     char *func_decls[] = {

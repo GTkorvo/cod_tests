@@ -11,6 +11,8 @@
  *  Original test was:
  */
 // int a,b;
+// 
+// int
 // main()
 // {
 //   int c=-2;
@@ -81,16 +83,17 @@ main(int argc, char**argv)
     };
 
     char extern_string[] = "\n\
-	int a,b; main();\n\
+	int main();\n\
     	void exit(int value);\n\
         void abort();\n\
         int test_printf(const char *format, ...);\n\
         int printf(const char *format, ...);";
     char *global_decls[] = {
+	"int a,b;",
 ""};
 
     char *func_decls[] = {
-	"int a,b; main();",
+	"int main();",
 	""};
 
     char *func_bodies[] = {
@@ -150,7 +153,7 @@ main(int argc, char**argv)
     if (test_output) {
         /* there was output, test expected */
         fclose(test_output);
-        int ret = system("cmp 20001009-1.c.output /Users/eisen/prog/gcc-3.3.1-3/gcc/testsuite/gcc.expect-torture/execute/20001009-1.expect");
+        int ret = system("cmp 20001009-1.c.output ./pre_patch/20001009-1.expect");
         ret = ret >> 8;
         if (ret == 1) {
             printf("Test ./generated/20001009-1.c failed, output differs\n");

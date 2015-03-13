@@ -96,8 +96,7 @@ main(int argc, char**argv)
     char *global_decls[] = {
 	"struct x {\n\
 	int a, b;\n\
-}",
-	"z ={ -4028, 4096 };",
+} z = { -4028, 4096 };",
 ""};
 
     char *func_decls[] = {

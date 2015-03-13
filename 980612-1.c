@@ -100,8 +100,7 @@ main(int argc, char**argv)
 {\n\
 	unsigned char a;\n\
 	unsigned char b;\n\
-}",
-	"f ={ 5 };",
+} f = { 5 };",
 ""};
 
     char *func_decls[] = {

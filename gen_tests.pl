@@ -272,6 +272,10 @@ sub parse_c_test($) {
 	    ($last eq "struct") || ($last eq "enum")) {
 	    my $decl_set = $last_segment . shift(@array);
 	    my $next = shift(@array);
+	    while (index($next, ";") == -1) {
+	      $decl_set .= $next;
+	      $next = shift(@array);
+	    }
 	    if ($next =~ m/(.*;)(.*)$/s)   {
 	        $decl_set .= $1;
 		$next = $2;
@@ -306,10 +310,12 @@ sub parse_c_test($) {
 		$count++;
 		next;
 	    }
+	    print "Considering last line \"$last_line\"\n";
 	    if (substr($last_line, -1) eq "=") {
 	        my $init_value = shift(@array);
 		my $next_semi = index $array[0],";";
 		my $termination = substr($array[0], 0, $next_semi+1);
+		print "Pushing Decl $last_line $init_value $termination\n" if ($options{v});
 	        push @tmp_decls, "$last_line" . $init_value . $termination;
 		$array[0] = substr($array[0], $next_semi+1);  # kill semi
 		$last_line = "";
@@ -319,6 +325,7 @@ sub parse_c_test($) {
 	        my $struct_list = shift(@array);
 		my $next_semi = index $array[0],";";
 		my $termination = substr($array[0], 0, $next_semi+1);
+		print "Pushing struct Decl $last_line $struct_list $termination\n" if ($options{v});
 	        push @tmp_decls, "$last_line" . $struct_list . $termination;
 		$array[0] = substr($array[0], $next_semi+1);  # kill semi
 		$last_line = "";

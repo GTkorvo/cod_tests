@@ -97,8 +97,7 @@ main(int argc, char**argv)
   int :4;\n\
   int b:4;\n\
   int c:4;\n\
-}",
-	"x ={ 2,3,4 };",
+} x = { 2,3,4 };",
 ""};
 
     char *func_decls[] = {
