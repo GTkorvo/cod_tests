@@ -1,0 +1,9 @@
+*** /Users/eisen/prog/gcc-3.3.1-3/gcc/testsuite/gcc.c-torture/execute/920428-1.c	Thu Oct 16 05:58:43 2003
+--- ../pre_patch/920428-1.c	Wed Mar 18 09:36:32 2015
+***************
+*** 1,2 ****
+! x(const char*s){char a[1];const char*ss=s;a[*s++]|=1;return(int)ss+1==(int)s;}
+  main(){if(x("")!=1)abort();exit(0);}
+--- 1,2 ----
+! int x(const char*s){char a[1];const char*ss=s;a[*s++]|=1;return(int)ss+1==(int)s;}
+  main(){if(x("")!=1)abort();exit(0);}
