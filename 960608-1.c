@@ -94,7 +94,6 @@ main(int argc, char**argv)
     }
     cod_extern_entry externs[] = 
     {
-	{"foo", (void*)(long)-1},
 	{"main", (void*)(long)-1},
 	{"abort", (void*)my_abort},
 	{"exit", (void*)test_exit},
@@ -104,37 +103,30 @@ main(int argc, char**argv)
     };
 
     char extern_string[] = "\n\
-	void foo (a_struct *flags);\n\
 	void main ();\n\
     	void exit(int value);\n\
         void abort();\n\
         int test_printf(const char *format, ...);\n\
         int printf(const char *format, ...);";
     char *global_decls[] = {
-	"typedef struct{\n\
+	"typedef struct\n\
+{\n\
   unsigned char a  : 2;\n\
   unsigned char b  : 3;\n\
   unsigned char c  : 1;\n\
   unsigned char d  : 1;\n\
   unsigned char e  : 1;\n\
-} a_struct;",
+} a_struct;\n\
+\n\
+foo (flags)\n\
+     a_struct *flags;",
 ""};
 
     char *func_decls[] = {
-	"void foo (a_struct *flags);",
 	"void main ();",
 	""};
 
     char *func_bodies[] = {
-
-/* body for foo */
-"{\n\
-  return (flags->c != 0\n\
-	  || flags->d != 1\n\
-	  || flags->e != 1\n\
-	  || flags->a != 2\n\
-	  || flags->b != 3);\n\
-}",
 
 /* body for main */
 "{\n\
@@ -154,9 +146,9 @@ main(int argc, char**argv)
 ""};
 
     int i;
-    cod_code gen_code[2];
+    cod_code gen_code[1];
     cod_parse_context context;
-    for (i=0; i < 2; i++) {
+    for (i=0; i < 1; i++) {
         int j;
         if (verbose) {
              printf("Working on subroutine %s\n", externs[i].extern_name);
@@ -179,7 +171,7 @@ main(int argc, char**argv)
         cod_subroutine_declaration(func_decls[i], context);
         gen_code[i] = cod_code_gen(func_bodies[i], context);
         externs[i].extern_value = (void*) gen_code[i]->func;
-        if (i == 1) {
+        if (i == 0) {
             int (*func)() = (int(*)()) externs[i].extern_value;
             if (setjmp(env) == 0) {
                 func();

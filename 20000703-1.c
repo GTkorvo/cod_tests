@@ -12,6 +12,8 @@
  */
 // void abort(void);
 // void exit(int);
+// #include "string.h"
+// 
 // struct baz 
 // {
 //   char a[17];
@@ -22,7 +24,7 @@
 // 
 // void foo(struct baz *p, unsigned int c, unsigned int d)
 // {
-//   __builtin_memcpy (p->b, "abc", 3);
+//   memcpy (p->b, "abc", 3);
 //   p->c = c;
 //   p->d = d;
 // }
@@ -32,8 +34,8 @@
 //   ({ void *s = (p);
 //      __builtin_memset (s, '\0', sizeof (struct baz));
 //      s; });
-//   __builtin_memcpy (p->a, "01234567890123456", 17);
-//   __builtin_memcpy (p->b, "abc", 3);
+//   memcpy (p->a, "01234567890123456", 17);
+//   memcpy (p->b, "abc", 3);
 //   p->c = c;
 //   p->d = d;
 // }
@@ -99,7 +101,7 @@ main(int argc, char**argv)
     }
     cod_extern_entry externs[] = 
     {
-	{"abort", (void*)(long)-1},
+	{"foo", (void*)(long)-1},
 	{"bar", (void*)(long)-1},
 	{"main", (void*)(long)-1},
 	{"abort", (void*)my_abort},
@@ -110,7 +112,7 @@ main(int argc, char**argv)
     };
 
     char extern_string[] = "\n\
-	void abort(void exit(int), struct baz);\n\
+	void foo(struct baz *p, unsigned int c, unsigned int d);\n\
 	void bar(struct baz *p, unsigned int c, unsigned int d);\n\
 	int main();\n\
     	void exit(int value);\n\
@@ -118,29 +120,39 @@ main(int argc, char**argv)
         int test_printf(const char *format, ...);\n\
         int printf(const char *format, ...);";
     char *global_decls[] = {
+	"\n\
+\n\
+#include \"string.h\"",
+	"struct baz{\n\
+  char a[17];\n\
+  char b[3];\n\
+  unsigned int c;\n\
+  unsigned int d;\n\
+};",
 ""};
 
     char *func_decls[] = {
-	"void abort(void exit(int), struct baz);",
+	"void foo(struct baz *p, unsigned int c, unsigned int d);",
 	"void bar(struct baz *p, unsigned int c, unsigned int d);",
 	"int main();",
 	""};
 
     char *func_bodies[] = {
 
-/* body for abort */
-"\n\
-\n\
-void foo(struct baz *p, unsigned int c, unsigned int d)\n\
-",
+/* body for foo */
+"{\n\
+  memcpy (p->b, \"abc\", 3);\n\
+  p->c = c;\n\
+  p->d = d;\n\
+}",
 
 /* body for bar */
 "{\n\
   ({ void *s = (p);\n\
      __builtin_memset (s, '\\0', sizeof (struct baz));\n\
      s; });\n\
-  __builtin_memcpy (p->a, \"01234567890123456\", 17);\n\
-  __builtin_memcpy (p->b, \"abc\", 3);\n\
+  memcpy (p->a, \"01234567890123456\", 17);\n\
+  memcpy (p->b, \"abc\", 3);\n\
   p->c = c;\n\
   p->d = d;\n\
 }",
@@ -200,7 +212,7 @@ void foo(struct baz *p, unsigned int c, unsigned int d)\n\
     if (test_output) {
         /* there was output, test expected */
         fclose(test_output);
-        int ret = system("cmp 20000703-1.c.output /Users/eisen/prog/gcc-3.3.1-3/gcc/testsuite/gcc.expect-torture/execute/20000703-1.expect");
+        int ret = system("cmp 20000703-1.c.output ./pre_patch/20000703-1.expect");
         ret = ret >> 8;
         if (ret == 1) {
             printf("Test ./generated/20000703-1.c failed, output differs\n");

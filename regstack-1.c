@@ -15,6 +15,7 @@
 // long double Y2 = 11;
 // long double Y1 = 17;
 // long double X, Y, Z, T, R, S;
+// 
 // main ()
 // {
 //   X = (C + U) * Y2;
@@ -95,16 +96,21 @@ main(int argc, char**argv)
     };
 
     char extern_string[] = "\n\
-	long double C = 5; long double U = 1; long double Y2 = 11; long double Y1 = 17; long double X, Y, Z, T, R, S; main ();\n\
+	void main ();\n\
     	void exit(int value);\n\
         void abort();\n\
         int test_printf(const char *format, ...);\n\
         int printf(const char *format, ...);";
     char *global_decls[] = {
+	"long double C = 5;\n\
+long double U = 1;\n\
+long double Y2 = 11;\n\
+long double Y1 = 17;\n\
+long double X, Y, Z, T, R, S;",
 ""};
 
     char *func_decls[] = {
-	"long double C = 5; long double U = 1; long double Y2 = 11; long double Y1 = 17; long double X, Y, Z, T, R, S; main ();",
+	"void main ();",
 	""};
 
     char *func_bodies[] = {
@@ -174,7 +180,7 @@ main(int argc, char**argv)
     if (test_output) {
         /* there was output, test expected */
         fclose(test_output);
-        int ret = system("cmp regstack-1.c.output /Users/eisen/prog/gcc-3.3.1-3/gcc/testsuite/gcc.expect-torture/execute/regstack-1.expect");
+        int ret = system("cmp regstack-1.c.output ./pre_patch/regstack-1.expect");
         ret = ret >> 8;
         if (ret == 1) {
             printf("Test ./generated/regstack-1.c failed, output differs\n");

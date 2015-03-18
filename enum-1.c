@@ -120,8 +120,28 @@ main(int argc, char**argv)
         int test_printf(const char *format, ...);\n\
         int printf(const char *format, ...);";
     char *global_decls[] = {
-	"typedef enum",
-	"token;\n\
+	"typedef enum\n\
+{\n\
+  END = -1,\n\
+  EMPTY = (1 << 8 ) ,\n\
+  BACKREF,\n\
+  BEGLINE,\n\
+  ENDLINE,\n\
+  BEGWORD,\n\
+  ENDWORD,\n\
+  LIMWORD,\n\
+  NOTLIMWORD,\n\
+  QMARK,\n\
+  STAR,\n\
+  PLUS,\n\
+  REPMN,\n\
+  CAT,\n\
+  OR,\n\
+  ORTOP,\n\
+  LPAREN,\n\
+  RPAREN,\n\
+  CSET\n\
+} token;\n\
 \n\
 static token tok;",
 ""};

@@ -15,8 +15,15 @@
 // 
 // #include <stdlib.h>
 // 
-// void bar (int);
-// void foo (int *);
+// void baz (int i, int j) {
+//   if (i != j)
+//     abort ();
+// }
+// 
+// void bar (int i) { baz (i, i); }
+// 
+// void foo (int *i) { bar (*i); }
+// 
 // 
 // int main () {
 //   static int a[] = { 0, 1, 2 };
@@ -28,15 +35,6 @@
 //   exit (0);
 // }
 // 
-// void baz (int, int);
-// 
-// void bar (int i) { baz (i, i); }
-// void foo (int *i) { bar (*i); }
-// 
-// void baz (int i, int j) {
-//   if (i != j)
-//     abort ();
-// }
 
 int exit_value = 0; /* success */
 jmp_buf env;
@@ -87,10 +85,10 @@ main(int argc, char**argv)
     }
     cod_extern_entry externs[] = 
     {
-	{"main", (void*)(long)-1},
+	{"baz", (void*)(long)-1},
 	{"bar", (void*)(long)-1},
 	{"foo", (void*)(long)-1},
-	{"baz", (void*)(long)-1},
+	{"main", (void*)(long)-1},
 	{"abort", (void*)my_abort},
 	{"exit", (void*)test_exit},
 	{"test_printf", (void*)test_printf},
@@ -99,30 +97,38 @@ main(int argc, char**argv)
     };
 
     char extern_string[] = "\n\
-	int main ();\n\
+	void baz (int i, int j);\n\
 	void bar (int i);\n\
 	void foo (int *i);\n\
-	void baz (int i, int j);\n\
+	int main ();\n\
     	void exit(int value);\n\
         void abort();\n\
         int test_printf(const char *format, ...);\n\
         int printf(const char *format, ...);";
     char *global_decls[] = {
-	"#include <stdlib.h>\n\
-\n\
-void bar (int);\n\
-void foo (int *);",
-	"void baz (int, int);",
+	"#include <stdlib.h>",
 ""};
 
     char *func_decls[] = {
-	"int main ();",
+	"void baz (int i, int j);",
 	"void bar (int i);",
 	"void foo (int *i);",
-	"void baz (int i, int j);",
+	"int main ();",
 	""};
 
     char *func_bodies[] = {
+
+/* body for baz */
+"{\n\
+  if (i != j)\n\
+    abort ();\n\
+}",
+
+/* body for bar */
+"{ baz (i, i); }",
+
+/* body for foo */
+"{ bar (*i); }",
 
 /* body for main */
 "{\n\
@@ -133,18 +139,6 @@ void foo (int *);",
     foo (i);\n\
 \n\
   exit (0);\n\
-}",
-
-/* body for bar */
-"{ baz (i, i); }",
-
-/* body for foo */
-"{ bar (*i); }",
-
-/* body for baz */
-"{\n\
-  if (i != j)\n\
-    abort ();\n\
 }",
 ""};
 
@@ -190,7 +184,7 @@ void foo (int *);",
     if (test_output) {
         /* there was output, test expected */
         fclose(test_output);
-        int ret = system("cmp 20000910-1.c.output /Users/eisen/prog/gcc-3.3.1-3/gcc/testsuite/gcc.expect-torture/execute/20000910-1.expect");
+        int ret = system("cmp 20000910-1.c.output ./pre_patch/20000910-1.expect");
         ret = ret >> 8;
         if (ret == 1) {
             printf("Test ./generated/20000910-1.c failed, output differs\n");

@@ -97,7 +97,8 @@ main(int argc, char**argv)
         int printf(const char *format, ...);";
     char *global_decls[] = {
 	"short x1 = 17;",
-	"struct{\n\
+	"struct\n\
+{\n\
   short i __attribute__ ((packed));\n\
 } t;",
 ""};

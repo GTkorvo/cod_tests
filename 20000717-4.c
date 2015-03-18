@@ -103,7 +103,8 @@ main(int argc, char**argv)
         int test_printf(const char *format, ...);\n\
         int printf(const char *format, ...);";
     char *global_decls[] = {
-	"struct{\n\
+	"struct\n\
+{\n\
   int offset;\n\
   struct slot\n\
   {\n\

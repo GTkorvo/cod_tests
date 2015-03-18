@@ -100,7 +100,7 @@ main(int argc, char**argv)
     }
     cod_extern_entry externs[] = 
     {
-	{"abort", (void*)(long)-1},
+	{"dummy", (void*)(long)-1},
 	{"bogus", (void*)(long)-1},
 	{"main", (void*)(long)-1},
 	{"abort", (void*)my_abort},
@@ -111,7 +111,7 @@ main(int argc, char**argv)
     };
 
     char extern_string[] = "\n\
-	extern void abort();\n\
+	rtx dummy ( int *a, rtx *b);\n\
 	void bogus (rtx insn, rtx thread, rtx delay_list);\n\
 	int main();\n\
     	void exit(int value);\n\
@@ -119,21 +119,28 @@ main(int argc, char**argv)
         int test_printf(const char *format, ...);\n\
         int printf(const char *format, ...);";
     char *global_decls[] = {
+	"\n\
+			 \n\
+typedef struct\n\
+{\n\
+  unsigned int unchanging : 1;\n\
+} struc, *rtx;",
 ""};
 
     char *func_decls[] = {
-	"extern void abort();",
+	"rtx dummy ( int *a, rtx *b);",
 	"void bogus (rtx insn, rtx thread, rtx delay_list);",
 	"int main();",
 	""};
 
     char *func_bodies[] = {
 
-/* body for abort */
-"\n\
-\n\
-rtx dummy ( int *a, rtx *b)\n\
-",
+/* body for dummy */
+"{\n\
+  *a = 1;\n\
+  *b = (rtx)7;\n\
+  return (rtx)1;\n\
+}",
 
 /* body for bogus */
 "{\n\

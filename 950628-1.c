@@ -110,7 +110,8 @@ main(int argc, char**argv)
         int test_printf(const char *format, ...);\n\
         int printf(const char *format, ...);";
     char *global_decls[] = {
-	"typedef struct{\n\
+	"typedef struct\n\
+{\n\
   char hours, day, month;\n\
   short year;\n\
 } T;",

@@ -10,7 +10,7 @@
 /*
  *  Original test was:
  */
-// x(){signed char c=-1;return c<0;}main(){if(x()!=1)abort();exit(0);}
+// int x(){signed char c=-1;return c<0;}main(){if(x()!=1)abort();exit(0);}
 
 int exit_value = 0; /* success */
 jmp_buf env;
@@ -71,7 +71,7 @@ main(int argc, char**argv)
     };
 
     char extern_string[] = "\n\
-	void x();\n\
+	int x();\n\
 	void main();\n\
     	void exit(int value);\n\
         void abort();\n\
@@ -81,7 +81,7 @@ main(int argc, char**argv)
 ""};
 
     char *func_decls[] = {
-	"void x();",
+	"int x();",
 	"void main();",
 	""};
 
@@ -136,7 +136,7 @@ main(int argc, char**argv)
     if (test_output) {
         /* there was output, test expected */
         fclose(test_output);
-        int ret = system("cmp 920409-1.c.output /Users/eisen/prog/gcc-3.3.1-3/gcc/testsuite/gcc.expect-torture/execute/920409-1.expect");
+        int ret = system("cmp 920409-1.c.output ./pre_patch/920409-1.expect");
         ret = ret >> 8;
         if (ret == 1) {
             printf("Test ./generated/920409-1.c failed, output differs\n");

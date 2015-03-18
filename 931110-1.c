@@ -93,10 +93,12 @@ main(int argc, char**argv)
         int test_printf(const char *format, ...);\n\
         int printf(const char *format, ...);";
     char *global_decls[] = {
-	"typedef struct{\n\
+	"typedef struct\n\
+{\n\
   short f:3, g:3, h:10;\n\
 } small;",
-	"struct{\n\
+	"struct\n\
+{\n\
   int i;\n\
   small s[10];\n\
 } x;",

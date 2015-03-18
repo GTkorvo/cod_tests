@@ -114,7 +114,8 @@ main(int argc, char**argv)
 	"\n\
 \n\
 extern void ok (int);",
-	"typedef struct{\n\
+	"typedef struct\n\
+{\n\
   int x, y, z;\n\
 } Data;",
 ""};

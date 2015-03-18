@@ -13,7 +13,7 @@
 // static int rule_text_needs_stack_pop = 0;
 // static int input_stack_pos = 1;
 // 
-// f (void)
+// int f (void)
 // {
 //   rule_text_needs_stack_pop = 1;
 // 
@@ -88,7 +88,7 @@ main(int argc, char**argv)
     };
 
     char extern_string[] = "\n\
-	f ();\n\
+	int f ();\n\
 	void main ();\n\
     	void exit(int value);\n\
         void abort();\n\
@@ -100,7 +100,7 @@ static int input_stack_pos = 1;",
 ""};
 
     char *func_decls[] = {
-	"f ();",
+	"int f ();",
 	"void main ();",
 	""};
 
@@ -165,7 +165,7 @@ static int input_stack_pos = 1;",
     if (test_output) {
         /* there was output, test expected */
         fclose(test_output);
-        int ret = system("cmp 920202-1.c.output /Users/eisen/prog/gcc-3.3.1-3/gcc/testsuite/gcc.expect-torture/execute/920202-1.expect");
+        int ret = system("cmp 920202-1.c.output ./pre_patch/920202-1.expect");
         ret = ret >> 8;
         if (ret == 1) {
             printf("Test ./generated/920202-1.c failed, output differs\n");

@@ -83,7 +83,6 @@ main(int argc, char**argv)
     }
     cod_extern_entry externs[] = 
     {
-	{"f", (void*)(long)-1},
 	{"main", (void*)(long)-1},
 	{"abort", (void*)my_abort},
 	{"exit", (void*)test_exit},
@@ -93,31 +92,27 @@ main(int argc, char**argv)
     };
 
     char extern_string[] = "\n\
-	T f (T s1);\n\
 	void main ();\n\
     	void exit(int value);\n\
         void abort();\n\
         int test_printf(const char *format, ...);\n\
         int printf(const char *format, ...);";
     char *global_decls[] = {
-	"typedef struct{\n\
+	"typedef struct\n\
+{\n\
   char x;\n\
-} T;",
+} T;\n\
+\n\
+T\n\
+f (s1)\n\
+     T s1;",
 ""};
 
     char *func_decls[] = {
-	"T f (T s1);",
 	"void main ();",
 	""};
 
     char *func_bodies[] = {
-
-/* body for f */
-"{\n\
-  T s1a;\n\
-  s1a.x = s1.x;\n\
-  return s1a;\n\
-}",
 
 /* body for main */
 "{\n\
@@ -131,9 +126,9 @@ main(int argc, char**argv)
 ""};
 
     int i;
-    cod_code gen_code[2];
+    cod_code gen_code[1];
     cod_parse_context context;
-    for (i=0; i < 2; i++) {
+    for (i=0; i < 1; i++) {
         int j;
         if (verbose) {
              printf("Working on subroutine %s\n", externs[i].extern_name);
@@ -156,7 +151,7 @@ main(int argc, char**argv)
         cod_subroutine_declaration(func_decls[i], context);
         gen_code[i] = cod_code_gen(func_bodies[i], context);
         externs[i].extern_value = (void*) gen_code[i]->func;
-        if (i == 1) {
+        if (i == 0) {
             int (*func)() = (int(*)()) externs[i].extern_value;
             if (setjmp(env) == 0) {
                 func();

@@ -269,7 +269,8 @@ sub parse_c_test($) {
 	push @bits, $last;
 	
 	if (($before_last eq "struct") || ($before_last eq "enum") ||
-	    ($last eq "struct") || ($last eq "enum")) {
+	    ($last eq "struct") || ($last eq "enum") ||
+	   ($last =~ m/\benum\b/) || ($last =~ m/\bstruct\b/)) {
 	    my $decl_set = $last_segment . shift(@array);
 	    my $next = shift(@array);
 	    while (index($next, ";") == -1) {

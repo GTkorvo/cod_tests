@@ -102,7 +102,8 @@ main(int argc, char**argv)
         int test_printf(const char *format, ...);\n\
         int printf(const char *format, ...);";
     char *global_decls[] = {
-	"typedef struct{\n\
+	"typedef struct\n\
+{\n\
   short s __attribute__ ((aligned(2), packed));\n\
   double d __attribute__ ((aligned(2), packed));\n\
 } TRIAL;",

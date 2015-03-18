@@ -86,10 +86,10 @@ main(int argc, char**argv)
         int test_printf(const char *format, ...);\n\
         int printf(const char *format, ...);";
     char *global_decls[] = {
-	"struct{\n\
+	"struct\n\
+{\n\
   unsigned int f1:1, f2:1, f3:3, f4:3, f5:2, f6:1, f7:1;\n\
-}",
-	"result ={1, 1, 7, 7, 3, 1, 1};",
+} result = {1, 1, 7, 7, 3, 1, 1};",
 ""};
 
     char *func_decls[] = {
