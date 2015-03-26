@@ -10,7 +10,7 @@
 /*
  *  Original test was:
  */
-// f1 (a)
+// int f1 (a)
 //      long a;
 // {
 //   int i;
@@ -22,7 +22,7 @@
 //   return -1;
 // }
 // 
-// f2 (a)
+// int f2 (a)
 //      long a;
 // {
 //   int i;
@@ -34,7 +34,7 @@
 //   return -1;
 // }
 // 
-// f3 (a)
+// int f3 (a)
 //      long a;
 // {
 //   int i;
@@ -46,7 +46,7 @@
 //   return -1;
 // }
 // 
-// f4 (a)
+// int f4 (a)
 //      long a;
 // {
 //   int i;
@@ -58,7 +58,7 @@
 //   return -1;
 // }
 // 
-// f5 (a)
+// int f5 (a)
 //      long a;
 // {
 //   int i;
@@ -70,7 +70,7 @@
 //   return -1;
 // }
 // 
-// f6 (a)
+// int f6 (a)
 //      long a;
 // {
 //   int i;
@@ -170,12 +170,12 @@ main(int argc, char**argv)
     };
 
     char extern_string[] = "\n\
-	void f1 (long a);\n\
-	void f2 (long a);\n\
-	void f3 (long a);\n\
-	void f4 (long a);\n\
-	void f5 (long a);\n\
-	void f6 (long a);\n\
+	int f1 (long a);\n\
+	int f2 (long a);\n\
+	int f3 (long a);\n\
+	int f4 (long a);\n\
+	int f5 (long a);\n\
+	int f6 (long a);\n\
 	void main();\n\
     	void exit(int value);\n\
         void abort();\n\
@@ -185,12 +185,12 @@ main(int argc, char**argv)
 ""};
 
     char *func_decls[] = {
-	"void f1 (long a);",
-	"void f2 (long a);",
-	"void f3 (long a);",
-	"void f4 (long a);",
-	"void f5 (long a);",
-	"void f6 (long a);",
+	"int f1 (long a);",
+	"int f2 (long a);",
+	"int f3 (long a);",
+	"int f4 (long a);",
+	"int f5 (long a);",
+	"int f6 (long a);",
 	"void main();",
 	""};
 
@@ -328,7 +328,7 @@ main(int argc, char**argv)
     if (test_output) {
         /* there was output, test expected */
         fclose(test_output);
-        int ret = system("cmp dbra-1.c.output /Users/eisen/prog/gcc-3.3.1-3/gcc/testsuite/gcc.expect-torture/execute/dbra-1.expect");
+        int ret = system("cmp dbra-1.c.output ./pre_patch/dbra-1.expect");
         ret = ret >> 8;
         if (ret == 1) {
             printf("Test ./generated/dbra-1.c failed, output differs\n");

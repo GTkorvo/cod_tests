@@ -12,8 +12,6 @@
  */
 // #include <stdio.h>
 // 
-// /* Convert a decimal string to a long long unsigned.  No error check is
-//    performed.  */
 // 
 // long long unsigned
 // str2llu (str)
@@ -34,7 +32,6 @@
 //   return acc;
 // }
 // 
-// /* isqrt(t) - computes the square root of t. (tege 86-10-27) */
 // 
 // long unsigned
 // sqrtllu (long long unsigned t)
@@ -62,7 +59,8 @@
 // 
 // 
 // int plist (p0, p1, tab)
-//      long long unsigned p0, p1;
+//     long long unsigned p0;
+//      long long unsigned p1;
 //      long long unsigned *tab;
 // {
 //   long long unsigned p;
@@ -163,25 +161,22 @@ main(int argc, char**argv)
     };
 
     char extern_string[] = "\n\
-	long long unsigned str2llu (char *str);\n\
+	 long long unsigned str2llu (char *str);\n\
 	long unsigned sqrtllu (long long unsigned t);\n\
-	int plist (long long unsigned p0, p1, long long unsigned *tab);\n\
+	int plist (long long unsigned p0, long long unsigned p1, long long unsigned *tab);\n\
 	void main (int argc, char *argv[]);\n\
     	void exit(int value);\n\
         void abort();\n\
         int test_printf(const char *format, ...);\n\
         int printf(const char *format, ...);";
     char *global_decls[] = {
-	"#include <stdio.h>\n\
-\n\
-/* Convert a decimal string to a long long unsigned.  No error check is\n\
-   performed.  */",
+	"#include <stdio.h>",
 ""};
 
     char *func_decls[] = {
-	"long long unsigned str2llu (char *str);",
+	" long long unsigned str2llu (char *str);",
 	"long unsigned sqrtllu (long long unsigned t);",
-	"int plist (long long unsigned p0, p1, long long unsigned *tab);",
+	"int plist (long long unsigned p0, long long unsigned p1, long long unsigned *tab);",
 	"void main (int argc, char *argv[]);",
 	""};
 
@@ -297,7 +292,7 @@ main(int argc, char**argv)
                 func();
             }
             if (exit_value != 0) {
-                printf("Test ./generated/920501-6.c failed\n");
+                printf("Test ./920501-6.c failed\n");
                 exit(exit_value);
             }
         } else {
@@ -307,17 +302,17 @@ main(int argc, char**argv)
     if (test_output) {
         /* there was output, test expected */
         fclose(test_output);
-        int ret = system("cmp 920501-6.c.output /Users/eisen/prog/gcc-3.3.1-3/gcc/testsuite/gcc.expect-torture/execute/920501-6.expect");
+        int ret = system("cmp 920501-6.c.output pre_patch/920501-6.expect");
         ret = ret >> 8;
         if (ret == 1) {
-            printf("Test ./generated/920501-6.c failed, output differs\n");
+            printf("Test ./920501-6.c failed, output differs\n");
             exit(1);
         }
         if (ret != 0) {
-            printf("Test ./generated/920501-6.c failed, output missing\n");
+            printf("Test ./920501-6.c failed, output missing\n");
             exit(1);
         }
     }
-    if (verbose) printf("Test ./generated/920501-6.c Succeeded\n");
+    if (verbose) printf("Test ./920501-6.c Succeeded\n");
     return 0;
 }

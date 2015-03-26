@@ -1,0 +1,98 @@
+*** /Users/eisen/prog/gcc-3.3.1-3/gcc/testsuite/gcc.c-torture/execute/dbra-1.c	Thu Oct 16 05:59:19 2003
+--- ../pre_patch/dbra-1.c	Wed Mar 18 13:37:37 2015
+***************
+*** 1,4 ****
+! f1 (a)
+       long a;
+  {
+    int i;
+--- 1,4 ----
+! int f1 (a)
+       long a;
+  {
+    int i;
+***************
+*** 10,16 ****
+    return -1;
+  }
+  
+! f2 (a)
+       long a;
+  {
+    int i;
+--- 10,16 ----
+    return -1;
+  }
+  
+! int f2 (a)
+       long a;
+  {
+    int i;
+***************
+*** 22,28 ****
+    return -1;
+  }
+  
+! f3 (a)
+       long a;
+  {
+    int i;
+--- 22,28 ----
+    return -1;
+  }
+  
+! int f3 (a)
+       long a;
+  {
+    int i;
+***************
+*** 34,40 ****
+    return -1;
+  }
+  
+! f4 (a)
+       long a;
+  {
+    int i;
+--- 34,40 ----
+    return -1;
+  }
+  
+! int f4 (a)
+       long a;
+  {
+    int i;
+***************
+*** 46,52 ****
+    return -1;
+  }
+  
+! f5 (a)
+       long a;
+  {
+    int i;
+--- 46,52 ----
+    return -1;
+  }
+  
+! int f5 (a)
+       long a;
+  {
+    int i;
+***************
+*** 58,64 ****
+    return -1;
+  }
+  
+! f6 (a)
+       long a;
+  {
+    int i;
+--- 58,64 ----
+    return -1;
+  }
+  
+! int f6 (a)
+       long a;
+  {
+    int i;

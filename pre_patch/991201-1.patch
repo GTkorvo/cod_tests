@@ -1,0 +1,38 @@
+*** /Users/eisen/prog/gcc-3.3.1-3/gcc/testsuite/gcc.c-torture/execute/991201-1.c	Fri Mar 20 14:13:27 2015
+--- ../pre_patch/991201-1.c	Fri Mar 20 14:14:33 2015
+***************
+*** 13,19 ****
+  int default_grn[16];
+  int default_blu[16];
+  
+! extern void bar(int);
+  
+  void reset_palette(int currcons)
+  {
+--- 13,23 ----
+  int default_grn[16];
+  int default_blu[16];
+  
+! void bar(int k)
+! {
+! 	if (k != 16*3)
+! 		abort();
+! }
+  
+  void reset_palette(int currcons)
+  {
+***************
+*** 26,37 ****
+  	bar(k);
+  }
+  
+- void bar(int k)
+- {
+- 	if (k != 16*3)
+- 		abort();
+- }
+- 
+  int main()
+  {
+  	reset_palette(0);
+--- 30,35 ----

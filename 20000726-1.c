@@ -10,7 +10,13 @@
 /*
  *  Original test was:
  */
-// void adjust_xy (short *, short *);
+// void
+// adjust_xy (x, y)
+//      short  *x;
+//      short  *y;
+// {
+//   *x = adjust.kx_x * *x + adjust.kx_y * *y + adjust.kx;
+// }
 // 
 // struct adjust_template
 // {
@@ -34,13 +40,6 @@
 //   exit (0);
 // }
 // 
-// void
-// adjust_xy (x, y)
-//      short  *x;
-//      short  *y;
-// {
-//   *x = adjust.kx_x * *x + adjust.kx_y * *y + adjust.kx;
-// }
 
 int exit_value = 0; /* success */
 jmp_buf env;
@@ -91,8 +90,8 @@ main(int argc, char**argv)
     }
     cod_extern_entry externs[] = 
     {
-	{"main", (void*)(long)-1},
 	{"adjust_xy", (void*)(long)-1},
+	{"main", (void*)(long)-1},
 	{"abort", (void*)my_abort},
 	{"exit", (void*)test_exit},
 	{"test_printf", (void*)test_printf},
@@ -101,14 +100,13 @@ main(int argc, char**argv)
     };
 
     char extern_string[] = "\n\
-	void main ();\n\
 	void adjust_xy (short  *x, short  *y);\n\
+	void main ();\n\
     	void exit(int value);\n\
         void abort();\n\
         int test_printf(const char *format, ...);\n\
         int printf(const char *format, ...);";
     char *global_decls[] = {
-	"void adjust_xy (short *, short *);",
 	"struct adjust_template\n\
 {\n\
   short kx_x;\n\
@@ -120,11 +118,16 @@ main(int argc, char**argv)
 ""};
 
     char *func_decls[] = {
-	"void main ();",
 	"void adjust_xy (short  *x, short  *y);",
+	"void main ();",
 	""};
 
     char *func_bodies[] = {
+
+/* body for adjust_xy */
+"{\n\
+  *x = adjust.kx_x * *x + adjust.kx_y * *y + adjust.kx;\n\
+}",
 
 /* body for main */
 "{\n\
@@ -136,11 +139,6 @@ main(int argc, char**argv)
     abort ();\n\
 \n\
   exit (0);\n\
-}",
-
-/* body for adjust_xy */
-"{\n\
-  *x = adjust.kx_x * *x + adjust.kx_y * *y + adjust.kx;\n\
 }",
 ""};
 
@@ -176,7 +174,7 @@ main(int argc, char**argv)
                 func();
             }
             if (exit_value != 0) {
-                printf("Test ./generated/20000726-1.c failed\n");
+                printf("Test ./20000726-1.c failed\n");
                 exit(exit_value);
             }
         } else {
@@ -186,17 +184,17 @@ main(int argc, char**argv)
     if (test_output) {
         /* there was output, test expected */
         fclose(test_output);
-        int ret = system("cmp 20000726-1.c.output /Users/eisen/prog/gcc-3.3.1-3/gcc/testsuite/gcc.expect-torture/execute/20000726-1.expect");
+        int ret = system("cmp 20000726-1.c.output pre_patch/20000726-1.expect");
         ret = ret >> 8;
         if (ret == 1) {
-            printf("Test ./generated/20000726-1.c failed, output differs\n");
+            printf("Test ./20000726-1.c failed, output differs\n");
             exit(1);
         }
         if (ret != 0) {
-            printf("Test ./generated/20000726-1.c failed, output missing\n");
+            printf("Test ./20000726-1.c failed, output missing\n");
             exit(1);
         }
     }
-    if (verbose) printf("Test ./generated/20000726-1.c Succeeded\n");
+    if (verbose) printf("Test ./20000726-1.c Succeeded\n");
     return 0;
 }

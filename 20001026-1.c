@@ -10,6 +10,8 @@
 /*
  *  Original test was:
  */
+// #include "string.h"
+// 
 // extern void abort (void);
 // 
 // typedef struct {
@@ -36,8 +38,7 @@
 // };
 // 
 // static void
-// build_real_from_int_cst_1 (data)
-//      void * data;
+// build_real_from_int_cst_1 (void * data)
 // {
 //   struct brfic_args *args = (struct brfic_args *) data;
 //   args->d = real_value_from_int_cst (args->type, args->i);
@@ -47,7 +48,7 @@
 // {
 //   struct brfic_args args;
 // 
-//   __builtin_memset (&args, 0, sizeof(args));
+//   memset (&args, 0, sizeof(args));
 //   build_real_from_int_cst_1 (&args);
 // 
 //   if (args.d.r[0] == 0)
@@ -105,6 +106,7 @@ main(int argc, char**argv)
     cod_extern_entry externs[] = 
     {
 	{"real_value_from_int_cst", (void*)(long)-1},
+	{"build_real_from_int_cst_1", (void*)(long)-1},
 	{"main", (void*)(long)-1},
 	{"abort", (void*)my_abort},
 	{"exit", (void*)test_exit},
@@ -115,12 +117,16 @@ main(int argc, char**argv)
 
     char extern_string[] = "\n\
 	static realvaluetype real_value_from_int_cst (tree x, tree y);\n\
+	static void build_real_from_int_cst_1 (void * data);\n\
 	int main();\n\
     	void exit(int value);\n\
         void abort();\n\
         int test_printf(const char *format, ...);\n\
         int printf(const char *format, ...);";
     char *global_decls[] = {
+	"#include \"string.h\"\n\
+\n\
+",
 	"typedef struct {\n\
   long r[(19 + sizeof (long))/(sizeof (long))];\n\
 } realvaluetype;\n\
@@ -131,15 +137,12 @@ typedef void *tree;",
   tree type;\n\
   tree i;\n\
   realvaluetype d;\n\
-};\n\
-\n\
-static void\n\
-build_real_from_int_cst_1 (data)\n\
-     void * data;",
+};",
 ""};
 
     char *func_decls[] = {
 	"static realvaluetype real_value_from_int_cst (tree x, tree y);",
+	"static void build_real_from_int_cst_1 (void * data);",
 	"int main();",
 	""};
 
@@ -154,11 +157,17 @@ build_real_from_int_cst_1 (data)\n\
   return r;\n\
 }",
 
+/* body for build_real_from_int_cst_1 */
+"{\n\
+  struct brfic_args *args = (struct brfic_args *) data;\n\
+  args->d = real_value_from_int_cst (args->type, args->i);\n\
+}",
+
 /* body for main */
 "{\n\
   struct brfic_args args;\n\
 \n\
-  __builtin_memset (&args, 0, sizeof(args));\n\
+  memset (&args, 0, sizeof(args));\n\
   build_real_from_int_cst_1 (&args);\n\
 \n\
   if (args.d.r[0] == 0)\n\
@@ -168,9 +177,9 @@ build_real_from_int_cst_1 (data)\n\
 ""};
 
     int i;
-    cod_code gen_code[2];
+    cod_code gen_code[3];
     cod_parse_context context;
-    for (i=0; i < 2; i++) {
+    for (i=0; i < 3; i++) {
         int j;
         if (verbose) {
              printf("Working on subroutine %s\n", externs[i].extern_name);
@@ -193,13 +202,13 @@ build_real_from_int_cst_1 (data)\n\
         cod_subroutine_declaration(func_decls[i], context);
         gen_code[i] = cod_code_gen(func_bodies[i], context);
         externs[i].extern_value = (void*) gen_code[i]->func;
-        if (i == 1) {
+        if (i == 2) {
             int (*func)() = (int(*)()) externs[i].extern_value;
             if (setjmp(env) == 0) {
                 func();
             }
             if (exit_value != 0) {
-                printf("Test ./generated/20001026-1.c failed\n");
+                printf("Test ./20001026-1.c failed\n");
                 exit(exit_value);
             }
         } else {
@@ -209,17 +218,17 @@ build_real_from_int_cst_1 (data)\n\
     if (test_output) {
         /* there was output, test expected */
         fclose(test_output);
-        int ret = system("cmp 20001026-1.c.output /Users/eisen/prog/gcc-3.3.1-3/gcc/testsuite/gcc.expect-torture/execute/20001026-1.expect");
+        int ret = system("cmp 20001026-1.c.output pre_patch/20001026-1.expect");
         ret = ret >> 8;
         if (ret == 1) {
-            printf("Test ./generated/20001026-1.c failed, output differs\n");
+            printf("Test ./20001026-1.c failed, output differs\n");
             exit(1);
         }
         if (ret != 0) {
-            printf("Test ./generated/20001026-1.c failed, output missing\n");
+            printf("Test ./20001026-1.c failed, output missing\n");
             exit(1);
         }
     }
-    if (verbose) printf("Test ./generated/20001026-1.c Succeeded\n");
+    if (verbose) printf("Test ./20001026-1.c Succeeded\n");
     return 0;
 }

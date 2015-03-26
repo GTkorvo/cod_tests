@@ -10,42 +10,42 @@
 /*
  *  Original test was:
  */
-// div1 (signed char x)
+// int div1 (signed char x)
 // {
 //   return x / -1;
 // }
 // 
-// div2 (signed short x)
+// int div2 (signed short x)
 // {
 //   return x / -1;
 // }
 // 
-// div3 (signed char x, signed char y)
+// int div3 (signed char x, signed char y)
 // {
 //   return x / y;
 // }
 // 
-// div4 (signed short x, signed short y)
+// int div4 (signed short x, signed short y)
 // {
 //   return x / y;
 // }
 // 
-// mod1 (signed char x)
+// int mod1 (signed char x)
 // {
 //   return x % -1;
 // }
 // 
-// mod2 (signed short x)
+// int mod2 (signed short x)
 // {
 //   return x % -1;
 // }
 // 
-// mod3 (signed char x, signed char y)
+// int mod3 (signed char x, signed char y)
 // {
 //   return x % y;
 // }
 // 
-// mod4 (signed short x, signed short y)
+// int mod4 (signed short x, signed short y)
 // {
 //   return x % y;
 // }
@@ -156,14 +156,14 @@ main(int argc, char**argv)
     };
 
     char extern_string[] = "\n\
-	div1 (signed char x);\n\
-	div2 (signed short x);\n\
-	div3 (signed char x, signed char y);\n\
-	div4 (signed short x, signed short y);\n\
-	mod1 (signed char x);\n\
-	mod2 (signed short x);\n\
-	mod3 (signed char x, signed char y);\n\
-	mod4 (signed short x, signed short y);\n\
+	int div1 (signed char x);\n\
+	int div2 (signed short x);\n\
+	int div3 (signed char x, signed char y);\n\
+	int div4 (signed short x, signed short y);\n\
+	int mod1 (signed char x);\n\
+	int mod2 (signed short x);\n\
+	int mod3 (signed char x, signed char y);\n\
+	int mod4 (signed short x, signed short y);\n\
 	signed long mod5 (signed long x, signed long y);\n\
 	unsigned long mod6 (unsigned long x, unsigned long y);\n\
 	void main ();\n\
@@ -175,14 +175,14 @@ main(int argc, char**argv)
 ""};
 
     char *func_decls[] = {
-	"div1 (signed char x);",
-	"div2 (signed short x);",
-	"div3 (signed char x, signed char y);",
-	"div4 (signed short x, signed short y);",
-	"mod1 (signed char x);",
-	"mod2 (signed short x);",
-	"mod3 (signed char x, signed char y);",
-	"mod4 (signed short x, signed short y);",
+	"int div1 (signed char x);",
+	"int div2 (signed short x);",
+	"int div3 (signed char x, signed char y);",
+	"int div4 (signed short x, signed short y);",
+	"int mod1 (signed char x);",
+	"int mod2 (signed short x);",
+	"int mod3 (signed char x, signed char y);",
+	"int mod4 (signed short x, signed short y);",
 	"signed long mod5 (signed long x, signed long y);",
 	"unsigned long mod6 (unsigned long x, unsigned long y);",
 	"void main ();",
@@ -309,7 +309,7 @@ main(int argc, char**argv)
     if (test_output) {
         /* there was output, test expected */
         fclose(test_output);
-        int ret = system("cmp divmod-1.c.output /Users/eisen/prog/gcc-3.3.1-3/gcc/testsuite/gcc.expect-torture/execute/divmod-1.expect");
+        int ret = system("cmp divmod-1.c.output ./pre_patch/divmod-1.expect");
         ret = ret >> 8;
         if (ret == 1) {
             printf("Test ./generated/divmod-1.c failed, output differs\n");

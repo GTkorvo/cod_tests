@@ -1,0 +1,40 @@
+*** /Users/eisen/prog/gcc-3.3.1-3/gcc/testsuite/gcc.c-torture/execute/920501-6.c	Thu Mar 26 10:25:30 2015
+--- ../pre_patch/920501-6.c	Thu Mar 26 10:26:39 2015
+***************
+*** 1,7 ****
+  #include <stdio.h>
+  
+- /* Convert a decimal string to a long long unsigned.  No error check is
+-    performed.  */
+  
+  long long unsigned
+  str2llu (str)
+--- 1,5 ----
+***************
+*** 22,28 ****
+    return acc;
+  }
+  
+- /* isqrt(t) - computes the square root of t. (tege 86-10-27) */
+  
+  long unsigned
+  sqrtllu (long long unsigned t)
+--- 20,25 ----
+***************
+*** 50,56 ****
+  
+  
+  int plist (p0, p1, tab)
+!      long long unsigned p0, p1;
+       long long unsigned *tab;
+  {
+    long long unsigned p;
+--- 47,54 ----
+  
+  
+  int plist (p0, p1, tab)
+!     long long unsigned p0;
+!      long long unsigned p1;
+       long long unsigned *tab;
+  {
+    long long unsigned p;

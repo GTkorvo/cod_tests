@@ -12,8 +12,16 @@
  */
 // extern void abort(void);
 // extern void exit(int);
-// int bar(void);
-// int baz(void);
+// 
+// int bar (void)
+// {
+//   return 0;
+// }
+// 
+// int baz (void)
+// {
+//   return 0;
+// }
 // 
 // struct foo {
 //   struct foo *next;
@@ -27,16 +35,6 @@
 //     node = node->next;
 //   }
 //   return node;
-// }
-// 
-// int bar (void)
-// {
-//   return 0;
-// }
-// 
-// int baz (void)
-// {
-//   return 0;
 // }
 // 
 // int main(void)
@@ -100,9 +98,9 @@ main(int argc, char**argv)
     }
     cod_extern_entry externs[] = 
     {
-	{"test", (void*)(long)-1},
 	{"bar", (void*)(long)-1},
 	{"baz", (void*)(long)-1},
+	{"test", (void*)(long)-1},
 	{"main", (void*)(long)-1},
 	{"abort", (void*)my_abort},
 	{"exit", (void*)test_exit},
@@ -112,42 +110,28 @@ main(int argc, char**argv)
     };
 
     char extern_string[] = "\n\
-	struct foo *test(struct foo *node);\n\
 	int bar ();\n\
 	int baz ();\n\
+	struct foo *test(struct foo *node);\n\
 	int main();\n\
     	void exit(int value);\n\
         void abort();\n\
         int test_printf(const char *format, ...);\n\
         int printf(const char *format, ...);";
     char *global_decls[] = {
-	"\n\
-\n\
-int bar(void);\n\
-int baz(void);",
 	"struct foo {\n\
   struct foo *next;\n\
 };",
 ""};
 
     char *func_decls[] = {
-	"struct foo *test(struct foo *node);",
 	"int bar ();",
 	"int baz ();",
+	"struct foo *test(struct foo *node);",
 	"int main();",
 	""};
 
     char *func_bodies[] = {
-
-/* body for test */
-"{\n\
-  while (node) {\n\
-    if (bar() && !baz())\n\
-      break;\n\
-    node = node->next;\n\
-  }\n\
-  return node;\n\
-}",
 
 /* body for bar */
 "{\n\
@@ -157,6 +141,16 @@ int baz(void);",
 /* body for baz */
 "{\n\
   return 0;\n\
+}",
+
+/* body for test */
+"{\n\
+  while (node) {\n\
+    if (bar() && !baz())\n\
+      break;\n\
+    node = node->next;\n\
+  }\n\
+  return node;\n\
 }",
 
 /* body for main */
@@ -204,7 +198,7 @@ int baz(void);",
                 func();
             }
             if (exit_value != 0) {
-                printf("Test ./generated/20000801-2.c failed\n");
+                printf("Test ./20000801-2.c failed\n");
                 exit(exit_value);
             }
         } else {
@@ -214,17 +208,17 @@ int baz(void);",
     if (test_output) {
         /* there was output, test expected */
         fclose(test_output);
-        int ret = system("cmp 20000801-2.c.output /Users/eisen/prog/gcc-3.3.1-3/gcc/testsuite/gcc.expect-torture/execute/20000801-2.expect");
+        int ret = system("cmp 20000801-2.c.output pre_patch/20000801-2.expect");
         ret = ret >> 8;
         if (ret == 1) {
-            printf("Test ./generated/20000801-2.c failed, output differs\n");
+            printf("Test ./20000801-2.c failed, output differs\n");
             exit(1);
         }
         if (ret != 0) {
-            printf("Test ./generated/20000801-2.c failed, output missing\n");
+            printf("Test ./20000801-2.c failed, output missing\n");
             exit(1);
         }
     }
-    if (verbose) printf("Test ./generated/20000801-2.c Succeeded\n");
+    if (verbose) printf("Test ./20000801-2.c Succeeded\n");
     return 0;
 }

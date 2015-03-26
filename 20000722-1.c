@@ -12,14 +12,11 @@
  */
 // struct s { char *p; int t; };
 // 
-// extern void bar (void);
-// extern void foo (struct s *);
-// 
-// int main(void)
+// void foo (struct s *p)
 // {
-//   bar ();
-//   bar ();
-//   exit (0);
+//   if (p->t != 1)
+//     abort();
+//   p->t = 2;
 // }
 // 
 // void 
@@ -28,11 +25,11 @@
 //   foo (& (struct s) { "hi", 1 });
 // }
 // 
-// void foo (struct s *p)
+// int main(void)
 // {
-//   if (p->t != 1)
-//     abort();
-//   p->t = 2;
+//   bar ();
+//   bar ();
+//   exit (0);
 // }
 
 int exit_value = 0; /* success */
@@ -84,9 +81,9 @@ main(int argc, char**argv)
     }
     cod_extern_entry externs[] = 
     {
-	{"main", (void*)(long)-1},
-	{"bar", (void*)(long)-1},
 	{"foo", (void*)(long)-1},
+	{"bar", (void*)(long)-1},
+	{"main", (void*)(long)-1},
 	{"abort", (void*)my_abort},
 	{"exit", (void*)test_exit},
 	{"test_printf", (void*)test_printf},
@@ -95,33 +92,30 @@ main(int argc, char**argv)
     };
 
     char extern_string[] = "\n\
-	int main();\n\
-	void  bar ();\n\
 	void foo (struct s *p);\n\
+	void  bar ();\n\
+	int main();\n\
     	void exit(int value);\n\
         void abort();\n\
         int test_printf(const char *format, ...);\n\
         int printf(const char *format, ...);";
     char *global_decls[] = {
-	"struct s { char *p; int t; };\n\
-\n\
-extern void bar (void);\n\
-extern void foo (struct s *);",
+	"struct s { char *p; int t; };",
 ""};
 
     char *func_decls[] = {
-	"int main();",
-	"void  bar ();",
 	"void foo (struct s *p);",
+	"void  bar ();",
+	"int main();",
 	""};
 
     char *func_bodies[] = {
 
-/* body for main */
+/* body for foo */
 "{\n\
-  bar ();\n\
-  bar ();\n\
-  exit (0);\n\
+  if (p->t != 1)\n\
+    abort();\n\
+  p->t = 2;\n\
 }",
 
 /* body for bar */
@@ -129,11 +123,11 @@ extern void foo (struct s *);",
   foo (& (struct s) { \"hi\", 1 });\n\
 }",
 
-/* body for foo */
+/* body for main */
 "{\n\
-  if (p->t != 1)\n\
-    abort();\n\
-  p->t = 2;\n\
+  bar ();\n\
+  bar ();\n\
+  exit (0);\n\
 }",
 ""};
 
@@ -169,7 +163,7 @@ extern void foo (struct s *);",
                 func();
             }
             if (exit_value != 0) {
-                printf("Test ./generated/20000722-1.c failed\n");
+                printf("Test ./20000722-1.c failed\n");
                 exit(exit_value);
             }
         } else {
@@ -179,17 +173,17 @@ extern void foo (struct s *);",
     if (test_output) {
         /* there was output, test expected */
         fclose(test_output);
-        int ret = system("cmp 20000722-1.c.output /Users/eisen/prog/gcc-3.3.1-3/gcc/testsuite/gcc.expect-torture/execute/20000722-1.expect");
+        int ret = system("cmp 20000722-1.c.output pre_patch/20000722-1.expect");
         ret = ret >> 8;
         if (ret == 1) {
-            printf("Test ./generated/20000722-1.c failed, output differs\n");
+            printf("Test ./20000722-1.c failed, output differs\n");
             exit(1);
         }
         if (ret != 0) {
-            printf("Test ./generated/20000722-1.c failed, output missing\n");
+            printf("Test ./20000722-1.c failed, output missing\n");
             exit(1);
         }
     }
-    if (verbose) printf("Test ./generated/20000722-1.c Succeeded\n");
+    if (verbose) printf("Test ./20000722-1.c Succeeded\n");
     return 0;
 }

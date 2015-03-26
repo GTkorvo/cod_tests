@@ -1,0 +1,83 @@
+*** /Users/eisen/prog/gcc-3.3.1-3/gcc/testsuite/gcc.c-torture/execute/divmod-1.c	Thu Oct 16 05:59:19 2003
+--- ../pre_patch/divmod-1.c	Wed Mar 18 09:46:59 2015
+***************
+*** 1,39 ****
+! div1 (signed char x)
+  {
+    return x / -1;
+  }
+  
+! div2 (signed short x)
+  {
+    return x / -1;
+  }
+  
+! div3 (signed char x, signed char y)
+  {
+    return x / y;
+  }
+  
+! div4 (signed short x, signed short y)
+  {
+    return x / y;
+  }
+  
+! mod1 (signed char x)
+  {
+    return x % -1;
+  }
+  
+! mod2 (signed short x)
+  {
+    return x % -1;
+  }
+  
+! mod3 (signed char x, signed char y)
+  {
+    return x % y;
+  }
+  
+! mod4 (signed short x, signed short y)
+  {
+    return x % y;
+  }
+--- 1,39 ----
+! int div1 (signed char x)
+  {
+    return x / -1;
+  }
+  
+! int div2 (signed short x)
+  {
+    return x / -1;
+  }
+  
+! int div3 (signed char x, signed char y)
+  {
+    return x / y;
+  }
+  
+! int div4 (signed short x, signed short y)
+  {
+    return x / y;
+  }
+  
+! int mod1 (signed char x)
+  {
+    return x % -1;
+  }
+  
+! int mod2 (signed short x)
+  {
+    return x % -1;
+  }
+  
+! int mod3 (signed char x, signed char y)
+  {
+    return x % y;
+  }
+  
+! int mod4 (signed short x, signed short y)
+  {
+    return x % y;
+  }

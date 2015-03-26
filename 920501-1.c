@@ -11,8 +11,12 @@
  *  Original test was:
  */
 // int s[2];
-// x(){if(!s[0]){s[1+s[1]]=s[1];return 1;}}
-// main(){s[0]=s[1]=0;if(x(0)!=1)abort();exit(0);}
+// 
+// int x(int a)
+// {if(!s[0]){s[1+s[1]]=s[1];return 1;}}
+// 
+// main()
+// {s[0]=s[1]=0;if(x(0)!=1)abort();exit(0);}
 
 int exit_value = 0; /* success */
 jmp_buf env;
@@ -73,17 +77,18 @@ main(int argc, char**argv)
     };
 
     char extern_string[] = "\n\
-	int s[2]; x();\n\
+	int x(int a);\n\
 	void main();\n\
     	void exit(int value);\n\
         void abort();\n\
         int test_printf(const char *format, ...);\n\
         int printf(const char *format, ...);";
     char *global_decls[] = {
+	"int s[2];",
 ""};
 
     char *func_decls[] = {
-	"int s[2]; x();",
+	"int x(int a);",
 	"void main();",
 	""};
 
@@ -128,7 +133,7 @@ main(int argc, char**argv)
                 func();
             }
             if (exit_value != 0) {
-                printf("Test ./generated/920501-1.c failed\n");
+                printf("Test ./920501-1.c failed\n");
                 exit(exit_value);
             }
         } else {
@@ -138,17 +143,17 @@ main(int argc, char**argv)
     if (test_output) {
         /* there was output, test expected */
         fclose(test_output);
-        int ret = system("cmp 920501-1.c.output /Users/eisen/prog/gcc-3.3.1-3/gcc/testsuite/gcc.expect-torture/execute/920501-1.expect");
+        int ret = system("cmp 920501-1.c.output pre_patch/920501-1.expect");
         ret = ret >> 8;
         if (ret == 1) {
-            printf("Test ./generated/920501-1.c failed, output differs\n");
+            printf("Test ./920501-1.c failed, output differs\n");
             exit(1);
         }
         if (ret != 0) {
-            printf("Test ./generated/920501-1.c failed, output missing\n");
+            printf("Test ./920501-1.c failed, output missing\n");
             exit(1);
         }
     }
-    if (verbose) printf("Test ./generated/920501-1.c Succeeded\n");
+    if (verbose) printf("Test ./920501-1.c Succeeded\n");
     return 0;
 }

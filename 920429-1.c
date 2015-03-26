@@ -10,9 +10,14 @@
 /*
  *  Original test was:
  */
-// typedef unsigned char t;int i,j;
-// t*f(t*p){t c;c=*p++;i=((c&2)?1:0);j=(c&7)+1;return p;}
-// main(){t*p0="ab",*p1;p1=f(p0);if(p0+1!=p1)abort();exit(0);}
+// typedef unsigned char t;
+// int i,j;
+// 
+// t*f(t*p)
+// {t c;c=*p++;i=((c&2)?1:0);j=(c&7)+1;return p;}
+// 
+// main()
+// {t*p0="ab",*p1;p1=f(p0);if(p0+1!=p1)abort();exit(0);}
 
 int exit_value = 0; /* success */
 jmp_buf env;
@@ -73,17 +78,19 @@ main(int argc, char**argv)
     };
 
     char extern_string[] = "\n\
-	typedef unsigned char t;int i,j; t*f(t*p);\n\
+	t*f(t*p);\n\
 	void main();\n\
     	void exit(int value);\n\
         void abort();\n\
         int test_printf(const char *format, ...);\n\
         int printf(const char *format, ...);";
     char *global_decls[] = {
+	"typedef unsigned char t;\n\
+int i,j;",
 ""};
 
     char *func_decls[] = {
-	"typedef unsigned char t;int i,j; t*f(t*p);",
+	"t*f(t*p);",
 	"void main();",
 	""};
 
@@ -128,7 +135,7 @@ main(int argc, char**argv)
                 func();
             }
             if (exit_value != 0) {
-                printf("Test ./generated/920429-1.c failed\n");
+                printf("Test ./920429-1.c failed\n");
                 exit(exit_value);
             }
         } else {
@@ -138,17 +145,17 @@ main(int argc, char**argv)
     if (test_output) {
         /* there was output, test expected */
         fclose(test_output);
-        int ret = system("cmp 920429-1.c.output /Users/eisen/prog/gcc-3.3.1-3/gcc/testsuite/gcc.expect-torture/execute/920429-1.expect");
+        int ret = system("cmp 920429-1.c.output pre_patch/920429-1.expect");
         ret = ret >> 8;
         if (ret == 1) {
-            printf("Test ./generated/920429-1.c failed, output differs\n");
+            printf("Test ./920429-1.c failed, output differs\n");
             exit(1);
         }
         if (ret != 0) {
-            printf("Test ./generated/920429-1.c failed, output missing\n");
+            printf("Test ./920429-1.c failed, output missing\n");
             exit(1);
         }
     }
-    if (verbose) printf("Test ./generated/920429-1.c Succeeded\n");
+    if (verbose) printf("Test ./920429-1.c Succeeded\n");
     return 0;
 }

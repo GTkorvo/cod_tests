@@ -311,7 +311,6 @@ sub parse_c_test($) {
 		$count++;
 		next;
 	    }
-	    print "Considering last line \"$last_line\"\n";
 	    if (substr($last_line, -1) eq "=") {
 	        my $init_value = shift(@array);
 		my $next_semi = index $array[0],";";

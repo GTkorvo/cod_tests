@@ -20,8 +20,7 @@
 // }
 // 
 // void
-// f (p0, p1, p2, p3, p4, p5)
-//      Point p0, p1, p2, p3, p4, p5;
+// f (     Point p0, Point p1, Point p2, Point p3, Point p4, Point p5)
 // {
 //   if (p0.p_x != 0 || p0.p_y != 1
 //       || p1.p_x != -1 || p1.p_y != 0
@@ -129,7 +128,7 @@ main(int argc, char**argv)
 
     char extern_string[] = "\n\
 	void bar ();\n\
-	void f (Point p0, p1, p2, p3, p4, p5);\n\
+	void f (     Point p0, Point p1, Point p2, Point p3, Point p4, Point p5);\n\
 	void foo ();\n\
 	int main();\n\
     	void exit(int value);\n\
@@ -144,7 +143,7 @@ main(int argc, char**argv)
 
     char *func_decls[] = {
 	"void bar ();",
-	"void f (Point p0, p1, p2, p3, p4, p5);",
+	"void f (     Point p0, Point p1, Point p2, Point p3, Point p4, Point p5);",
 	"void foo ();",
 	"int main();",
 	""};
@@ -232,7 +231,7 @@ main(int argc, char**argv)
                 func();
             }
             if (exit_value != 0) {
-                printf("Test ./generated/20000808-1.c failed\n");
+                printf("Test ./20000808-1.c failed\n");
                 exit(exit_value);
             }
         } else {
@@ -242,17 +241,17 @@ main(int argc, char**argv)
     if (test_output) {
         /* there was output, test expected */
         fclose(test_output);
-        int ret = system("cmp 20000808-1.c.output /Users/eisen/prog/gcc-3.3.1-3/gcc/testsuite/gcc.expect-torture/execute/20000808-1.expect");
+        int ret = system("cmp 20000808-1.c.output pre_patch/20000808-1.expect");
         ret = ret >> 8;
         if (ret == 1) {
-            printf("Test ./generated/20000808-1.c failed, output differs\n");
+            printf("Test ./20000808-1.c failed, output differs\n");
             exit(1);
         }
         if (ret != 0) {
-            printf("Test ./generated/20000808-1.c failed, output missing\n");
+            printf("Test ./20000808-1.c failed, output missing\n");
             exit(1);
         }
     }
-    if (verbose) printf("Test ./generated/20000808-1.c Succeeded\n");
+    if (verbose) printf("Test ./20000808-1.c Succeeded\n");
     return 0;
 }

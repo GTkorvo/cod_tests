@@ -15,7 +15,7 @@
 //   unsigned a, b, c, d;
 // } t1;
 // 
-// f (t1 *ps)
+// void f (t1 *ps)
 // {
 //     ps->a = 10000;
 //     ps->b = ps->a / 3;
@@ -91,7 +91,7 @@ main(int argc, char**argv)
     };
 
     char extern_string[] = "\n\
-	f (t1 *ps);\n\
+	void f (t1 *ps);\n\
 	void main ();\n\
     	void exit(int value);\n\
         void abort();\n\
@@ -105,7 +105,7 @@ main(int argc, char**argv)
 ""};
 
     char *func_decls[] = {
-	"f (t1 *ps);",
+	"void f (t1 *ps);",
 	"void main ();",
 	""};
 
@@ -171,7 +171,7 @@ main(int argc, char**argv)
     if (test_output) {
         /* there was output, test expected */
         fclose(test_output);
-        int ret = system("cmp divconst-1.c.output /Users/eisen/prog/gcc-3.3.1-3/gcc/testsuite/gcc.expect-torture/execute/divconst-1.expect");
+        int ret = system("cmp divconst-1.c.output ./pre_patch/divconst-1.expect");
         ret = ret >> 8;
         if (ret == 1) {
             printf("Test ./generated/divconst-1.c failed, output differs\n");
