@@ -25,10 +25,9 @@
 // 
 // char buf[10];
 // 
-// inline char *
+// char *
 // foo (char *tmp)
 // {
-//   asm ("" : "=r" (tmp) : "0" (tmp));
 //   return tmp + 2;
 // }
 // 
@@ -100,7 +99,7 @@ main(int argc, char**argv)
 
     char extern_string[] = "\n\
 	static void bar (int x);\n\
-	inline char * foo (char *tmp);\n\
+	char * foo (char *tmp);\n\
 	int main ();\n\
     	void exit(int value);\n\
         void abort();\n\
@@ -112,7 +111,7 @@ main(int argc, char**argv)
 
     char *func_decls[] = {
 	"static void bar (int x);",
-	"inline char * foo (char *tmp);",
+	"char * foo (char *tmp);",
 	"int main ();",
 	""};
 
@@ -126,7 +125,6 @@ main(int argc, char**argv)
 
 /* body for foo */
 "{\n\
-  asm (\"\" : \"=r\" (tmp) : \"0\" (tmp));\n\
   return tmp + 2;\n\
 }",
 
@@ -179,7 +177,7 @@ main(int argc, char**argv)
     if (test_output) {
         /* there was output, test expected */
         fclose(test_output);
-        int ret = system("cmp 20020107-1.c.output /Users/eisen/prog/gcc-3.3.1-3/gcc/testsuite/gcc.expect-torture/execute/20020107-1.expect");
+        int ret = system("cmp 20020107-1.c.output ./pre_patch/20020107-1.expect");
         ret = ret >> 8;
         if (ret == 1) {
             printf("Test ./generated/20020107-1.c failed, output differs\n");

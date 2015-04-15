@@ -10,6 +10,7 @@
 /*
  *  Original test was:
  */
+// int
 // foo(bufp)
 // char *bufp;
 // {
@@ -86,7 +87,7 @@ main(int argc, char**argv)
     };
 
     char extern_string[] = "\n\
-	void foo(char *bufp);\n\
+	int foo(char *bufp);\n\
 	void main();\n\
     	void exit(int value);\n\
         void abort();\n\
@@ -96,7 +97,7 @@ main(int argc, char**argv)
 ""};
 
     char *func_decls[] = {
-	"void foo(char *bufp);",
+	"int foo(char *bufp);",
 	"void main();",
 	""};
 
@@ -161,7 +162,7 @@ main(int argc, char**argv)
     if (test_output) {
         /* there was output, test expected */
         fclose(test_output);
-        int ret = system("cmp 990106-1.c.output /Users/eisen/prog/gcc-3.3.1-3/gcc/testsuite/gcc.expect-torture/execute/990106-1.expect");
+        int ret = system("cmp 990106-1.c.output ./pre_patch/990106-1.expect");
         ret = ret >> 8;
         if (ret == 1) {
             printf("Test ./generated/990106-1.c failed, output differs\n");

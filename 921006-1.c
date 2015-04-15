@@ -11,6 +11,8 @@
  *  Original test was:
  */
 // /* REPRODUCED:RUN:SIGNAL MACHINE:i386 OPTIONS:-O */
+// #include <string.h>
+// 
 // main()
 // {
 // if(strcmp("X","")<0)abort();
@@ -81,6 +83,7 @@ main(int argc, char**argv)
         int test_printf(const char *format, ...);\n\
         int printf(const char *format, ...);";
     char *global_decls[] = {
+	"#include <string.h>",
 ""};
 
     char *func_decls[] = {
@@ -138,7 +141,7 @@ exit(0);\n\
     if (test_output) {
         /* there was output, test expected */
         fclose(test_output);
-        int ret = system("cmp 921006-1.c.output /Users/eisen/prog/gcc-3.3.1-3/gcc/testsuite/gcc.expect-torture/execute/921006-1.expect");
+        int ret = system("cmp 921006-1.c.output ./pre_patch/921006-1.expect");
         ret = ret >> 8;
         if (ret == 1) {
             printf("Test ./generated/921006-1.c failed, output differs\n");

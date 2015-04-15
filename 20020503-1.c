@@ -15,6 +15,7 @@
 //    insertted the code at the wrong place corrupting the i<0 test.  */
 // 
 // void abort (void);
+// 
 // static char *
 // inttostr (long i, char buf[128])
 // {
@@ -91,7 +92,7 @@ main(int argc, char**argv)
     }
     cod_extern_entry externs[] = 
     {
-	{"abort", (void*)(long)-1},
+	{"inttostr", (void*)(long)-1},
 	{"main", (void*)(long)-1},
 	{"abort", (void*)my_abort},
 	{"exit", (void*)test_exit},
@@ -101,7 +102,7 @@ main(int argc, char**argv)
     };
 
     char extern_string[] = "\n\
-	void abort (); static char * inttostr (long i, char buf[128]);\n\
+	static char * inttostr (long i, char buf[128]);\n\
 	int main ();\n\
     	void exit(int value);\n\
         void abort();\n\
@@ -111,13 +112,13 @@ main(int argc, char**argv)
 ""};
 
     char *func_decls[] = {
-	"void abort (); static char * inttostr (long i, char buf[128]);",
+	"static char * inttostr (long i, char buf[128]);",
 	"int main ();",
 	""};
 
     char *func_bodies[] = {
 
-/* body for abort */
+/* body for inttostr */
 "{\n\
   unsigned long ui = i;\n\
   char *p = buf + 127;\n\
@@ -185,7 +186,7 @@ main(int argc, char**argv)
     if (test_output) {
         /* there was output, test expected */
         fclose(test_output);
-        int ret = system("cmp 20020503-1.c.output /Users/eisen/prog/gcc-3.3.1-3/gcc/testsuite/gcc.expect-torture/execute/20020503-1.expect");
+        int ret = system("cmp 20020503-1.c.output ./pre_patch/20020503-1.expect");
         ret = ret >> 8;
         if (ret == 1) {
             printf("Test ./generated/20020503-1.c failed, output differs\n");

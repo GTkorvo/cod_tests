@@ -10,8 +10,11 @@
 /*
  *  Original test was:
  */
-// f(got){if(got!=0xffff)abort();}
-// main(){signed char c=-1;unsigned u=(unsigned short)c;f(u);exit(0);}
+// void f(int got)
+// {if(got!=0xffff)abort();}
+// 
+// main()
+// {signed char c=-1;unsigned u=(unsigned short)c;f(u);exit(0);}
 
 int exit_value = 0; /* success */
 jmp_buf env;
@@ -72,7 +75,7 @@ main(int argc, char**argv)
     };
 
     char extern_string[] = "\n\
-	f(got);\n\
+	void f(int got);\n\
 	void main();\n\
     	void exit(int value);\n\
         void abort();\n\
@@ -82,7 +85,7 @@ main(int argc, char**argv)
 ""};
 
     char *func_decls[] = {
-	"f(got);",
+	"void f(int got);",
 	"void main();",
 	""};
 
@@ -137,7 +140,7 @@ main(int argc, char**argv)
     if (test_output) {
         /* there was output, test expected */
         fclose(test_output);
-        int ret = system("cmp 920603-1.c.output /Users/eisen/prog/gcc-3.3.1-3/gcc/testsuite/gcc.expect-torture/execute/920603-1.expect");
+        int ret = system("cmp 920603-1.c.output ./pre_patch/920603-1.expect");
         ret = ret >> 8;
         if (ret == 1) {
             printf("Test ./generated/920603-1.c failed, output differs\n");

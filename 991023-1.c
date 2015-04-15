@@ -11,8 +11,9 @@
  *  Original test was:
  */
 // 
-// 
 // int blah;
+// 
+// int
 // foo()
 // {
 //   int i;
@@ -94,17 +95,18 @@ main(int argc, char**argv)
     };
 
     char extern_string[] = "\n\
-	int blah; foo();\n\
+	int foo();\n\
 	void main();\n\
     	void exit(int value);\n\
         void abort();\n\
         int test_printf(const char *format, ...);\n\
         int printf(const char *format, ...);";
     char *global_decls[] = {
+	"int blah;",
 ""};
 
     char *func_decls[] = {
-	"int blah; foo();",
+	"int foo();",
 	"void main();",
 	""};
 
@@ -174,7 +176,7 @@ main(int argc, char**argv)
     if (test_output) {
         /* there was output, test expected */
         fclose(test_output);
-        int ret = system("cmp 991023-1.c.output /Users/eisen/prog/gcc-3.3.1-3/gcc/testsuite/gcc.expect-torture/execute/991023-1.expect");
+        int ret = system("cmp 991023-1.c.output ./pre_patch/991023-1.expect");
         ret = ret >> 8;
         if (ret == 1) {
             printf("Test ./generated/991023-1.c failed, output differs\n");

@@ -11,6 +11,7 @@
  *  Original test was:
  */
 // double x = 0x1.fp1;
+// 
 // int main()
 // {
 //   if (x !=  3.875)
@@ -78,16 +79,17 @@ main(int argc, char**argv)
     };
 
     char extern_string[] = "\n\
-	double x = 0x1.fp1; int main();\n\
+	int main();\n\
     	void exit(int value);\n\
         void abort();\n\
         int test_printf(const char *format, ...);\n\
         int printf(const char *format, ...);";
     char *global_decls[] = {
+	"double x = 0x1.fp1;",
 ""};
 
     char *func_decls[] = {
-	"double x = 0x1.fp1; int main();",
+	"int main();",
 	""};
 
     char *func_bodies[] = {
@@ -142,7 +144,7 @@ main(int argc, char**argv)
     if (test_output) {
         /* there was output, test expected */
         fclose(test_output);
-        int ret = system("cmp 991030-1.c.output /Users/eisen/prog/gcc-3.3.1-3/gcc/testsuite/gcc.expect-torture/execute/991030-1.expect");
+        int ret = system("cmp 991030-1.c.output ./pre_patch/991030-1.expect");
         ret = ret >> 8;
         if (ret == 1) {
             printf("Test ./generated/991030-1.c failed, output differs\n");

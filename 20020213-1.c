@@ -15,8 +15,6 @@
 //    incorrectly assumed it is safe to first write into a.a2 b-1
 //    and then read the original value from it.  */
 // 
-// int bar (float);
-// 
 // struct A {
 //   float a1;
 //   int a2;
@@ -24,17 +22,17 @@
 // 
 // int b;
 // 
+// int bar (float x)
+// {
+//   return 2241;
+// }
+// 
 // void foo (void)
 // {
 //   a.a2 = bar (a.a1);
 //   a.a2 = a.a2 < b - 1 ? a.a2 : b - 1;
 //   if (a.a2 >= b - 1)
 //     abort ();
-// }
-// 
-// int bar (float x)
-// {
-//   return 2241;
 // }
 // 
 // int main()
@@ -94,8 +92,8 @@ main(int argc, char**argv)
     }
     cod_extern_entry externs[] = 
     {
-	{"foo", (void*)(long)-1},
 	{"bar", (void*)(long)-1},
+	{"foo", (void*)(long)-1},
 	{"main", (void*)(long)-1},
 	{"abort", (void*)my_abort},
 	{"exit", (void*)test_exit},
@@ -105,15 +103,14 @@ main(int argc, char**argv)
     };
 
     char extern_string[] = "\n\
-	void foo ();\n\
 	int bar (float x);\n\
+	void foo ();\n\
 	int main();\n\
     	void exit(int value);\n\
         void abort();\n\
         int test_printf(const char *format, ...);\n\
         int printf(const char *format, ...);";
     char *global_decls[] = {
-	"int bar (float);",
 	"struct A {\n\
   float a1;\n\
   int a2;\n\
@@ -123,12 +120,17 @@ int b;",
 ""};
 
     char *func_decls[] = {
-	"void foo ();",
 	"int bar (float x);",
+	"void foo ();",
 	"int main();",
 	""};
 
     char *func_bodies[] = {
+
+/* body for bar */
+"{\n\
+  return 2241;\n\
+}",
 
 /* body for foo */
 "{\n\
@@ -136,11 +138,6 @@ int b;",
   a.a2 = a.a2 < b - 1 ? a.a2 : b - 1;\n\
   if (a.a2 >= b - 1)\n\
     abort ();\n\
-}",
-
-/* body for bar */
-"{\n\
-  return 2241;\n\
 }",
 
 /* body for main */
@@ -194,7 +191,7 @@ int b;",
     if (test_output) {
         /* there was output, test expected */
         fclose(test_output);
-        int ret = system("cmp 20020213-1.c.output /Users/eisen/prog/gcc-3.3.1-3/gcc/testsuite/gcc.expect-torture/execute/20020213-1.expect");
+        int ret = system("cmp 20020213-1.c.output ./pre_patch/20020213-1.expect");
         ret = ret >> 8;
         if (ret == 1) {
             printf("Test ./generated/20020213-1.c failed, output differs\n");

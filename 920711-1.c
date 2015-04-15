@@ -10,8 +10,11 @@
 /*
  *  Original test was:
  */
-// f(long a){return (--a > 0);}
-// main(){if(f(0x80000000L)==0)abort();exit(0);}
+// int f(long a)
+// {return (--a > 0);}
+// 
+// main()
+// {if(f(0x80000000L)==0)abort();exit(0);}
 
 int exit_value = 0; /* success */
 jmp_buf env;
@@ -72,7 +75,7 @@ main(int argc, char**argv)
     };
 
     char extern_string[] = "\n\
-	f(long a);\n\
+	int f(long a);\n\
 	void main();\n\
     	void exit(int value);\n\
         void abort();\n\
@@ -82,7 +85,7 @@ main(int argc, char**argv)
 ""};
 
     char *func_decls[] = {
-	"f(long a);",
+	"int f(long a);",
 	"void main();",
 	""};
 
@@ -137,7 +140,7 @@ main(int argc, char**argv)
     if (test_output) {
         /* there was output, test expected */
         fclose(test_output);
-        int ret = system("cmp 920711-1.c.output /Users/eisen/prog/gcc-3.3.1-3/gcc/testsuite/gcc.expect-torture/execute/920711-1.expect");
+        int ret = system("cmp 920711-1.c.output ./pre_patch/920711-1.expect");
         ret = ret >> 8;
         if (ret == 1) {
             printf("Test ./generated/920711-1.c failed, output differs\n");

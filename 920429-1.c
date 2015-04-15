@@ -135,7 +135,7 @@ int i,j;",
                 func();
             }
             if (exit_value != 0) {
-                printf("Test ./920429-1.c failed\n");
+                printf("Test ./generated/920429-1.c failed\n");
                 exit(exit_value);
             }
         } else {
@@ -145,17 +145,17 @@ int i,j;",
     if (test_output) {
         /* there was output, test expected */
         fclose(test_output);
-        int ret = system("cmp 920429-1.c.output pre_patch/920429-1.expect");
+        int ret = system("cmp 920429-1.c.output ./pre_patch/920429-1.expect");
         ret = ret >> 8;
         if (ret == 1) {
-            printf("Test ./920429-1.c failed, output differs\n");
+            printf("Test ./generated/920429-1.c failed, output differs\n");
             exit(1);
         }
         if (ret != 0) {
-            printf("Test ./920429-1.c failed, output missing\n");
+            printf("Test ./generated/920429-1.c failed, output missing\n");
             exit(1);
         }
     }
-    if (verbose) printf("Test ./920429-1.c Succeeded\n");
+    if (verbose) printf("Test ./generated/920429-1.c Succeeded\n");
     return 0;
 }

@@ -10,7 +10,7 @@
 /*
  *  Original test was:
  */
-// f(short *p)
+// int f(short *p)
 // {
 //   short x = *p;
 //   return (--x < 0);
@@ -83,7 +83,7 @@ main(int argc, char**argv)
     };
 
     char extern_string[] = "\n\
-	f(short *p);\n\
+	int f(short *p);\n\
 	void main();\n\
     	void exit(int value);\n\
         void abort();\n\
@@ -93,7 +93,7 @@ main(int argc, char**argv)
 ""};
 
     char *func_decls[] = {
-	"f(short *p);",
+	"int f(short *p);",
 	"void main();",
 	""};
 
@@ -156,7 +156,7 @@ main(int argc, char**argv)
     if (test_output) {
         /* there was output, test expected */
         fclose(test_output);
-        int ret = system("cmp 921123-1.c.output /Users/eisen/prog/gcc-3.3.1-3/gcc/testsuite/gcc.expect-torture/execute/921123-1.expect");
+        int ret = system("cmp 921123-1.c.output ./pre_patch/921123-1.expect");
         ret = ret >> 8;
         if (ret == 1) {
             printf("Test ./generated/921123-1.c failed, output differs\n");

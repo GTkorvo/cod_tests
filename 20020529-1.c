@@ -10,19 +10,6 @@
 /*
  *  Original test was:
  */
-// /* PR target/6838 from cato@df.lth.se.
-//    cris-elf got an ICE with -O2: the insn matching
-//       (insn 49 48 52 (parallel[ 
-// 		  (set (mem/s:HI (plus:SI (reg/v/f:SI 0 r0 [24])
-// 			      (const_int 8 [0x8])) [5 <variable>.c+0 S2 A8])
-// 		      (reg:HI 2 r2 [27]))
-// 		  (set (reg/f:SI 2 r2 [31])
-// 		      (plus:SI (reg/v/f:SI 0 r0 [24])
-// 			  (const_int 8 [0x8])))
-// 	      ] ) 24 {*mov_sidehi_mem} (nil)
-// 	  (nil))
-//    forced a splitter through the output pattern "#", but there was no
-//    matching splitter.  */
 // 
 // struct xx
 //  {
@@ -31,8 +18,21 @@
 //    short c;
 //  };
 // 
-// int f1 (struct xx *);
-// void f2 (void);
+// 
+// int
+// f1 (struct xx *p)
+// {
+//   static int beenhere = 0;
+//   if (beenhere++ > 1)
+//     abort ();
+//   return beenhere > 1;
+// }
+// 
+// void
+// f2 (void)
+// {
+//   abort ();
+// }
 // 
 // int
 // foo (struct xx *p, int b, int c, int d)
@@ -72,21 +72,6 @@
 //   if (foo (&s, 0, 0, 0) != 0 || s.a != 0 || s.b != &s || s.c != 0)
 //     abort ();
 //   exit (0);
-// }
-// 
-// int
-// f1 (struct xx *p)
-// {
-//   static int beenhere = 0;
-//   if (beenhere++ > 1)
-//     abort ();
-//   return beenhere > 1;
-// }
-// 
-// void
-// f2 (void)
-// {
-//   abort ();
 // }
 
 int exit_value = 0; /* success */
@@ -138,11 +123,10 @@ main(int argc, char**argv)
     }
     cod_extern_entry externs[] = 
     {
-	{"matching", (void*)(long)-1},
-	{"foo", (void*)(long)-1},
-	{"main", (void*)(long)-1},
 	{"f1", (void*)(long)-1},
 	{"f2", (void*)(long)-1},
+	{"foo", (void*)(long)-1},
+	{"main", (void*)(long)-1},
 	{"abort", (void*)my_abort},
 	{"exit", (void*)test_exit},
 	{"test_printf", (void*)test_printf},
@@ -151,43 +135,44 @@ main(int argc, char**argv)
     };
 
     char extern_string[] = "\n\
-	/* PR target/6838 from cato@df.lth.se.    cris-elf got an ICE with -O2: the insn matching       ();\n\
-	int foo (struct xx *p, int b, int c, int d);\n\
-	int main ();\n\
 	int f1 (struct xx *p);\n\
 	void f2 ();\n\
+	int foo (struct xx *p, int b, int c, int d);\n\
+	int main ();\n\
     	void exit(int value);\n\
         void abort();\n\
         int test_printf(const char *format, ...);\n\
         int printf(const char *format, ...);";
     char *global_decls[] = {
-	"(nil)\n\
-	  (nil))\n\
-   forced a splitter through the output pattern \"#\", but there was no\n\
-   matching splitter.  */",
 	"struct xx\n\
  {\n\
    int a;\n\
    struct xx *b;\n\
    short c;\n\
- };\n\
-\n\
-int f1 (struct xx *);\n\
-void f2 (void);",
+ };",
 ""};
 
     char *func_decls[] = {
-	"/* PR target/6838 from cato@df.lth.se.    cris-elf got an ICE with -O2: the insn matching       ();",
-	"int foo (struct xx *p, int b, int c, int d);",
-	"int main ();",
 	"int f1 (struct xx *p);",
 	"void f2 ();",
+	"int foo (struct xx *p, int b, int c, int d);",
+	"int main ();",
 	""};
 
     char *func_bodies[] = {
 
-/* body for matching */
-"{*mov_sidehi_mem}",
+/* body for f1 */
+"{\n\
+  static int beenhere = 0;\n\
+  if (beenhere++ > 1)\n\
+    abort ();\n\
+  return beenhere > 1;\n\
+}",
+
+/* body for f2 */
+"{\n\
+  abort ();\n\
+}",
 
 /* body for foo */
 "{\n\
@@ -227,25 +212,12 @@ void f2 (void);",
     abort ();\n\
   exit (0);\n\
 }",
-
-/* body for f1 */
-"{\n\
-  static int beenhere = 0;\n\
-  if (beenhere++ > 1)\n\
-    abort ();\n\
-  return beenhere > 1;\n\
-}",
-
-/* body for f2 */
-"{\n\
-  abort ();\n\
-}",
 ""};
 
     int i;
-    cod_code gen_code[5];
+    cod_code gen_code[4];
     cod_parse_context context;
-    for (i=0; i < 5; i++) {
+    for (i=0; i < 4; i++) {
         int j;
         if (verbose) {
              printf("Working on subroutine %s\n", externs[i].extern_name);
@@ -268,7 +240,7 @@ void f2 (void);",
         cod_subroutine_declaration(func_decls[i], context);
         gen_code[i] = cod_code_gen(func_bodies[i], context);
         externs[i].extern_value = (void*) gen_code[i]->func;
-        if (i == 4) {
+        if (i == 3) {
             int (*func)() = (int(*)()) externs[i].extern_value;
             if (setjmp(env) == 0) {
                 func();
@@ -284,7 +256,7 @@ void f2 (void);",
     if (test_output) {
         /* there was output, test expected */
         fclose(test_output);
-        int ret = system("cmp 20020529-1.c.output /Users/eisen/prog/gcc-3.3.1-3/gcc/testsuite/gcc.expect-torture/execute/20020529-1.expect");
+        int ret = system("cmp 20020529-1.c.output ./pre_patch/20020529-1.expect");
         ret = ret >> 8;
         if (ret == 1) {
             printf("Test ./generated/20020529-1.c failed, output differs\n");

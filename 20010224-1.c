@@ -15,12 +15,14 @@
 // typedef signed short int16_t;
 // typedef unsigned short uint16_t;
 // 
-// int16_t logadd (int16_t *a, int16_t *b);
-// void ba_compute_psd (int16_t start);
-// 
 // int16_t masktab[6] = { 1, 2, 3, 4, 5};
 // int16_t psd[6] = { 50, 40, 30, 20, 10};
 // int16_t bndpsd[6] = { 1, 2, 3, 4, 5};
+// 
+// int16_t logadd (int16_t *a, int16_t *b)
+// {
+//   return *a + *b;
+// }
 // 
 // void ba_compute_psd (int16_t start)
 // {
@@ -37,11 +39,6 @@
 //     bndpsd[k] = logadd(&bndpsd[k], &psd[j]);
 //     j++; 
 //   } 
-// }
-// 
-// int16_t logadd (int16_t *a, int16_t *b)
-// {
-//   return *a + *b;
 // }
 // 
 // int main (void)
@@ -104,8 +101,8 @@ main(int argc, char**argv)
     }
     cod_extern_entry externs[] = 
     {
-	{"ba_compute_psd", (void*)(long)-1},
 	{"logadd", (void*)(long)-1},
+	{"ba_compute_psd", (void*)(long)-1},
 	{"main", (void*)(long)-1},
 	{"abort", (void*)my_abort},
 	{"exit", (void*)test_exit},
@@ -115,8 +112,8 @@ main(int argc, char**argv)
     };
 
     char extern_string[] = "\n\
-	void ba_compute_psd (int16_t start);\n\
 	int16_t logadd (int16_t *a, int16_t *b);\n\
+	void ba_compute_psd (int16_t start);\n\
 	int main ();\n\
     	void exit(int value);\n\
         void abort();\n\
@@ -126,22 +123,24 @@ main(int argc, char**argv)
 	"\n\
 \n\
 typedef signed short int16_t;\n\
-typedef unsigned short uint16_t;\n\
-\n\
-int16_t logadd (int16_t *a, int16_t *b);\n\
-void ba_compute_psd (int16_t start);",
+typedef unsigned short uint16_t;",
 	"int16_t masktab[6] ={ 1, 2, 3, 4, 5};",
 	"int16_t psd[6] ={ 50, 40, 30, 20, 10};",
 	"int16_t bndpsd[6] ={ 1, 2, 3, 4, 5};",
 ""};
 
     char *func_decls[] = {
-	"void ba_compute_psd (int16_t start);",
 	"int16_t logadd (int16_t *a, int16_t *b);",
+	"void ba_compute_psd (int16_t start);",
 	"int main ();",
 	""};
 
     char *func_bodies[] = {
+
+/* body for logadd */
+"{\n\
+  return *a + *b;\n\
+}",
 
 /* body for ba_compute_psd */
 "{\n\
@@ -158,11 +157,6 @@ void ba_compute_psd (int16_t start);",
     bndpsd[k] = logadd(&bndpsd[k], &psd[j]);\n\
     j++; \n\
   } \n\
-}",
-
-/* body for logadd */
-"{\n\
-  return *a + *b;\n\
 }",
 
 /* body for main */
@@ -218,7 +212,7 @@ void ba_compute_psd (int16_t start);",
     if (test_output) {
         /* there was output, test expected */
         fclose(test_output);
-        int ret = system("cmp 20010224-1.c.output /Users/eisen/prog/gcc-3.3.1-3/gcc/testsuite/gcc.expect-torture/execute/20010224-1.expect");
+        int ret = system("cmp 20010224-1.c.output ./pre_patch/20010224-1.expect");
         ret = ret >> 8;
         if (ret == 1) {
             printf("Test ./generated/20010224-1.c failed, output differs\n");

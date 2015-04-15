@@ -17,21 +17,19 @@
 // 
 // extern void abort(void);
 // 
-// int fcntl_lock(int fd, int op, long long offset, long long count, int type);
+// int fcntl_lock(int fd, int op, long long offset, long long count, int type)
+// {
+//   return type;
+// }
 // 
 // int vfswrap_lock(char *fsp, int fd, int op, long long offset, long long count, int type)
 // {
 //   return fcntl_lock(fd, op, offset, count, type);
 // }
 // 
-// int fcntl_lock(int fd, int op, long long offset, long long count, int type)
-// {
-//   return type;
-// }
-// 
 // int main(void)
 // {
-//   if (vfswrap_lock (0, 1, 2, 3, 4, 5) != 5)
+//     if (vfswrap_lock ((char*)0, 1, 2, 3, 4, 5) != 5)
 //     abort();
 // 
 //   return 0;
@@ -86,8 +84,8 @@ main(int argc, char**argv)
     }
     cod_extern_entry externs[] = 
     {
-	{"vfswrap_lock", (void*)(long)-1},
 	{"fcntl_lock", (void*)(long)-1},
+	{"vfswrap_lock", (void*)(long)-1},
 	{"main", (void*)(long)-1},
 	{"abort", (void*)my_abort},
 	{"exit", (void*)test_exit},
@@ -97,40 +95,37 @@ main(int argc, char**argv)
     };
 
     char extern_string[] = "\n\
-	int vfswrap_lock(char *fsp, int fd, int op, long long offset, long long count, int type);\n\
 	int fcntl_lock(int fd, int op, long long offset, long long count, int type);\n\
+	int vfswrap_lock(char *fsp, int fd, int op, long long offset, long long count, int type);\n\
 	int main();\n\
     	void exit(int value);\n\
         void abort();\n\
         int test_printf(const char *format, ...);\n\
         int printf(const char *format, ...);";
     char *global_decls[] = {
-	"\n\
-\n\
-int fcntl_lock(int fd, int op, long long offset, long long count, int type);",
 ""};
 
     char *func_decls[] = {
-	"int vfswrap_lock(char *fsp, int fd, int op, long long offset, long long count, int type);",
 	"int fcntl_lock(int fd, int op, long long offset, long long count, int type);",
+	"int vfswrap_lock(char *fsp, int fd, int op, long long offset, long long count, int type);",
 	"int main();",
 	""};
 
     char *func_bodies[] = {
-
-/* body for vfswrap_lock */
-"{\n\
-  return fcntl_lock(fd, op, offset, count, type);\n\
-}",
 
 /* body for fcntl_lock */
 "{\n\
   return type;\n\
 }",
 
+/* body for vfswrap_lock */
+"{\n\
+  return fcntl_lock(fd, op, offset, count, type);\n\
+}",
+
 /* body for main */
 "{\n\
-  if (vfswrap_lock (0, 1, 2, 3, 4, 5) != 5)\n\
+    if (vfswrap_lock ((char*)0, 1, 2, 3, 4, 5) != 5)\n\
     abort();\n\
 \n\
   return 0;\n\
@@ -179,7 +174,7 @@ int fcntl_lock(int fd, int op, long long offset, long long count, int type);",
     if (test_output) {
         /* there was output, test expected */
         fclose(test_output);
-        int ret = system("cmp 20030307-1.c.output /Users/eisen/prog/gcc-3.3.1-3/gcc/testsuite/gcc.expect-torture/execute/20030307-1.expect");
+        int ret = system("cmp 20030307-1.c.output ./pre_patch/20030307-1.expect");
         ret = ret >> 8;
         if (ret == 1) {
             printf("Test ./generated/20030307-1.c failed, output differs\n");
