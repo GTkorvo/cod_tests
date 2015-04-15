@@ -1,0 +1,41 @@
+*** /Users/eisen/prog/gcc-3.3.1-3/gcc/testsuite/gcc.c-torture/execute/20020213-1.c	Thu Oct 16 05:58:35 2003
+--- ../pre_patch/20020213-1.c	Tue Apr 14 18:42:28 2015
+***************
+*** 3,10 ****
+     incorrectly assumed it is safe to first write into a.a2 b-1
+     and then read the original value from it.  */
+  
+- int bar (float);
+- 
+  struct A {
+    float a1;
+    int a2;
+--- 3,8 ----
+***************
+*** 12,17 ****
+--- 10,20 ----
+  
+  int b;
+  
++ int bar (float x)
++ {
++   return 2241;
++ }
++ 
+  void foo (void)
+  {
+    a.a2 = bar (a.a1);
+***************
+*** 20,30 ****
+      abort ();
+  }
+  
+- int bar (float x)
+- {
+-   return 2241;
+- }
+- 
+  int main()
+  {
+    a.a1 = 1.0f;
+--- 23,28 ----
