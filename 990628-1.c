@@ -10,7 +10,7 @@
 /*
  *  Original test was:
  */
-// #include <stdlib.h>
+// #include <string.h>
 // 
 // struct {
 //     long sqlcode;
@@ -137,7 +137,7 @@ main(int argc, char**argv)
         int test_printf(const char *format, ...);\n\
         int printf(const char *format, ...);";
     char *global_decls[] = {
-	"#include <stdlib.h>",
+	"#include <string.h>",
 	"struct {\n\
     long sqlcode;\n\
 } sqlca;",
@@ -238,7 +238,7 @@ main(int argc, char**argv)
     if (test_output) {
         /* there was output, test expected */
         fclose(test_output);
-        int ret = system("cmp 990628-1.c.output /Users/eisen/prog/gcc-3.3.1-3/gcc/testsuite/gcc.expect-torture/execute/990628-1.expect");
+        int ret = system("cmp 990628-1.c.output ./pre_patch/990628-1.expect");
         ret = ret >> 8;
         if (ret == 1) {
             printf("Test ./generated/990628-1.c failed, output differs\n");

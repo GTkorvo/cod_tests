@@ -1,0 +1,47 @@
+*** /Users/eisen/prog/tinycc/tests/tests2/25_quicksort.c	Sat Jul  5 11:14:15 2014
+--- ../pre_patch/25_quicksort.c	Thu Apr 16 16:19:44 2015
+***************
+*** 2,8 ****
+  
+  int array[16];
+  
+! //Swap integer values by array indexes
+  void swap(int a, int b)
+  {
+     int tmp  = array[a];
+--- 2,8 ----
+  
+  int array[16];
+  
+! 
+  void swap(int a, int b)
+  {
+     int tmp  = array[a];
+***************
+*** 10,17 ****
+     array[b] = tmp;
+  }
+  
+- //Partition the array into two halves and return the
+- //index about which the array is partitioned
+  int partition(int left, int right)
+  {
+     int pivotIndex = left;
+--- 10,15 ----
+***************
+*** 33,39 ****
+     return index;
+  }
+  
+! //Quicksort the array
+  void quicksort(int left, int right)
+  {
+     if(left >= right)
+--- 31,37 ----
+     return index;
+  }
+  
+! 
+  void quicksort(int left, int right)
+  {
+     if(left >= right)

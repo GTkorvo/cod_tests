@@ -13,9 +13,7 @@
 // int foo (void)
 // {
 //   int i;
-// #line 1 "20010206-1.c"
 //   if (0) i = 1; else i
-// #line 1 "20010206-1.c"
 //     = 26;
 //   return i;
 // }
@@ -105,9 +103,7 @@ main(int argc, char**argv)
 /* body for foo */
 "{\n\
   int i;\n\
-#line 1 \"20010206-1.c\"\n\
   if (0) i = 1; else i\n\
-#line 1 \"20010206-1.c\"\n\
     = 26;\n\
   return i;\n\
 }",
@@ -162,7 +158,7 @@ main(int argc, char**argv)
     if (test_output) {
         /* there was output, test expected */
         fclose(test_output);
-        int ret = system("cmp 20010206-1.c.output /Users/eisen/prog/gcc-3.3.1-3/gcc/testsuite/gcc.expect-torture/execute/20010206-1.expect");
+        int ret = system("cmp 20010206-1.c.output ./pre_patch/20010206-1.expect");
         ret = ret >> 8;
         if (ret == 1) {
             printf("Test ./generated/20010206-1.c failed, output differs\n");

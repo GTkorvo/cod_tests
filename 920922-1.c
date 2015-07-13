@@ -11,7 +11,8 @@
  *  Original test was:
  */
 // unsigned long*
-// f(p)unsigned long*p;
+// f(p)
+// unsigned long*p;
 // {
 //   unsigned long a = (*p++) >> 24;
 //   return p + a;
@@ -74,6 +75,7 @@ main(int argc, char**argv)
     }
     cod_extern_entry externs[] = 
     {
+	{"f", (void*)(long)-1},
 	{"main", (void*)(long)-1},
 	{"abort", (void*)my_abort},
 	{"exit", (void*)test_exit},
@@ -83,20 +85,27 @@ main(int argc, char**argv)
     };
 
     char extern_string[] = "\n\
+	unsigned long* f(unsigned long*p);\n\
 	void main ();\n\
     	void exit(int value);\n\
         void abort();\n\
         int test_printf(const char *format, ...);\n\
         int printf(const char *format, ...);";
     char *global_decls[] = {
-	"unsigned long*",
 ""};
 
     char *func_decls[] = {
+	"unsigned long* f(unsigned long*p);",
 	"void main ();",
 	""};
 
     char *func_bodies[] = {
+
+/* body for f */
+"{\n\
+  unsigned long a = (*p++) >> 24;\n\
+  return p + a;\n\
+}",
 
 /* body for main */
 "{\n\
@@ -108,9 +117,9 @@ main(int argc, char**argv)
 ""};
 
     int i;
-    cod_code gen_code[1];
+    cod_code gen_code[2];
     cod_parse_context context;
-    for (i=0; i < 1; i++) {
+    for (i=0; i < 2; i++) {
         int j;
         if (verbose) {
              printf("Working on subroutine %s\n", externs[i].extern_name);
@@ -133,7 +142,7 @@ main(int argc, char**argv)
         cod_subroutine_declaration(func_decls[i], context);
         gen_code[i] = cod_code_gen(func_bodies[i], context);
         externs[i].extern_value = (void*) gen_code[i]->func;
-        if (i == 0) {
+        if (i == 1) {
             int (*func)() = (int(*)()) externs[i].extern_value;
             if (setjmp(env) == 0) {
                 func();
@@ -149,7 +158,7 @@ main(int argc, char**argv)
     if (test_output) {
         /* there was output, test expected */
         fclose(test_output);
-        int ret = system("cmp 920922-1.c.output /Users/eisen/prog/gcc-3.3.1-3/gcc/testsuite/gcc.expect-torture/execute/920922-1.expect");
+        int ret = system("cmp 920922-1.c.output ./pre_patch/920922-1.expect");
         ret = ret >> 8;
         if (ret == 1) {
             printf("Test ./generated/920922-1.c failed, output differs\n");

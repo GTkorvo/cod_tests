@@ -1,0 +1,13 @@
+*** /Users/eisen/prog/gcc-3.3.1-3/gcc/testsuite/gcc.c-torture/execute/cvt-1.c	Thu Oct 16 05:59:19 2003
+--- ../pre_patch/cvt-1.c	Thu Apr 16 16:06:47 2015
+***************
+*** 1,4 ****
+! static inline long
+  g1 (double x)
+  {
+    return (double) (long) x;
+--- 1,4 ----
+! static long
+  g1 (double x)
+  {
+    return (double) (long) x;

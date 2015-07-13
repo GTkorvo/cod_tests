@@ -1,0 +1,13 @@
+*** /Users/eisen/prog/gcc-3.3.1-3/gcc/testsuite/gcc.c-torture/execute/930603-3.c	Sat May  2 10:00:57 2015
+--- ../pre_patch/930603-3.c	Sat May  2 10:01:13 2015
+***************
+*** 1,4 ****
+! f (b, c)
+       unsigned char *b;
+       int c;
+  {
+--- 1,4 ----
+! int f (b, c)
+       unsigned char *b;
+       int c;
+  {

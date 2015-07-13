@@ -15,12 +15,14 @@
 // 
 // extern void abort (void);
 //  
+// #include <string.h>
+// 
 // int main (void)
 // {
 //   char buf[16] = "1234567890";
 //   char *p = buf;
 // 
-//   *p++ = (char) __builtin_strlen (buf);
+//   *p++ = (char) strlen (buf);
 // 
 //   if ((buf[0] != 10) || (p - buf != 1))
 //     abort ();
@@ -77,7 +79,7 @@ main(int argc, char**argv)
     }
     cod_extern_entry externs[] = 
     {
-	{"abort", (void*)(long)-1},
+	{"main", (void*)(long)-1},
 	{"abort", (void*)my_abort},
 	{"exit", (void*)test_exit},
 	{"test_printf", (void*)test_printf},
@@ -86,26 +88,29 @@ main(int argc, char**argv)
     };
 
     char extern_string[] = "\n\
-	extern void abort ();   int main ();\n\
+	int main ();\n\
     	void exit(int value);\n\
         void abort();\n\
         int test_printf(const char *format, ...);\n\
         int printf(const char *format, ...);";
     char *global_decls[] = {
+	"\n\
+ \n\
+#include <string.h>",
 ""};
 
     char *func_decls[] = {
-	"extern void abort ();   int main ();",
+	"int main ();",
 	""};
 
     char *func_bodies[] = {
 
-/* body for abort */
+/* body for main */
 "{\n\
   char buf[16] = \"1234567890\";\n\
   char *p = buf;\n\
 \n\
-  *p++ = (char) __builtin_strlen (buf);\n\
+  *p++ = (char) strlen (buf);\n\
 \n\
   if ((buf[0] != 10) || (p - buf != 1))\n\
     abort ();\n\
@@ -156,7 +161,7 @@ main(int argc, char**argv)
     if (test_output) {
         /* there was output, test expected */
         fclose(test_output);
-        int ret = system("cmp 20030221-1.c.output /Users/eisen/prog/gcc-3.3.1-3/gcc/testsuite/gcc.expect-torture/execute/20030221-1.expect");
+        int ret = system("cmp 20030221-1.c.output ./pre_patch/20030221-1.expect");
         ret = ret >> 8;
         if (ret == 1) {
             printf("Test ./generated/20030221-1.c failed, output differs\n");

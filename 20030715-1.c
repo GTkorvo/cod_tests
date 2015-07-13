@@ -16,7 +16,8 @@
 // /* Verify that the scheduler correctly computes the dependencies
 //    in the presence of conditional instructions.  */
 // 
-// int strcmp (const char *, const char *);
+// #include <string.h>
+// 
 // int ap_standalone;
 // 
 // const char *ap_check_cmd_context (void *a, int b)
@@ -42,7 +43,7 @@
 // 
 // int main ()
 // {
-//   server_type (0, 0, "standalone");
+//   server_type ((void*)0, (void*)0, "standalone");
 //   return 0;
 // }
 
@@ -114,7 +115,8 @@ main(int argc, char**argv)
         int test_printf(const char *format, ...);\n\
         int printf(const char *format, ...);";
     char *global_decls[] = {
-	"int strcmp (const char *, const char *);\n\
+	"#include <string.h>\n\
+\n\
 int ap_standalone;",
 ""};
 
@@ -149,7 +151,7 @@ int ap_standalone;",
 
 /* body for main */
 "{\n\
-  server_type (0, 0, \"standalone\");\n\
+  server_type ((void*)0, (void*)0, \"standalone\");\n\
   return 0;\n\
 }",
 ""};
@@ -196,7 +198,7 @@ int ap_standalone;",
     if (test_output) {
         /* there was output, test expected */
         fclose(test_output);
-        int ret = system("cmp 20030715-1.c.output /Users/eisen/prog/gcc-3.3.1-3/gcc/testsuite/gcc.expect-torture/execute/20030715-1.expect");
+        int ret = system("cmp 20030715-1.c.output ./pre_patch/20030715-1.expect");
         ret = ret >> 8;
         if (ret == 1) {
             printf("Test ./generated/20030715-1.c failed, output differs\n");

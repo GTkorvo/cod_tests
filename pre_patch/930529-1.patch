@@ -1,0 +1,14 @@
+*** /Users/eisen/prog/gcc-3.3.1-3/gcc/testsuite/gcc.c-torture/execute/930529-1.c	Thu Oct 16 04:58:51 2003
+--- ../pre_patch/930529-1.c	Sat May  2 09:29:05 2015
+***************
+*** 1,4 ****
+! dd (x,d) { return x / d; }
+  
+  main ()
+  {
+--- 1,5 ----
+! int dd (int x, int d) 
+! { return x / d; }
+  
+  main ()
+  {

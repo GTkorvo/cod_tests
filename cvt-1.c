@@ -10,7 +10,7 @@
 /*
  *  Original test was:
  */
-// static inline long
+// static long
 // g1 (double x)
 // {
 //   return (double) (long) x;
@@ -100,7 +100,7 @@ main(int argc, char**argv)
     };
 
     char extern_string[] = "\n\
-	static inline long g1 (double x);\n\
+	static long g1 (double x);\n\
 	long g2 (double f);\n\
 	double f (long i);\n\
 	void main ();\n\
@@ -112,7 +112,7 @@ main(int argc, char**argv)
 ""};
 
     char *func_decls[] = {
-	"static inline long g1 (double x);",
+	"static long g1 (double x);",
 	"long g2 (double f);",
 	"double f (long i);",
 	"void main ();",
@@ -189,7 +189,7 @@ main(int argc, char**argv)
     if (test_output) {
         /* there was output, test expected */
         fclose(test_output);
-        int ret = system("cmp cvt-1.c.output /Users/eisen/prog/gcc-3.3.1-3/gcc/testsuite/gcc.expect-torture/execute/cvt-1.expect");
+        int ret = system("cmp cvt-1.c.output ./pre_patch/cvt-1.expect");
         ret = ret >> 8;
         if (ret == 1) {
             printf("Test ./generated/cvt-1.c failed, output differs\n");

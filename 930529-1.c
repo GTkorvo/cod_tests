@@ -10,7 +10,8 @@
 /*
  *  Original test was:
  */
-// dd (x,d) { return x / d; }
+// int dd (int x, int d) 
+// { return x / d; }
 // 
 // main ()
 // {
@@ -115,7 +116,7 @@ main(int argc, char**argv)
     };
 
     char extern_string[] = "\n\
-	dd (x,d);\n\
+	int dd (int x, int d);\n\
 	void main ();\n\
     	void exit(int value);\n\
         void abort();\n\
@@ -125,7 +126,7 @@ main(int argc, char**argv)
 ""};
 
     char *func_decls[] = {
-	"dd (x,d);",
+	"int dd (int x, int d);",
 	"void main ();",
 	""};
 
@@ -221,7 +222,7 @@ main(int argc, char**argv)
     if (test_output) {
         /* there was output, test expected */
         fclose(test_output);
-        int ret = system("cmp 930529-1.c.output /Users/eisen/prog/gcc-3.3.1-3/gcc/testsuite/gcc.expect-torture/execute/930529-1.expect");
+        int ret = system("cmp 930529-1.c.output ./pre_patch/930529-1.expect");
         ret = ret >> 8;
         if (ret == 1) {
             printf("Test ./generated/930529-1.c failed, output differs\n");

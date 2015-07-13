@@ -16,22 +16,21 @@
 //   return 1.0 + 3.0 / (2.302585093 * x);
 // }
 // 
+// float inita () { return 3.0; }
+// float initc () { return 4.0; }
+// f () {}
+// 
 // main ()
 // {
-//   float fx (), inita (), initc (), a, b, c;
+//   float a, b, c;
 //   a = inita ();
 //   c = initc ();
 //   f ();
 //   b = fx (c) + a;
-//   f ();
-//   if (a != 3.0 || b < 4.3257 || b > 4.3258 || c != 4.0)
-//     abort ();
+//   printf("B is %g, fx(c) is %g, a is %g\n", b, fx(c), a);
 //   exit (0);
 // }
 // 
-// float inita () { return 3.0; }
-// float initc () { return 4.0; }
-// f () {}
 
 int exit_value = 0; /* success */
 jmp_buf env;
@@ -83,10 +82,10 @@ main(int argc, char**argv)
     cod_extern_entry externs[] = 
     {
 	{"fx", (void*)(long)-1},
-	{"main", (void*)(long)-1},
 	{"inita", (void*)(long)-1},
 	{"initc", (void*)(long)-1},
 	{"f", (void*)(long)-1},
+	{"main", (void*)(long)-1},
 	{"abort", (void*)my_abort},
 	{"exit", (void*)test_exit},
 	{"test_printf", (void*)test_printf},
@@ -96,10 +95,10 @@ main(int argc, char**argv)
 
     char extern_string[] = "\n\
 	float fx (float x);\n\
-	void main ();\n\
 	float inita ();\n\
 	float initc ();\n\
 	void f ();\n\
+	void main ();\n\
     	void exit(int value);\n\
         void abort();\n\
         int test_printf(const char *format, ...);\n\
@@ -109,10 +108,10 @@ main(int argc, char**argv)
 
     char *func_decls[] = {
 	"float fx (float x);",
-	"void main ();",
 	"float inita ();",
 	"float initc ();",
 	"void f ();",
+	"void main ();",
 	""};
 
     char *func_bodies[] = {
@@ -120,19 +119,6 @@ main(int argc, char**argv)
 /* body for fx */
 "{\n\
   return 1.0 + 3.0 / (2.302585093 * x);\n\
-}",
-
-/* body for main */
-"{\n\
-  float fx (), inita (), initc (), a, b, c;\n\
-  a = inita ();\n\
-  c = initc ();\n\
-  f ();\n\
-  b = fx (c) + a;\n\
-  f ();\n\
-  if (a != 3.0 || b < 4.3257 || b > 4.3258 || c != 4.0)\n\
-    abort ();\n\
-  exit (0);\n\
 }",
 
 /* body for inita */
@@ -143,6 +129,17 @@ main(int argc, char**argv)
 
 /* body for f */
 "{}",
+
+/* body for main */
+"{\n\
+  float a, b, c;\n\
+  a = inita ();\n\
+  c = initc ();\n\
+  f ();\n\
+  b = fx (c) + a;\n\
+  test_printf(\"B is %g, fx(c) is %g, a is %g\\n\", b, fx(c), a);\n\
+  exit (0);\n\
+}",
 ""};
 
     int i;
@@ -187,7 +184,7 @@ main(int argc, char**argv)
     if (test_output) {
         /* there was output, test expected */
         fclose(test_output);
-        int ret = system("cmp 930603-1.c.output /Users/eisen/prog/gcc-3.3.1-3/gcc/testsuite/gcc.expect-torture/execute/930603-1.expect");
+        int ret = system("cmp 930603-1.c.output ./pre_patch/930603-1.expect");
         ret = ret >> 8;
         if (ret == 1) {
             printf("Test ./generated/930603-1.c failed, output differs\n");

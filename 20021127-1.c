@@ -11,18 +11,20 @@
  *  Original test was:
  */
 // long long a = -1;
-// long long llabs (long long);
+// 
 // void abort (void);
+// 
+// long long llabs (long long b)
+// {
+// 	abort ();
+// }
+// 
 // int
 // main()
 // {
 //   if (llabs (a) != 1)
 //     abort ();
 //   return 0;
-// }
-// long long llabs (long long b)
-// {
-// 	abort ();
 // }
 
 int exit_value = 0; /* success */
@@ -75,7 +77,7 @@ main(int argc, char**argv)
     cod_extern_entry externs[] = 
     {
 	{"llabs", (void*)(long)-1},
-	{"llabs", (void*)(long)-1},
+	{"main", (void*)(long)-1},
 	{"abort", (void*)my_abort},
 	{"exit", (void*)test_exit},
 	{"test_printf", (void*)test_printf},
@@ -84,32 +86,35 @@ main(int argc, char**argv)
     };
 
     char extern_string[] = "\n\
-	long long a = -1; long long llabs (long long); void abort (); int main();\n\
 	long long llabs (long long b);\n\
+	int main();\n\
     	void exit(int value);\n\
         void abort();\n\
         int test_printf(const char *format, ...);\n\
         int printf(const char *format, ...);";
     char *global_decls[] = {
+	"long long a = -1;\n\
+\n\
+",
 ""};
 
     char *func_decls[] = {
-	"long long a = -1; long long llabs (long long); void abort (); int main();",
 	"long long llabs (long long b);",
+	"int main();",
 	""};
 
     char *func_bodies[] = {
 
 /* body for llabs */
 "{\n\
+	abort ();\n\
+}",
+
+/* body for main */
+"{\n\
   if (llabs (a) != 1)\n\
     abort ();\n\
   return 0;\n\
-}",
-
-/* body for llabs */
-"{\n\
-	abort ();\n\
 }",
 ""};
 
@@ -155,7 +160,7 @@ main(int argc, char**argv)
     if (test_output) {
         /* there was output, test expected */
         fclose(test_output);
-        int ret = system("cmp 20021127-1.c.output /Users/eisen/prog/gcc-3.3.1-3/gcc/testsuite/gcc.expect-torture/execute/20021127-1.expect");
+        int ret = system("cmp 20021127-1.c.output ./pre_patch/20021127-1.expect");
         ret = ret >> 8;
         if (ret == 1) {
             printf("Test ./generated/20021127-1.c failed, output differs\n");
